@@ -1,0 +1,841 @@
+/* =========================================================
+   EDUNOVA - PROFIL D'APPRENTISSAGE
+   CSS spécifique à la page
+   Le fond et la sidebar sont hérités de dashboard.css
+   ========================================================= */
+
+
+/* =========================================================
+   CONTENU PRINCIPAL
+   ========================================================= */
+
+.learning-intro {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-bottom: 28px;
+    padding: 25px 28px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.intro-icon {
+    width: 65px;
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: white;
+
+    font-size: 30px;
+
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+}
+
+.intro-content h2 {
+    margin: 0 0 7px;
+
+    color: #1e293b;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.intro-content p {
+    margin: 0;
+
+    max-width: 850px;
+
+    color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
+.learning-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* =========================================================
+   CARTES
+   ========================================================= */
+
+.learning-card {
+    padding: 28px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   TITRES DES CARTES
+   ========================================================= */
+
+.card-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    margin-bottom: 25px;
+}
+
+.title-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    font-size: 22px;
+}
+
+.title-icon.blue {
+    background: #eff6ff;
+}
+
+.title-icon.green {
+    background: #ecfdf5;
+}
+
+.title-icon.purple {
+    background: #f5f3ff;
+}
+
+.title-icon.orange {
+    background: #fff7ed;
+}
+
+.card-title h2 {
+    margin: 0 0 6px;
+
+    color: #1e293b;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.card-title p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   OPTIONS APPRENTISSAGE
+   ========================================================= */
+
+.learning-options {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+.learning-option {
+    position: relative;
+
+    display: block;
+
+    cursor: pointer;
+}
+
+.learning-option input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.option-content {
+    position: relative;
+
+    min-height: 135px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #f8fafc;
+
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.learning-option:hover .option-content {
+    border-color: #93c5fd;
+
+    background: #f8fbff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.08);
+}
+
+.learning-option input:checked + .option-content {
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    box-shadow: 0 7px 20px rgba(37, 99, 235, 0.10);
+}
+
+.option-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    font-size: 23px;
+}
+
+.option-icon.visual {
+    background: #dbeafe;
+}
+
+.option-icon.audio {
+    background: #ede9fe;
+}
+
+.option-icon.reading {
+    background: #dcfce7;
+}
+
+.option-icon.practice {
+    background: #ffedd5;
+}
+
+.option-text {
+    padding-right: 25px;
+}
+
+.option-text h3 {
+    margin: 2px 0 7px;
+
+    color: #1e293b;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.option-text p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.check {
+    position: absolute;
+
+    top: 17px;
+    right: 17px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+
+    background: white;
+
+    color: transparent;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.learning-option input:checked + .option-content .check {
+    border-color: #2563eb;
+
+    background: #2563eb;
+
+    color: white;
+}
+
+
+/* =========================================================
+   OPTIONS TEMPS D'ETUDE
+   ========================================================= */
+
+.time-options {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+.time-option {
+    position: relative;
+
+    cursor: pointer;
+}
+
+.time-option input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.time-content {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 18px;
+
+    background: #f8fafc;
+
+    border: 2px solid #e2e8f0;
+    border-radius: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.time-option:hover .time-content {
+    border-color: #86efac;
+}
+
+.time-option input:checked + .time-content {
+    border-color: #22c55e;
+
+    background: #f0fdf4;
+}
+
+.time-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: white;
+
+    font-size: 20px;
+}
+
+.time-content strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #1e293b;
+
+    font-size: 14px;
+}
+
+.time-content small {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   DUREE D'ETUDE
+   ========================================================= */
+
+.duration-options {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 13px;
+}
+
+.duration-option {
+    position: relative;
+
+    cursor: pointer;
+}
+
+.duration-option input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.duration-option span {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 14px;
+
+    text-align: center;
+
+    background: #f8fafc;
+
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.duration-option:hover span {
+    border-color: #c4b5fd;
+}
+
+.duration-option input:checked + span {
+    border-color: #7c3aed;
+
+    background: #f5f3ff;
+
+    color: #6d28d9;
+}
+
+
+/* =========================================================
+   PREFERENCES IA
+   ========================================================= */
+
+.ai-preferences {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+.preference-item {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    padding: 17px;
+
+    cursor: pointer;
+
+    background: #f8fafc;
+
+    border: 2px solid #e2e8f0;
+    border-radius: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.preference-item:hover {
+    border-color: #fdba74;
+}
+
+.preference-item input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.custom-checkbox {
+    width: 23px;
+    height: 23px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+
+    background: white;
+
+    color: transparent;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.preference-item input:checked + .custom-checkbox {
+    border-color: #f97316;
+
+    background: #f97316;
+
+    color: white;
+}
+
+.preference-item:has(input:checked) {
+    border-color: #fdba74;
+
+    background: #fff7ed;
+}
+
+.preference-item strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #1e293b;
+
+    font-size: 14px;
+}
+
+.preference-item small {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   APERCU IA
+   ========================================================= */
+
+.ai-preview {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 24px 26px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #f5f3ff
+    );
+
+    border: 1px solid #dbeafe;
+}
+
+.ai-preview-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: white;
+
+    font-size: 28px;
+
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.10);
+}
+
+.preview-label {
+    display: inline-block;
+
+    margin-bottom: 5px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.ai-preview-content h2 {
+    margin: 0 0 6px;
+
+    color: #1e293b;
+
+    font-size: 17px;
+}
+
+.ai-preview-content p {
+    margin: 0;
+
+    max-width: 900px;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 5px 0 25px;
+}
+
+.cancel-btn,
+.save-btn {
+    min-height: 46px;
+
+    padding: 0 22px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.cancel-btn {
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    color: #475569;
+}
+
+.cancel-btn:hover {
+    background: #f8fafc;
+
+    transform: translateY(-1px);
+}
+
+.save-btn {
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.20);
+}
+
+.save-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLETTE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .learning-options {
+        grid-template-columns: 1fr;
+    }
+
+    .duration-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - PETITS ECRANS
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .learning-intro {
+        align-items: flex-start;
+
+        padding: 20px;
+    }
+
+    .learning-card {
+        padding: 20px;
+    }
+
+    .time-options,
+    .ai-preferences {
+        grid-template-columns: 1fr;
+    }
+
+    .duration-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ai-preview {
+        align-items: flex-start;
+
+        padding: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - TELEPHONE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .learning-intro {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .intro-icon {
+        width: 55px;
+        height: 55px;
+
+        font-size: 25px;
+    }
+
+    .intro-content h2 {
+        font-size: 19px;
+    }
+
+    .learning-card {
+        padding: 17px;
+    }
+
+    .card-title {
+        gap: 12px;
+    }
+
+    .title-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 19px;
+    }
+
+    .card-title h2 {
+        font-size: 16px;
+    }
+
+    .option-content {
+        min-height: auto;
+
+        padding: 16px;
+    }
+
+    .option-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+    .duration-options {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-preview {
+        flex-direction: column;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+    }
+
+}

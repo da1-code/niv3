@@ -1,0 +1,619 @@
+/* =========================================================
+   EDUNOVA IA - DASHBOARD ADMIN
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   COULEURS EDUNOVA
+   ========================================================= */
+
+:root {
+    --primary: #625cf6;
+    --primary-dark: #554ff0;
+    --primary-light: #f0efff;
+
+    --text-dark: #172554;
+    --text: #334155;
+    --text-light: #64748b;
+
+    --border: #e5e7eb;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    min-height: 100vh;
+
+    background: #f4f6ff;
+
+    color: #1e293b;
+
+    background-image:
+        linear-gradient(
+            rgba(244, 246, 255, 0.90),
+            rgba(244, 246, 255, 0.90)
+        ),
+        url("/images/fond-edunova.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* =========================================================
+   CONTENEUR
+   ========================================================= */
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 240px;
+    height: 100vh;
+
+    padding: 30px 15px;
+
+    background: var(--primary);
+
+    box-shadow:
+        5px 0 25px rgba(98, 92, 246, 0.18);
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.logo h2 {
+    color: white;
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 8px;
+
+    border-radius: 13px;
+}
+
+.menu li a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 0 18px;
+
+    color: rgba(255, 255, 255, 0.96);
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    border-radius: 13px;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================================
+   HOVER MENU
+   ========================================================= */
+
+.menu li:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.menu li:hover a {
+    color: white;
+}
+
+
+/* =========================================================
+   MENU ACTIF
+   ========================================================= */
+
+.menu li.active {
+    background: white;
+
+    box-shadow:
+        0 6px 18px rgba(54, 49, 160, 0.15);
+}
+
+.menu li.active a {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   CONTENU PRINCIPAL
+   ========================================================= */
+
+.main-content {
+    width: calc(100% - 240px);
+
+    margin-left: 240px;
+
+    min-height: 100vh;
+
+    padding: 30px 35px 50px;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    width: 100%;
+
+    min-height: 145px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 28px 35px;
+
+    margin-bottom: 30px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 8px 28px rgba(30, 41, 59, 0.07);
+}
+
+
+/* =========================================================
+   TITRE TOPBAR
+   ========================================================= */
+
+.topbar h2 {
+    color: var(--text-dark);
+
+    font-size: 34px;
+
+    font-weight: 750;
+
+    margin-bottom: 8px;
+}
+
+.topbar p {
+    color: var(--text-light);
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   PROFIL
+   ========================================================= */
+
+.profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.profile img {
+    width: 60px;
+
+    height: 60px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid #ebeaff;
+
+    box-shadow:
+        0 4px 12px rgba(98, 92, 246, 0.12);
+}
+
+.profile span {
+    color: var(--text);
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STATISTIQUES
+   IMPORTANT : TES CLASSES SONT .cards ET .card
+   ========================================================= */
+
+.cards {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 22px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   CARTE STATISTIQUE
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    min-height: 155px;
+
+    padding: 27px 25px 25px 30px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.07);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+/* =========================================================
+   BARRE VIOLETTE À GAUCHE
+   ========================================================= */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background: var(--primary);
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.card:hover {
+    transform: translateY(-4px);
+
+    border-color: #dcd9ff;
+
+    box-shadow:
+        0 14px 30px rgba(98, 92, 246, 0.13);
+}
+
+
+/* =========================================================
+   TITRE DE LA CARTE
+   ========================================================= */
+
+.card h3 {
+    color: #6b7280;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   CHIFFRE
+   ========================================================= */
+
+.card p {
+    color: var(--primary);
+
+    font-size: 38px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   ACTIVITÉS RÉCENTES
+   TES CLASSES SONT .recent
+   ========================================================= */
+
+.recent {
+    width: 100%;
+
+    padding: 28px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 20px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   TITRE ACTIVITÉS
+   ========================================================= */
+
+.recent h3 {
+    color: var(--text-dark);
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   TABLEAU
+   ========================================================= */
+
+.recent table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ENTÊTE TABLEAU
+   ========================================================= */
+
+.recent thead {
+    background: var(--primary);
+}
+
+.recent th {
+    padding: 16px 18px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   CELLULES
+   ========================================================= */
+
+.recent td {
+    padding: 17px 18px;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+
+/* =========================================================
+   HOVER LIGNES
+   ========================================================= */
+
+.recent tbody tr {
+    transition: background 0.2s ease;
+}
+
+.recent tbody tr:hover {
+    background: #f8f7ff;
+}
+
+
+/* =========================================================
+   DERNIÈRE LIGNE
+   ========================================================= */
+
+.recent tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-content {
+        padding: 25px;
+    }
+}
+
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .sidebar {
+        width: 75px;
+
+        padding: 25px 8px;
+    }
+
+    .logo h2 {
+        font-size: 0;
+    }
+
+    .logo h2::after {
+        content: "E";
+
+        font-size: 27px;
+
+        color: white;
+    }
+
+    .menu li a {
+        justify-content: center;
+
+        padding: 0;
+
+        font-size: 0;
+    }
+
+    .main-content {
+        width: calc(100% - 75px);
+
+        margin-left: 75px;
+
+        padding: 20px;
+    }
+
+    .topbar {
+        min-height: auto;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .topbar h2 {
+        font-size: 28px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .topbar {
+        padding: 22px;
+    }
+
+    .topbar h2 {
+        font-size: 24px;
+    }
+
+    .topbar p {
+        font-size: 14px;
+    }
+
+    .card {
+        min-height: 135px;
+
+        padding: 23px;
+    }
+
+    .card p {
+        font-size: 34px;
+    }
+
+    .recent {
+        padding: 18px;
+
+        overflow-x: auto;
+    }
+
+    .recent table {
+        min-width: 550px;
+    }
+}

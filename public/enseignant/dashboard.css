@@ -1,0 +1,555 @@
+/* =========================================================
+   EDUNOVA IA - DASHBOARD ENSEIGNANT
+   AVEC FOND D'ÉCRAN
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    color: #1e293b;
+    background: #f4f6ff;
+}
+
+
+/* =========================================================
+   FOND D'ÉCRAN
+   ========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background-image: url("/images/fond-edunova.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -2;
+}
+
+
+/* Voile léger sur le fond */
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(244, 246, 255, 0.82);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 240px;
+    height: 100vh;
+
+    padding: 25px 15px;
+
+    background: rgba(98, 92, 246, 0.97);
+
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.12);
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+    text-align: center;
+
+    margin-bottom: 35px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.logo h2 {
+    color: white;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 8px;
+
+    border-radius: 12px;
+
+    transition: all 0.25s ease;
+}
+
+.menu li a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+    min-height: 48px;
+
+    padding: 0 15px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    border-radius: 12px;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================================
+   HOVER MENU
+   ========================================================= */
+
+.menu li:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.menu li:hover a {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   MENU ACTIF
+   ========================================================= */
+
+.menu li.active {
+    background: white;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+}
+
+.menu li.active a {
+    color: #625CF6;
+}
+
+
+/* =========================================================
+   CONTENU PRINCIPAL
+   ========================================================= */
+
+.main-content {
+    width: calc(100% - 240px);
+
+    margin-left: 240px;
+
+    min-height: 100vh;
+
+    padding: 40px;
+}
+
+
+/* =========================================================
+   CONTENEUR ENSEIGNANT
+   ========================================================= */
+
+.teacher-container {
+    width: 100%;
+
+    min-height: calc(100vh - 80px);
+
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   BOÎTE DE BIENVENUE
+   ========================================================= */
+
+.welcome-box {
+    position: relative;
+
+    background: rgba(255, 255, 255, 0.90);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   TITRE BIENVENUE
+   ========================================================= */
+
+.welcome-box h2 {
+    color: #625CF6;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.welcome-box p {
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CARTES STATISTIQUES
+   ========================================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   CARTE
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    min-height: 150px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 10px 28px rgba(15, 23, 42, 0.08);
+
+    overflow: hidden;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================================
+   BARRE VIOLETTE
+   ========================================================= */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background: #625CF6;
+}
+
+
+/* =========================================================
+   HOVER CARTE
+   ========================================================= */
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(98, 92, 246, 0.15);
+}
+
+
+/* =========================================================
+   TITRE CARTE
+   ========================================================= */
+
+.card h3 {
+    color: #475569;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   VALEUR
+   ========================================================= */
+
+.card span {
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 35px;
+
+    color: #625CF6;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   ACTIVITÉS RÉCENTES
+   ========================================================= */
+
+.activities {
+    margin-top: 10px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   TITRE ACTIVITÉS
+   ========================================================= */
+
+.activities h3 {
+    color: #172554;
+
+    font-size: 20px;
+
+    margin-bottom: 20px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ACTIVITÉ
+   ========================================================= */
+
+.activity {
+    padding: 16px 10px;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #eef2f7;
+
+    transition: background 0.2s ease;
+}
+
+
+/* =========================================================
+   HOVER ACTIVITÉ
+   ========================================================= */
+
+.activity:hover {
+    background: rgba(248, 247, 255, 0.8);
+}
+
+
+/* =========================================================
+   DERNIÈRE ACTIVITÉ
+   ========================================================= */
+
+.activity:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   PETITE TABLETTE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        width: calc(100% - 210px);
+
+        margin-left: 210px;
+
+        padding: 25px;
+    }
+
+    .welcome-box {
+        padding: 25px;
+    }
+
+    .welcome-box h2 {
+        font-size: 24px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        padding: 15px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .menu {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 6px;
+    }
+
+    .menu li {
+        flex: 1 1 calc(50% - 6px);
+
+        margin-bottom: 0;
+    }
+
+    .menu li a {
+        justify-content: center;
+
+        min-height: 44px;
+
+        padding: 0 8px;
+
+        font-size: 13px;
+    }
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 15px;
+    }
+
+    .teacher-container {
+        min-height: auto;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-box {
+        padding: 20px;
+    }
+
+    .welcome-box h2 {
+        font-size: 22px;
+    }
+
+    .card {
+        min-height: 135px;
+    }
+
+    .activities {
+        padding: 20px;
+    }
+}

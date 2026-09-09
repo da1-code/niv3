@@ -1,0 +1,750 @@
+/* =====================================================
+   PAGE ETUDIANTS - EDUNOVA IA
+   ===================================================== */
+
+
+/* =====================================================
+   SECTION PRINCIPALE
+   ===================================================== */
+
+.students-section {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 30px 35px;
+
+    overflow: visible;
+}
+
+
+/* =====================================================
+   CARTES STATISTIQUES
+   ===================================================== */
+
+.students-stats {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+
+.student-stat-card {
+    width: 100%;
+    min-width: 0;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 28px 30px;
+
+    position: relative;
+    overflow: hidden;
+
+    box-shadow: 0 6px 20px rgba(54, 63, 120, 0.07);
+
+    transition: 0.2s ease;
+}
+
+
+.student-stat-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 25px rgba(54, 63, 120, 0.10);
+}
+
+
+.student-stat-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 7px;
+
+    background: #625cf6;
+}
+
+
+.student-stat-card p {
+    color: #777b87;
+
+    font-size: 15px;
+
+    margin-bottom: 15px;
+}
+
+
+.student-stat-card h2 {
+    color: #625cf6;
+
+    font-size: 44px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* =====================================================
+   SECTION PRINCIPALE
+   ===================================================== */
+
+.section-header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 18px;
+}
+
+
+.section-header > div {
+    min-width: 0;
+}
+
+
+.section-header h3 {
+    color: #17213c;
+
+    font-size: 24px;
+
+    margin-bottom: 5px;
+}
+
+
+.section-header p {
+    color: #777d91;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   BOUTON AJOUTER
+   ===================================================== */
+
+.add-btn {
+    flex-shrink: 0;
+
+    border: none;
+
+    background: #625cf6;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.add-btn:hover {
+    background: #514be0;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   RECHERCHE
+   ===================================================== */
+
+.search-box {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+.search-box input {
+    width: 350px;
+
+    max-width: 100%;
+
+    height: 42px;
+
+    border: 1px solid #dfe2ed;
+
+    border-radius: 8px;
+
+    padding: 0 14px;
+
+    background: #ffffff;
+
+    color: #30364a;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+.search-box input:focus {
+    border-color: #625cf6;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 92, 246, 0.10);
+}
+
+
+.search-box select {
+    height: 42px;
+
+    border: 1px solid #dfe2ed;
+
+    border-radius: 8px;
+
+    padding: 0 12px;
+
+    background: white;
+
+    color: #3d4254;
+
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.search-box select:focus {
+    border-color: #625cf6;
+}
+
+
+/* =====================================================
+   CONTENEUR DU TABLEAU
+   ===================================================== */
+
+.table-container {
+    width: 100%;
+
+    max-width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    /*
+       IMPORTANT :
+       Le tableau peut être plus large que l'écran.
+       On peut donc défiler horizontalement.
+    */
+
+    overflow-x: auto;
+
+    overflow-y: visible;
+
+    display: block;
+
+    box-shadow:
+        0 6px 20px rgba(54, 63, 120, 0.06);
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* =====================================================
+   BARRE DE DEFILEMENT DU TABLEAU
+   ===================================================== */
+
+.table-container::-webkit-scrollbar {
+    height: 9px;
+}
+
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f2f8;
+
+    border-radius: 10px;
+}
+
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #625cf6;
+
+    border-radius: 10px;
+}
+
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #514be0;
+}
+
+
+/* =====================================================
+   TABLEAU
+   ===================================================== */
+
+.table-container table {
+    width: 100%;
+
+    /*
+       Le tableau possède une largeur minimale.
+       Cela empêche les colonnes de devenir trop petites.
+    */
+
+    min-width: 1100px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+
+/* =====================================================
+   EN-TETE DU TABLEAU
+   ===================================================== */
+
+.table-container thead {
+    background: #625cf6;
+}
+
+
+.table-container th {
+    color: white;
+
+    text-align: left;
+
+    padding: 18px 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   CELLULES
+   ===================================================== */
+
+.table-container td {
+    padding: 18px 22px;
+
+    color: #454b5d;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #eceef5;
+
+    white-space: nowrap;
+}
+
+
+.table-container tbody tr {
+    transition: 0.2s ease;
+}
+
+
+.table-container tbody tr:hover {
+    background: #f8f8ff;
+}
+
+
+.table-container td strong {
+    color: #343a4e;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   COLONNE ACTIONS
+   ===================================================== */
+
+/*
+   On réserve suffisamment d'espace aux boutons.
+*/
+
+.table-container th:last-child {
+    min-width: 160px;
+
+    text-align: center;
+}
+
+
+.table-container td:last-child {
+    min-width: 160px;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   ACTIONS
+   ===================================================== */
+
+.actions {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    white-space: nowrap;
+}
+
+
+.actions button {
+    flex: 0 0 34px;
+
+    width: 34px;
+
+    min-width: 34px;
+
+    height: 34px;
+
+    border: 1px solid #dcdfea;
+
+    border-radius: 6px;
+
+    background: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+
+.actions button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   BOUTON VOIR
+   ===================================================== */
+
+.view-btn:hover {
+    background: #eef0ff;
+
+    border-color: #625cf6;
+}
+
+
+/* =====================================================
+   BOUTON MODIFIER
+   ===================================================== */
+
+.edit-btn:hover {
+    background: #fff7df;
+
+    border-color: #e3ad29;
+}
+
+
+/* =====================================================
+   BOUTON DESACTIVER
+   ===================================================== */
+
+.disable-btn:hover {
+    background: #ffecef;
+
+    border-color: #e04a63;
+}
+
+
+/* =====================================================
+   BOUTON REACTIVER
+   ===================================================== */
+
+.enable-btn:hover {
+    background: #e8f8ee;
+
+    border-color: #219653;
+}
+
+
+/* =====================================================
+   STATUT
+   ===================================================== */
+
+.status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+.active-status {
+    background: #e8f8ee;
+
+    color: #219653;
+}
+
+
+.inactive-status {
+    background: #ffecef;
+
+    color: #e04a63;
+}
+
+
+/* =====================================================
+   CORRECTION POUR LE LAYOUT EDUNOVA
+   ===================================================== */
+
+/*
+   Si ton layout possède une sidebar de 260px,
+   cette règle laisse le reste de l'écran au contenu.
+*/
+
+.main-content {
+    width: calc(100% - 260px);
+
+    margin-left: 260px;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+.main-content .students-section {
+    width: 100%;
+
+    max-width: 100%;
+}
+
+
+/* =====================================================
+   GRAND ECRAN
+   ===================================================== */
+
+@media (min-width: 1400px) {
+
+    .students-section {
+        padding: 35px 45px;
+    }
+
+
+    .students-stats {
+        gap: 30px;
+    }
+
+
+    .student-stat-card {
+        padding: 30px 32px;
+    }
+
+
+    .table-container th,
+    .table-container td {
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+}
+
+
+/* =====================================================
+   ECRAN MOYEN
+   ===================================================== */
+
+@media (max-width: 1200px) {
+
+    .students-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .students-section {
+        padding: 25px;
+    }
+}
+
+
+/* =====================================================
+   TABLETTE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .main-content {
+        width: calc(100% - 230px);
+
+        margin-left: 230px;
+    }
+
+
+    .students-section {
+        padding: 22px;
+    }
+
+
+    .section-header {
+        align-items: flex-start;
+    }
+
+
+    .search-box input {
+        width: 280px;
+    }
+}
+
+
+/* =====================================================
+   PETIT ECRAN
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+
+    .students-section {
+        padding: 20px 15px;
+    }
+
+
+    .students-stats {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .student-stat-card {
+        padding: 22px 25px;
+    }
+
+
+    .student-stat-card h2 {
+        font-size: 38px;
+    }
+
+
+    .section-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .add-btn {
+        width: 100%;
+    }
+
+
+    .search-box {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .search-box input,
+    .search-box select {
+        width: 100%;
+    }
+
+
+    /*
+       Sur téléphone, le tableau reste large
+       mais peut être déplacé horizontalement.
+    */
+
+    .table-container {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+
+    .table-container table {
+        min-width: 1100px;
+    }
+}
+
+
+/* =====================================================
+   TRES PETIT ECRAN
+   ===================================================== */
+
+@media (max-width: 450px) {
+
+    .students-section {
+        padding: 15px 10px;
+    }
+
+
+    .student-stat-card {
+        padding: 20px;
+    }
+
+
+    .student-stat-card p {
+        font-size: 14px;
+    }
+
+
+    .student-stat-card h2 {
+        font-size: 34px;
+    }
+
+
+    .section-header h3 {
+        font-size: 21px;
+    }
+}

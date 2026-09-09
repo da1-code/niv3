@@ -1,0 +1,125 @@
+.page-container{
+
+    padding:40px;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.page-header h2{
+
+    color:#6C63FF;
+
+}
+
+.btn-add{
+
+    background:#6C63FF;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+}
+
+.table-container{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#6C63FF;
+
+    color:white;
+
+}
+
+th,td{
+
+    padding:16px;
+
+    text-align:left;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.badge{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    color:white;
+
+}
+
+.active{
+
+    background:#28a745;
+
+}
+
+.edit{
+
+    background:#3498db;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+.delete{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    margin-left:10px;
+
+}

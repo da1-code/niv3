@@ -1,0 +1,842 @@
+/* =========================================================
+   EDUNOVA IA
+   PAGE PARAMÈTRES ÉTUDIANT
+   ========================================================= */
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.parametres-page {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    padding: 28px 32px 45px;
+}
+
+
+/* =========================================================
+   INTRODUCTION
+   ========================================================= */
+
+.settings-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 28px 32px;
+    margin-bottom: 24px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 12px;
+
+    margin-bottom: 10px;
+
+    border-radius: 50px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+.settings-intro h2 {
+    margin: 0 0 7px;
+
+    color: #172033;
+
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.settings-intro p {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.settings-intro-icon {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    font-size: 31px;
+}
+
+
+/* =========================================================
+   SECTION PARAMÈTRES
+   ========================================================= */
+
+.settings-section {
+    margin-bottom: 20px;
+
+    padding: 24px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.settings-section-header {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 24px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.settings-section-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+
+    font-size: 20px;
+}
+
+.settings-section-icon.learning-icon {
+    background: #f5f3ff;
+}
+
+.settings-section-icon.notification-icon {
+    background: #fff7ed;
+}
+
+.settings-section-icon.security-icon {
+    background: #fef2f2;
+}
+
+.settings-section-header h2 {
+    margin: 0 0 4px;
+
+    color: #172033;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.settings-section-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PROFIL
+   ========================================================= */
+
+.profile-settings {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.large-avatar {
+    width: 66px;
+    height: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 18px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.avatar-info strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #334155;
+
+    font-size: 13px;
+}
+
+.avatar-info p {
+    margin: 0 0 10px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #475569;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #f8fafc;
+
+    color: #334155;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.cancel-button,
+.secondary-button,
+.save-button,
+.logout-button {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 10px 14px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cancel-button {
+    background: #f1f5f9;
+
+    color: #64748b;
+}
+
+.cancel-button:hover {
+    background: #e2e8f0;
+}
+
+.secondary-button {
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.secondary-button:hover {
+    background: #dbeafe;
+}
+
+.save-button {
+    background: #2563eb;
+
+    color: white;
+}
+
+.save-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+.logout-button {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+.logout-button:hover {
+    background: #fee2e2;
+}
+
+
+/* =========================================================
+   PRÉFÉRENCES
+   ========================================================= */
+
+.preference-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.preference-item {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.preference-item:first-child {
+    padding-top: 0;
+}
+
+.preference-item:last-child {
+    padding-bottom: 0;
+
+    border-bottom: none;
+}
+
+.preference-left {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.preference-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #f8fafc;
+
+    font-size: 17px;
+}
+
+.preference-left strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #334155;
+
+    font-size: 12px;
+}
+
+.preference-left span {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+.settings-select {
+    min-width: 170px;
+
+    padding: 9px 12px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.settings-select:focus {
+    border-color: #2563eb;
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-setting {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.notification-setting:first-child {
+    padding-top: 0;
+}
+
+.notification-setting:last-child {
+    padding-bottom: 0;
+
+    border-bottom: none;
+}
+
+.notification-setting strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #334155;
+
+    font-size: 12px;
+}
+
+.notification-setting span {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SWITCH
+   ========================================================= */
+
+.switch {
+    position: relative;
+
+    width: 42px;
+    height: 23px;
+
+    flex-shrink: 0;
+}
+
+.switch input {
+    width: 0;
+    height: 0;
+
+    opacity: 0;
+}
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    background: #cbd5e1;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    left: 3px;
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.15);
+
+    transition: transform 0.2s ease;
+}
+
+.switch input:checked + .slider {
+    background: #2563eb;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(19px);
+}
+
+
+/* =========================================================
+   SÉCURITÉ
+   ========================================================= */
+
+.security-item {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.security-item:first-of-type {
+    padding-top: 0;
+}
+
+.security-item:last-child {
+    padding-bottom: 0;
+
+    border-bottom: none;
+}
+
+.security-item strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #334155;
+
+    font-size: 12px;
+}
+
+.security-item span {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   INFORMATION EDUNOVA
+   ========================================================= */
+
+.settings-info {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    padding: 20px 22px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(239, 246, 255, 0.96),
+        rgba(245, 243, 255, 0.96)
+    );
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 17px;
+}
+
+.settings-info-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 19px;
+}
+
+.settings-info strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #172033;
+
+    font-size: 13px;
+}
+
+.settings-info p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .parametres-page {
+        padding: 22px;
+    }
+
+    .settings-intro {
+        padding: 24px;
+    }
+
+    .settings-section {
+        padding: 22px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .parametres-page {
+        padding: 18px 16px 35px;
+    }
+
+    .settings-intro {
+        padding: 20px;
+
+        align-items: flex-start;
+    }
+
+    .settings-intro h2 {
+        font-size: 21px;
+    }
+
+    .settings-intro-icon {
+        width: 55px;
+        height: 55px;
+
+        border-radius: 15px;
+
+        font-size: 24px;
+    }
+
+    .settings-section {
+        padding: 19px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .preference-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .settings-select {
+        width: 100%;
+    }
+
+    .notification-setting,
+    .security-item {
+        align-items: flex-start;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .cancel-button,
+    .save-button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   PETIT MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .parametres-page {
+        padding: 15px 12px 30px;
+    }
+
+    .settings-intro {
+        padding: 18px;
+    }
+
+    .settings-intro-icon {
+        display: none;
+    }
+
+    .settings-section {
+        padding: 17px;
+    }
+
+    .settings-section-header {
+        align-items: flex-start;
+    }
+
+    .settings-section-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+    }
+
+    .profile-settings {
+        align-items: flex-start;
+    }
+
+    .large-avatar {
+        width: 56px;
+        height: 56px;
+    }
+
+    .settings-info {
+        padding: 17px;
+    }
+
+}

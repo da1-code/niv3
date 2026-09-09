@@ -1,0 +1,712 @@
+/* =========================================================
+   EDUNOVA IA
+   STATISTIQUES - CSS COMPLET
+   ========================================================= */
+
+
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================= BODY ================= */
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: #f4f7fb;
+
+    color: #1e293b;
+}
+
+
+/* ================= CONTENU ================= */
+
+.main-content {
+    min-height: 100vh;
+
+    padding: 30px 35px;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #ffffff;
+
+    padding: 22px 28px;
+
+    margin-bottom: 30px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e8edf5;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+
+.topbar h2 {
+    font-size: 27px;
+
+    font-weight: 800;
+
+    color: #172554;
+
+    margin-bottom: 6px;
+}
+
+
+.topbar p {
+    font-size: 13px;
+
+    color: #64748b;
+}
+
+
+/* ================= PROFIL ================= */
+
+.profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 7px 12px;
+
+    background: #f8fafc;
+
+    border-radius: 14px;
+}
+
+
+.profile img {
+    width: 42px;
+    height: 42px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #e0edff;
+}
+
+
+.profile span {
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #334155;
+}
+
+
+/* =========================================================
+   SECTION STATISTIQUES
+   ========================================================= */
+
+.stats-section {
+    width: 100%;
+}
+
+
+/* =========================================================
+   CARTES STATISTIQUES
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.stat-card {
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    min-height: 145px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8edf5;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+
+    transition: all 0.3s ease;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.12);
+}
+
+
+.stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -45px;
+    bottom: -45px;
+
+    border-radius: 50%;
+
+    background: rgba(37, 99, 235, 0.05);
+}
+
+
+/* ================= ICÔNES ================= */
+
+.stat-icon {
+    width: 55px;
+    height: 55px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    font-size: 24px;
+
+    background: #eaf2ff;
+}
+
+
+.stat-card:nth-child(1) .stat-icon {
+    background: #e8f0ff;
+}
+
+
+.stat-card:nth-child(2) .stat-icon {
+    background: #e8f9ef;
+}
+
+
+.stat-card:nth-child(3) .stat-icon {
+    background: #fff5dc;
+}
+
+
+.stat-card:nth-child(4) .stat-icon {
+    background: #f4eaff;
+}
+
+
+/* ================= TEXTES ================= */
+
+.stat-card h3 {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #64748b;
+
+    margin-bottom: 5px;
+}
+
+
+.stat-card span {
+    display: block;
+
+    font-size: 29px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+    margin-bottom: 3px;
+}
+
+
+.stat-card p {
+    font-size: 11px;
+
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   GRAPHIQUE
+   ========================================================= */
+
+.chart-section {
+    background: #ffffff;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    border-radius: 22px;
+
+    border: 1px solid #e8edf5;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* ================= HEADER GRAPHIQUE ================= */
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 28px;
+}
+
+
+.section-header h3 {
+    font-size: 19px;
+
+    font-weight: 750;
+
+    color: #172554;
+
+    margin-bottom: 5px;
+}
+
+
+.section-header p {
+    font-size: 12px;
+
+    color: #94a3b8;
+}
+
+
+/* ================= SELECT ================= */
+
+.chart-filter {
+    padding: 9px 15px;
+
+    border: 1px solid #dbe3ed;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-size: 12px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CONTENEUR DU GRAPHIQUE
+   ========================================================= */
+
+.chart-container {
+    display: flex;
+
+    width: 100%;
+
+    height: 290px;
+}
+
+
+/* =========================================================
+   MOIS VERTICAUX À GAUCHE
+   ========================================================= */
+
+.chart-months {
+    width: 55px;
+
+    height: 245px;
+
+    margin-top: 10px;
+
+    padding-right: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    border-right: 1px solid #dfe6ef;
+}
+
+
+.chart-months span {
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   ZONE DES BARRES
+   ========================================================= */
+
+.chart {
+    position: relative;
+
+    flex: 1;
+
+    height: 260px;
+
+    margin-left: 18px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-around;
+
+    gap: 25px;
+
+    border-bottom: 1px solid #dbe3ed;
+}
+
+
+/* =========================================================
+   LIGNES DE FOND
+   ========================================================= */
+
+.chart::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 20px;
+
+    height: 1px;
+
+    background: #f1f5f9;
+
+    box-shadow:
+        0 50px #f1f5f9,
+        0 100px #f1f5f9,
+        0 150px #f1f5f9,
+        0 200px #f1f5f9;
+}
+
+
+/* =========================================================
+   BARRES
+   ========================================================= */
+
+.bar {
+    position: relative;
+
+    z-index: 2;
+
+    width: 45px;
+
+    min-height: 15px;
+
+    border-radius: 10px 10px 3px 3px;
+
+    background: linear-gradient(
+        to top,
+        #2563eb,
+        #60a5fa
+    );
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.20);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.bar:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 14px 25px rgba(37, 99, 235, 0.30);
+}
+
+
+/* ================= VALEUR ================= */
+
+.bar strong {
+    position: absolute;
+
+    top: -25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #475569;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTIVITÉ
+   ========================================================= */
+
+.activity-section {
+    background: #ffffff;
+
+    padding: 28px;
+
+    border-radius: 22px;
+
+    border: 1px solid #e8edf5;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+.activity-section > h3 {
+    font-size: 19px;
+
+    font-weight: 750;
+
+    color: #172554;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   GRILLE ACTIVITÉ
+   ========================================================= */
+
+.activity-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   CARTE ACTIVITÉ
+   ========================================================= */
+
+.activity-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf2f7;
+
+    transition: all 0.25s ease;
+}
+
+
+.activity-card:hover {
+    transform: translateY(-4px);
+
+    background: #ffffff;
+
+    border-color: #dbeafe;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   ICÔNES ACTIVITÉ
+   ========================================================= */
+
+.activity-card > span {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #eaf2ff;
+
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   TEXTE ACTIVITÉ
+   ========================================================= */
+
+.activity-card strong {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #334155;
+
+    margin-bottom: 5px;
+}
+
+
+.activity-card p {
+    font-size: 11px;
+
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLETTE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE PETIT ÉCRAN
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .topbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-section,
+    .activity-section {
+        padding: 20px;
+    }
+
+    .chart {
+        gap: 10px;
+
+        padding: 0 10px;
+    }
+
+    .bar {
+        width: 30px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .topbar h2 {
+        font-size: 23px;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 270px;
+    }
+
+    .chart-months {
+        width: 45px;
+
+        padding-right: 8px;
+    }
+
+    .chart-months span {
+        font-size: 10px;
+    }
+
+    .bar {
+        width: 25px;
+    }
+}

@@ -1,0 +1,153 @@
+.assistant-container{
+
+    padding:40px;
+
+    background:#f5f7ff;
+
+    min-height:100vh;
+
+}
+
+
+
+.assistant-header{
+
+    margin-bottom:25px;
+
+}
+
+
+
+.assistant-header h2{
+
+    color:#6C63FF;
+
+}
+
+
+
+.chat-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    height:450px;
+
+    overflow-y:auto;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+
+
+.message{
+
+    max-width:70%;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.message p{
+
+    margin-top:8px;
+
+}
+
+
+
+.ia{
+
+    background:#eeeaff;
+
+}
+
+
+
+.user{
+
+    background:#6C63FF;
+
+    color:white;
+
+    margin-left:auto;
+
+}
+
+
+
+.question-form{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+
+.question-form input{
+
+    flex:1;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+}
+
+
+
+.question-form button{
+
+    background:#6C63FF;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:10px;
+
+}
+
+
+
+.suggestions{
+
+    margin-top:30px;
+
+}
+
+
+
+.suggestions button{
+
+    padding:10px 15px;
+
+    margin-right:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:white;
+
+    cursor:pointer;
+
+}
