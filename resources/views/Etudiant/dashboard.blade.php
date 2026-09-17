@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,22 @@
     <title>EDUNOVA IA - Tableau de bord étudiant</title>
 
     <link rel="stylesheet" href="/etudiant/dashboard.css">
+
 </head>
+
 
 <body>
 
+
 <div class="student-container">
+
 
     <!-- =====================================================
          SIDEBAR ÉTUDIANT
          ===================================================== -->
 
     <aside class="sidebar">
+
 
         <!-- LOGO -->
 
@@ -30,14 +36,17 @@
             </div>
 
             <div class="logo-text">
+
                 <h2>EDUNOVA</h2>
+
                 <span>Plateforme éducative</span>
+
             </div>
 
         </div>
 
 
-        <!-- PETIT PROFIL -->
+        <!-- PROFIL -->
 
         <div class="profile-mini">
 
@@ -46,8 +55,15 @@
             </div>
 
             <div>
-                <strong>Daniella</strong>
-                <small>Étudiante</small>
+
+                <strong>
+                    {{ Auth::user()->prenom }}
+                </strong>
+
+                <small>
+                    Étudiant(e)
+                </small>
+
             </div>
 
         </div>
@@ -57,7 +73,6 @@
 
         <nav class="menu">
 
-            <!-- PAGE ACTUELLE -->
 
             <a href="/etudiant/dashboard" class="active">
 
@@ -130,6 +145,7 @@
 
             </a>
 
+
         </nav>
 
 
@@ -147,7 +163,9 @@
 
         </div>
 
+
     </aside>
+
 
 
     <!-- =====================================================
@@ -163,17 +181,23 @@
 
         <header class="topbar">
 
+
             <div class="page-title">
 
                 <h1>
-                    Bonjour Daniella 👋
+
+                    Bonjour {{ Auth::user()->prenom }} 👋
+
                 </h1>
 
                 <p>
+
                     Prête à continuer ton apprentissage aujourd'hui ?
+
                 </p>
 
             </div>
+
 
 
             <div class="top-actions">
@@ -184,6 +208,7 @@
                      ================================================= -->
 
                 <div class="notification-container">
+
 
                     <button
                         type="button"
@@ -201,20 +226,20 @@
                             class="notification-badge"
                             id="notificationBadge"
                         >
-                            3
+                            0
                         </span>
 
                     </button>
 
 
-                    <!-- MENU DES NOTIFICATIONS -->
+
+                    <!-- MENU NOTIFICATIONS -->
 
                     <div
                         class="notification-dropdown"
                         id="notificationDropdown"
                     >
 
-                        <!-- EN-TÊTE -->
 
                         <div class="notification-header">
 
@@ -225,7 +250,7 @@
                                 </h3>
 
                                 <span id="notificationHeaderText">
-                                    3 notifications non lues
+                                    Aucune notification non lue
                                 </span>
 
                             </div>
@@ -236,13 +261,14 @@
                                 class="mark-all-btn"
                                 id="markAllBtn"
                             >
+
                                 Tout lire
+
                             </button>
 
                         </div>
 
 
-                        <!-- LISTE -->
 
                         <div
                             class="notification-list"
@@ -250,94 +276,7 @@
                         >
 
 
-                            <!-- NOTIFICATION 1 -->
-
-                            <div class="notification-item unread">
-
-                                <div class="notification-item-icon exam">
-                                    📝
-                                </div>
-
-                                <div class="notification-content">
-
-                                    <h4>
-                                        Nouvel examen disponible
-                                    </h4>
-
-                                    <p>
-                                        L'examen de Mathématiques est maintenant disponible.
-                                    </p>
-
-                                    <span class="notification-time">
-                                        Il y a 10 minutes
-                                    </span>
-
-                                </div>
-
-                                <span class="notification-unread-dot"></span>
-
-                            </div>
-
-
-                            <!-- NOTIFICATION 2 -->
-
-                            <div class="notification-item unread">
-
-                                <div class="notification-item-icon course">
-                                    📚
-                                </div>
-
-                                <div class="notification-content">
-
-                                    <h4>
-                                        Nouveau cours disponible
-                                    </h4>
-
-                                    <p>
-                                        Un nouveau cours d'Algorithmique a été ajouté.
-                                    </p>
-
-                                    <span class="notification-time">
-                                        Il y a 1 heure
-                                    </span>
-
-                                </div>
-
-                                <span class="notification-unread-dot"></span>
-
-                            </div>
-
-
-                            <!-- NOTIFICATION 3 -->
-
-                            <div class="notification-item unread">
-
-                                <div class="notification-item-icon ai">
-                                    🤖
-                                </div>
-
-                                <div class="notification-content">
-
-                                    <h4>
-                                        Conseil de ton IA
-                                    </h4>
-
-                                    <p>
-                                        Ton IA te recommande de revoir le chapitre 2.
-                                    </p>
-
-                                    <span class="notification-time">
-                                        Il y a 2 heures
-                                    </span>
-
-                                </div>
-
-                                <span class="notification-unread-dot"></span>
-
-                            </div>
-
-
-                            <!-- NOTIFICATION 4 - DÉJÀ LUE -->
+                            <!-- NOTIFICATION TEMPORAIRE -->
 
                             <div class="notification-item">
 
@@ -348,38 +287,43 @@
                                 <div class="notification-content">
 
                                     <h4>
-                                        Conseil d'apprentissage
+                                        Bienvenue sur EDUNOVA
                                     </h4>
 
                                     <p>
-                                        Pense à consulter régulièrement tes statistiques.
+                                        Consulte tes cours et ton espace d'apprentissage.
                                     </p>
 
                                     <span class="notification-time">
-                                        Hier
+                                        Maintenant
                                     </span>
 
                                 </div>
 
                             </div>
 
+
                         </div>
 
 
-                        <!-- PIED -->
 
                         <div class="notification-footer">
 
-                            <a href="#">
+                            <a href="/etudiant/notifications">
+
                                 Voir toutes les notifications
+
                                 <span>→</span>
+
                             </a>
 
                         </div>
 
+
                     </div>
 
                 </div>
+
 
 
                 <!-- =================================================
@@ -388,23 +332,39 @@
 
                 <div class="student-user">
 
+
                     <div class="user-avatar">
-                        D
+
+                        {{ strtoupper(substr(Auth::user()->prenom, 0, 1)) }}
+
                     </div>
+
 
                     <div>
 
-                        <strong>Daniella</strong>
+                        <strong>
 
-                        <small>Étudiante</small>
+                            {{ Auth::user()->prenom }}
+
+                        </strong>
+
+                        <small>
+
+                            Étudiant(e)
+
+                        </small>
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
+
         </header>
+
 
 
         <!-- =================================================
@@ -413,7 +373,9 @@
 
         <section class="ai-banner">
 
+
             <div class="ai-content">
+
 
                 <div class="ai-icon">
                     🤖
@@ -422,51 +384,71 @@
 
                 <div class="ai-text">
 
+
                     <small>
                         EDUNOVA IA
                     </small>
+
 
                     <h2>
                         Ton apprentissage est personnalisé
                     </h2>
 
+
                     <p>
+
                         Ton assistant intelligent adapte les explications,
                         les exercices et les recommandations selon ton
                         profil d'apprentissage.
+
                     </p>
 
+
                     <a
-                        href="/etudiant/profil-apprentissage"
+                        href="/etudiant/profil_apprentissage"
                         class="ai-link"
                     >
+
                         Voir mon profil d'apprentissage →
+
                     </a>
 
+
                 </div>
+
 
             </div>
 
 
+
             <div class="ai-progress">
+
 
                 <strong>
                     Profil complet
                 </strong>
 
+
                 <div class="progress-bar">
 
-                    <div class="progress-value"></div>
+                    <div
+                        class="progress-value"
+                        style="width: 0%;"
+                    ></div>
 
                 </div>
 
+
                 <span>
-                    85%
+                    0%
                 </span>
+
 
             </div>
 
+
         </section>
+
 
 
         <!-- =================================================
@@ -480,63 +462,81 @@
 
             <div class="stat-card">
 
+
                 <div class="stat-icon blue">
                     📚
                 </div>
 
+
                 <div>
 
                     <small>
-                        Cours consultés
+                        Cours disponibles
                     </small>
 
+
                     <strong>
-                        18
+
+                        {{ isset($cours) ? $cours->count() : 0 }}
+
                     </strong>
 
+
                     <p>
-                        +3 cette semaine
+                        Sur EDUNOVA
                     </p>
 
                 </div>
 
+
             </div>
+
 
 
             <!-- EXAMENS -->
 
             <div class="stat-card">
 
+
                 <div class="stat-icon green">
                     📝
                 </div>
 
+
                 <div>
 
                     <small>
-                        Examens réalisés
+                        Examens disponibles
                     </small>
 
+
                     <strong>
-                        7
+
+                        {{ isset($examens) ? $examens->count() : 0 }}
+
                     </strong>
 
+
                     <p>
-                        5 réussis
+                        Sur EDUNOVA
                     </p>
 
                 </div>
 
+
             </div>
+
 
 
             <!-- TEMPS -->
 
             <div class="stat-card">
 
+
                 <div class="stat-icon yellow">
                     ⏱️
                 </div>
+
 
                 <div>
 
@@ -544,9 +544,11 @@
                         Temps d'étude
                     </small>
 
+
                     <strong>
-                        12h 40
+                        0h 00
                     </strong>
+
 
                     <p>
                         Cette semaine
@@ -554,16 +556,20 @@
 
                 </div>
 
+
             </div>
+
 
 
             <!-- PROGRESSION -->
 
             <div class="stat-card">
 
+
                 <div class="stat-icon purple">
                     📈
                 </div>
+
 
                 <div>
 
@@ -571,19 +577,24 @@
                         Progression
                     </small>
 
+
                     <strong>
-                        78%
+                        0%
                     </strong>
 
+
                     <p>
-                        +8% ce mois
+                        Cette semaine
                     </p>
 
                 </div>
 
+
             </div>
 
+
         </section>
+
 
 
         <!-- =================================================
@@ -593,22 +604,25 @@
         <section class="dashboard-grid">
 
 
+
             <!-- =================================================
-                 CONTINUER MES COURS
+                 COURS
                  ================================================= -->
 
             <div class="dashboard-card">
 
+
                 <div class="card-header">
+
 
                     <div>
 
                         <h2>
-                            Continuer mes cours
+                            Mes cours
                         </h2>
 
                         <p>
-                            Reprends ton apprentissage là où tu t'es arrêtée.
+                            Les cours disponibles sur EDUNOVA.
                         </p>
 
                     </div>
@@ -618,102 +632,107 @@
                         href="/etudiant/cours"
                         class="see-all"
                     >
+
                         Voir tous →
+
                     </a>
+
 
                 </div>
 
 
-                <!-- COURS 1 -->
 
-                <div class="course-item">
+                <!-- =================================================
+                     LISTE DES COURS
+                     ================================================= -->
 
-                    <div class="course-icon">
-                        💻
+                @if(isset($cours) && $cours->count() > 0)
+
+
+                    @foreach($cours->take(3) as $cour)
+
+
+                        <div class="course-item">
+
+
+                            <div class="course-icon">
+                                📚
+                            </div>
+
+
+                            <div class="course-info">
+
+
+                                <h3>
+
+                                    {{ $cour->titre }}
+
+                                </h3>
+
+
+                                <p>
+
+                                    {{ $cour->description }}
+
+                                </p>
+
+
+                            </div>
+
+
+                            <a
+                                href="/etudiant/cours"
+                                class="course-btn"
+                            >
+
+                                Consulter
+
+                            </a>
+
+
+                        </div>
+
+
+                    @endforeach
+
+
+                @else
+
+
+                    <div class="course-item">
+
+
+                        <div class="course-icon">
+                            📚
+                        </div>
+
+
+                        <div class="course-info">
+
+
+                            <h3>
+                                Aucun cours disponible
+                            </h3>
+
+
+                            <p>
+
+                                Aucun cours n'a encore été publié.
+
+                            </p>
+
+
+                        </div>
+
+
                     </div>
 
-                    <div class="course-info">
 
-                        <h3>
-                            Intelligence Artificielle
-                        </h3>
+                @endif
 
-                        <p>
-                            Introduction aux systèmes intelligents
-                        </p>
-
-                    </div>
-
-                    <a
-                        href="/etudiant/cours"
-                        class="course-btn"
-                    >
-                        Continuer
-                    </a>
-
-                </div>
-
-
-                <!-- COURS 2 -->
-
-                <div class="course-item">
-
-                    <div class="course-icon">
-                        🗄️
-                    </div>
-
-                    <div class="course-info">
-
-                        <h3>
-                            Base de données
-                        </h3>
-
-                        <p>
-                            Modélisation et gestion des données
-                        </p>
-
-                    </div>
-
-                    <a
-                        href="/etudiant/cours"
-                        class="course-btn"
-                    >
-                        Continuer
-                    </a>
-
-                </div>
-
-
-                <!-- COURS 3 -->
-
-                <div class="course-item">
-
-                    <div class="course-icon">
-                        🌐
-                    </div>
-
-                    <div class="course-info">
-
-                        <h3>
-                            Développement Web
-                        </h3>
-
-                        <p>
-                            HTML, CSS, PHP et Laravel
-                        </p>
-
-                    </div>
-
-                    <a
-                        href="/etudiant/cours"
-                        class="course-btn"
-                    >
-                        Continuer
-                    </a>
-
-                </div>
 
             </div>
+
 
 
             <!-- =================================================
@@ -722,7 +741,9 @@
 
             <div class="dashboard-card">
 
+
                 <div class="card-header">
+
 
                     <div>
 
@@ -736,99 +757,84 @@
 
                     </div>
 
-                </div>
-
-
-                <!-- ACTIVITÉ 1 -->
-
-                <div class="activity-item">
-
-                    <div class="activity-icon">
-                        📚
-                    </div>
-
-                    <div class="activity-info">
-
-                        <strong>
-                            Cours consulté
-                        </strong>
-
-                        <small>
-                            Intelligence Artificielle
-                        </small>
-
-                    </div>
 
                 </div>
 
 
-                <!-- ACTIVITÉ 2 -->
 
-                <div class="activity-item">
+                <!-- ACTIVITÉ COURS -->
 
-                    <div class="activity-icon">
-                        📝
+                @if(isset($cours) && $cours->count() > 0)
+
+
+                    @foreach($cours->take(4) as $cour)
+
+
+                        <div class="activity-item">
+
+
+                            <div class="activity-icon">
+                                📚
+                            </div>
+
+
+                            <div class="activity-info">
+
+
+                                <strong>
+                                    Nouveau cours
+                                </strong>
+
+
+                                <small>
+
+                                    {{ $cour->titre }}
+
+                                </small>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    @endforeach
+
+
+                @else
+
+
+                    <div class="activity-item">
+
+
+                        <div class="activity-icon">
+                            💡
+                        </div>
+
+
+                        <div class="activity-info">
+
+
+                            <strong>
+                                Aucune activité
+                            </strong>
+
+
+                            <small>
+                                Ton activité apparaîtra ici.
+                            </small>
+
+
+                        </div>
+
+
                     </div>
 
-                    <div class="activity-info">
 
-                        <strong>
-                            Examen terminé
-                        </strong>
-
-                        <small>
-                            Base de données
-                        </small>
-
-                    </div>
-
-                </div>
+                @endif
 
 
-                <!-- ACTIVITÉ 3 -->
-
-                <div class="activity-item">
-
-                    <div class="activity-icon">
-                        🤖
-                    </div>
-
-                    <div class="activity-info">
-
-                        <strong>
-                            Discussion avec ton IA
-                        </strong>
-
-                        <small>
-                            Il y a 2 heures
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ACTIVITÉ 4 -->
-
-                <div class="activity-item">
-
-                    <div class="activity-icon">
-                        📈
-                    </div>
-
-                    <div class="activity-info">
-
-                        <strong>
-                            Progression mise à jour
-                        </strong>
-
-                        <small>
-                            Il y a 1 jour
-                        </small>
-
-                    </div>
-
-                </div>
 
             </div>
 
@@ -838,7 +844,9 @@
 
     </main>
 
+
 </div>
+
 
 
 <!-- =========================================================
@@ -847,25 +855,33 @@
 
 <script>
 
+
 document.addEventListener("DOMContentLoaded", function () {
+
 
     const notificationBtn =
         document.getElementById("notificationBtn");
 
+
     const notificationDropdown =
         document.getElementById("notificationDropdown");
+
 
     const notificationBadge =
         document.getElementById("notificationBadge");
 
+
     const notificationHeaderText =
         document.getElementById("notificationHeaderText");
+
 
     const notificationList =
         document.getElementById("notificationList");
 
+
     const markAllBtn =
         document.getElementById("markAllBtn");
+
 
 
     /*
@@ -876,19 +892,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     notificationBtn.addEventListener("click", function (event) {
 
+
         event.stopPropagation();
+
 
         const isOpen =
             notificationDropdown.classList.contains("show");
 
+
         notificationDropdown.classList.toggle("show");
+
 
         notificationBtn.setAttribute(
             "aria-expanded",
             !isOpen
         );
 
+
     });
+
 
 
     /*
@@ -907,6 +929,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+
     /*
     |--------------------------------------------------------------------------
     | FERMER EN CLIQUANT À L'EXTÉRIEUR
@@ -915,76 +938,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("click", function () {
 
+
         notificationDropdown.classList.remove("show");
+
 
         notificationBtn.setAttribute(
             "aria-expanded",
             "false"
         );
 
+
     });
+
 
 
     /*
     |--------------------------------------------------------------------------
-    | METTRE À JOUR LE COMPTEUR
+    | COMPTEUR DES NOTIFICATIONS
     |--------------------------------------------------------------------------
     */
 
     function updateNotificationCount() {
+
 
         const unreadNotifications =
             notificationList.querySelectorAll(
                 ".notification-item.unread"
             );
 
+
         const count =
             unreadNotifications.length;
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | BADGE
-        |--------------------------------------------------------------------------
-        */
 
         if (count > 0) {
 
-            notificationBadge.textContent = count;
 
-            notificationBadge.style.display = "flex";
+            notificationBadge.textContent =
+                count;
+
+
+            notificationBadge.style.display =
+                "flex";
+
 
         } else {
 
-            notificationBadge.style.display = "none";
+
+            notificationBadge.style.display =
+                "none";
+
 
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | TEXTE DE L'EN-TÊTE
-        |--------------------------------------------------------------------------
-        */
 
         if (count === 0) {
+
 
             notificationHeaderText.textContent =
                 "Aucune notification non lue";
 
+
         } else if (count === 1) {
+
 
             notificationHeaderText.textContent =
                 "1 notification non lue";
 
+
         } else {
+
 
             notificationHeaderText.textContent =
                 count + " notifications non lues";
 
+
         }
 
+
     }
+
 
 
     /*
@@ -1001,58 +1036,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     notifications.forEach(function (notification) {
 
+
         notification.addEventListener(
             "click",
             function () {
+
 
                 if (
                     notification.classList.contains("unread")
                 ) {
 
-                    notification.classList.remove("unread");
-
-
-                    const unreadDot =
-                        notification.querySelector(
-                            ".notification-unread-dot"
-                        );
-
-
-                    if (unreadDot) {
-
-                        unreadDot.remove();
-
-                    }
-
-
-                    updateNotificationCount();
-
-                }
-
-            }
-        );
-
-    });
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | TOUT LIRE
-    |--------------------------------------------------------------------------
-    */
-
-    markAllBtn.addEventListener(
-        "click",
-        function () {
-
-            const unreadNotifications =
-                notificationList.querySelectorAll(
-                    ".notification-item.unread"
-                );
-
-
-            unreadNotifications.forEach(
-                function (notification) {
 
                     notification.classList.remove(
                         "unread"
@@ -1071,14 +1064,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     }
 
+
+                    updateNotificationCount();
+
+
+                }
+
+
+            }
+        );
+
+
+    });
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | TOUT LIRE
+    |--------------------------------------------------------------------------
+    */
+
+    markAllBtn.addEventListener(
+        "click",
+        function () {
+
+
+            const unreadNotifications =
+                notificationList.querySelectorAll(
+                    ".notification-item.unread"
+                );
+
+
+            unreadNotifications.forEach(
+                function (notification) {
+
+
+                    notification.classList.remove(
+                        "unread"
+                    );
+
+
+                    const unreadDot =
+                        notification.querySelector(
+                            ".notification-unread-dot"
+                        );
+
+
+                    if (unreadDot) {
+
+                        unreadDot.remove();
+
+                    }
+
+
                 }
             );
 
 
             updateNotificationCount();
 
+
         }
     );
+
 
 
     /*
@@ -1089,9 +1138,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateNotificationCount();
 
+
 });
 
+
 </script>
+
 
 </body>
 

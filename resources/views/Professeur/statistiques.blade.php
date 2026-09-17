@@ -25,7 +25,11 @@
     <aside class="sidebar">
 
         <div class="logo">
-            <h2>EDUNOVA IA</h2>
+
+            <h2>
+                EDUNOVA IA
+            </h2>
+
         </div>
 
 
@@ -74,9 +78,34 @@
 
 
             <li>
-                <a href="/prof/deconnexion">
-                    🚪 Déconnexion
-                </a>
+
+                <form
+                    method="POST"
+                    action="{{ route('logout') }}"
+                >
+
+                    @csrf
+
+                    <button
+                        type="submit"
+                        style="
+                            background:none;
+                            border:none;
+                            color:inherit;
+                            font:inherit;
+                            cursor:pointer;
+                            width:100%;
+                            text-align:left;
+                            padding:0;
+                        "
+                    >
+
+                        🚪 Déconnexion
+
+                    </button>
+
+                </form>
+
             </li>
 
         </ul>
@@ -108,8 +137,8 @@
                     </h2>
 
                     <p>
-                        Consultez les performances et la progression
-                        individuelle de vos étudiants.
+                        Consultez les données et les analyses
+                        pédagogiques générées par EDUNOVA IA.
                     </p>
 
                 </div>
@@ -125,6 +154,8 @@
             <div class="stats-grid">
 
 
+                <!-- TOTAL -->
+
                 <div class="stat-card">
 
                     <h3>
@@ -132,7 +163,7 @@
                     </h3>
 
                     <span>
-                        120
+                        {{ $totalEtudiants }}
                     </span>
 
                     <p>
@@ -142,55 +173,65 @@
                 </div>
 
 
+
+                <!-- ACTIFS -->
+
                 <div class="stat-card">
 
                     <h3>
-                        📈 Progression moyenne
+                        ✅ Étudiants actifs
                     </h3>
 
                     <span>
-                        85%
+                        {{ $etudiantsActifs }}
                     </span>
 
                     <p>
-                        Progression générale
+                        Comptes actifs
                     </p>
 
                 </div>
 
 
+
+                <!-- CLASSES -->
+
                 <div class="stat-card">
 
                     <h3>
-                        ⭐ Moyenne générale
+                        🏫 Classes
                     </h3>
 
                     <span>
-                        15.8/20
+                        {{ $totalClasses }}
                     </span>
 
                     <p>
-                        Moyenne des étudiants
+                        Classes représentées
                     </p>
 
                 </div>
 
 
+
+                <!-- ANALYSE IA -->
+
                 <div class="stat-card">
 
                     <h3>
-                        ⚠️ À accompagner
+                        🤖 Analyse IA
                     </h3>
 
                     <span>
-                        18
+                        —
                     </span>
 
                     <p>
-                        Étudiants à suivre
+                        En attente d'activation
                     </p>
 
                 </div>
+
 
             </div>
 
@@ -202,56 +243,57 @@
 
             <div class="filter-section">
 
+
                 <input
                     type="text"
+                    id="searchStudent"
                     placeholder="🔍 Rechercher un étudiant..."
                 >
 
 
-                <select>
+                <select id="filterClasse">
 
                     <option value="">
-                        Tous les cours
+                        Toutes les classes
                     </option>
 
-                    <option value="ia">
-                        Intelligence Artificielle
-                    </option>
 
-                    <option value="laravel">
-                        Développement Laravel
-                    </option>
+                    @foreach(
+                        $etudiants
+                            ->pluck('classe')
+                            ->filter()
+                            ->unique('id')
+                            ->sortBy('nom')
+                        as $classe
+                    )
 
-                    <option value="bd">
-                        Base de données
-                    </option>
+                        <option value="{{ $classe->id }}">
 
-                    <option value="securite">
-                        Sécurité informatique
-                    </option>
+                            {{ $classe->nom }}
+
+                        </option>
+
+                    @endforeach
 
                 </select>
 
 
-                <select>
+                <select id="filterStatut">
 
                     <option value="">
-                        Toutes les progressions
+                        Tous les statuts
                     </option>
 
-                    <option value="excellent">
-                        Excellente progression
+                    <option value="actif">
+                        Actif
                     </option>
 
-                    <option value="moyenne">
-                        Progression moyenne
-                    </option>
-
-                    <option value="faible">
-                        Progression faible
+                    <option value="inactif">
+                        Inactif
                     </option>
 
                 </select>
+
 
             </div>
 
@@ -263,16 +305,18 @@
 
             <div class="performance">
 
+
                 <div class="section-title">
 
                     <div>
 
                         <h3>
-                            📈 Progression individuelle
+                            📈 Suivi individuel
                         </h3>
 
                         <p>
-                            Visualisez l'évolution de chaque étudiant.
+                            Les analyses de progression seront
+                            calculées automatiquement par l'IA.
                         </p>
 
                     </div>
@@ -281,295 +325,215 @@
 
 
 
-                <!-- ÉTUDIANT 1 -->
+                @if($etudiants->isEmpty())
 
-                <div class="student-progress">
 
-                    <div class="student-info">
+                    <!-- =================================================
+                         AUCUN ÉTUDIANT
+                         ================================================= -->
 
-                        <div class="avatar">
-                            DK
+                    <div class="empty-state">
+
+                        <div style="font-size:45px;">
+                            👨‍🎓
                         </div>
 
-                        <div>
+                        <h3>
+                            Aucun étudiant
+                        </h3>
 
-                            <strong>
-                                Daniella Kamga
-                            </strong>
-
-                            <span>
-                                Intelligence Artificielle
-                            </span>
-
-                        </div>
+                        <p>
+                            Aucun étudiant n'est actuellement
+                            enregistré dans EDUNOVA IA.
+                        </p>
 
                     </div>
 
 
-                    <div class="student-note">
-
-                        <span>
-                            Moyenne
-                        </span>
-
-                        <strong>
-                            17/20
-                        </strong>
-
-                    </div>
+                @else
 
 
-                    <div class="progress-container">
+                    <!-- =================================================
+                         LISTE DYNAMIQUE
+                         ================================================= -->
 
-                        <div class="progress-info">
-
-                            <span>
-                                Progression
-                            </span>
-
-                            <strong>
-                                92%
-                            </strong>
-
-                        </div>
+                    <div id="studentsList">
 
 
-                        <div class="progress-bar">
+                        @foreach($etudiants as $etudiant)
+
 
                             <div
-                                class="progress"
-                                style="width:92%;">
+                                class="student-progress"
+                                data-name="{{ strtolower($etudiant->name) }}"
+                                data-email="{{ strtolower($etudiant->email) }}"
+                                data-classe="{{ $etudiant->idclasse }}"
+                                data-statut="{{ $etudiant->actif ? 'actif' : 'inactif' }}"
+                            >
+
+
+                                <!-- INFORMATIONS ÉTUDIANT -->
+
+                                <div class="student-info">
+
+
+                                    <div class="avatar">
+
+                                        {{ strtoupper(
+                                            substr(
+                                                $etudiant->name,
+                                                0,
+                                                2
+                                            )
+                                        ) }}
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+
+                                            {{ $etudiant->name }}
+
+                                        </strong>
+
+
+                                        <span>
+
+                                            {{ $etudiant->email }}
+
+                                        </span>
+
+
+                                        <span>
+
+                                            🏫
+
+                                            @if($etudiant->classe)
+
+                                                {{ $etudiant->classe->nom }}
+
+                                            @else
+
+                                                Classe non renseignée
+
+                                            @endif
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- MOYENNE -->
+
+                                <div class="student-note">
+
+                                    <span>
+                                        Moyenne
+                                    </span>
+
+                                    <strong>
+                                        —
+                                    </strong>
+
+                                    <small>
+                                        Analyse IA
+                                    </small>
+
+                                </div>
+
+
+
+                                <!-- PROGRESSION -->
+
+                                <div class="progress-container">
+
+
+                                    <div class="progress-info">
+
+                                        <span>
+                                            Progression
+                                        </span>
+
+                                        <strong>
+                                            —
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="progress-bar">
+
+                                        <div
+                                            class="progress"
+                                            style="width:0%;"
+                                        >
+                                        </div>
+
+                                    </div>
+
+
+                                    <small>
+                                        En attente d'analyse IA
+                                    </small>
+
+                                </div>
+
+
+
+                                <!-- STATUT -->
+
+                                <div
+                                    class="
+                                        student-level
+                                        {{ $etudiant->actif
+                                            ? 'success'
+                                            : 'warning'
+                                        }}
+                                    "
+                                >
+
+                                    @if($etudiant->actif)
+
+                                        Actif
+
+                                    @else
+
+                                        Inactif
+
+                                    @endif
+
+                                </div>
+
+
+
+                                <!-- DÉTAILS -->
+
+                                <a
+                                    href="#"
+                                    class="btn-details"
+                                    onclick="return false;"
+                                >
+
+                                    Voir détails
+
+                                </a>
+
+
                             </div>
 
-                        </div>
+
+                        @endforeach
+
 
                     </div>
 
 
-                    <a href="#" class="btn-details">
-                        Voir détails
-                    </a>
-
-                </div>
-
-
-
-                <!-- ÉTUDIANT 2 -->
-
-                <div class="student-progress">
-
-                    <div class="student-info">
-
-                        <div class="avatar">
-                            JM
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Jean Michel
-                            </strong>
-
-                            <span>
-                                Développement Laravel
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="student-note">
-
-                        <span>
-                            Moyenne
-                        </span>
-
-                        <strong>
-                            14/20
-                        </strong>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-info">
-
-                            <span>
-                                Progression
-                            </span>
-
-                            <strong>
-                                78%
-                            </strong>
-
-                        </div>
-
-
-                        <div class="progress-bar">
-
-                            <div
-                                class="progress"
-                                style="width:78%;">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="btn-details">
-                        Voir détails
-                    </a>
-
-                </div>
-
-
-
-                <!-- ÉTUDIANT 3 -->
-
-                <div class="student-progress">
-
-                    <div class="student-info">
-
-                        <div class="avatar">
-                            AS
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Aline Sophie
-                            </strong>
-
-                            <span>
-                                Base de données
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="student-note">
-
-                        <span>
-                            Moyenne
-                        </span>
-
-                        <strong>
-                            12/20
-                        </strong>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-info">
-
-                            <span>
-                                Progression
-                            </span>
-
-                            <strong>
-                                61%
-                            </strong>
-
-                        </div>
-
-
-                        <div class="progress-bar">
-
-                            <div
-                                class="progress"
-                                style="width:61%;">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="btn-details">
-                        Voir détails
-                    </a>
-
-                </div>
-
-
-
-                <!-- ÉTUDIANT 4 -->
-
-                <div class="student-progress">
-
-                    <div class="student-info">
-
-                        <div class="avatar">
-                            PN
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Patrick Nkomo
-                            </strong>
-
-                            <span>
-                                Sécurité informatique
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="student-note">
-
-                        <span>
-                            Moyenne
-                        </span>
-
-                        <strong>
-                            9/20
-                        </strong>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-info">
-
-                            <span>
-                                Progression
-                            </span>
-
-                            <strong>
-                                43%
-                            </strong>
-
-                        </div>
-
-
-                        <div class="progress-bar">
-
-                            <div
-                                class="progress"
-                                style="width:43%;">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="btn-details">
-                        Voir détails
-                    </a>
-
-                </div>
+                @endif
 
 
             </div>
@@ -577,21 +541,24 @@
 
 
             <!-- =================================================
-                 DERNIERS RÉSULTATS
+                 ANALYSE IA
                  ================================================= -->
 
             <div class="recent-results">
+
 
                 <div class="section-title">
 
                     <div>
 
                         <h3>
-                            📝 Derniers résultats
+                            🤖 Analyse pédagogique par IA
                         </h3>
 
                         <p>
-                            Résultats récents des étudiants.
+                            Cette section sera alimentée automatiquement
+                            par le moteur d'intelligence artificielle
+                            d'EDUNOVA IA.
                         </p>
 
                     </div>
@@ -599,143 +566,68 @@
                 </div>
 
 
-                <table>
 
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Étudiant
-                            </th>
-
-                            <th>
-                                Cours
-                            </th>
-
-                            <th>
-                                Note
-                            </th>
-
-                            <th>
-                                Progression
-                            </th>
-
-                            <th>
-                                Statut
-                            </th>
-
-                        </tr>
-
-                    </thead>
+                <div class="report-card">
 
 
-                    <tbody>
+                    <div class="report-grid">
 
 
-                        <tr>
+                        <!-- PROGRESSION -->
 
-                            <td>
-                                Daniella Kamga
-                            </td>
+                        <div class="report-box">
 
-                            <td>
-                                Intelligence Artificielle
-                            </td>
+                            <h4>
+                                📈 Progression
+                            </h4>
 
-                            <td>
-                                17/20
-                            </td>
+                            <p>
+                                L'IA analysera les résultats et
+                                l'évolution de chaque étudiant.
+                            </p>
 
-                            <td>
-                                92%
-                            </td>
-
-                            <td class="success">
-                                Excellent
-                            </td>
-
-                        </tr>
+                        </div>
 
 
-                        <tr>
 
-                            <td>
-                                Jean Michel
-                            </td>
+                        <!-- MOYENNE -->
 
-                            <td>
-                                Développement Laravel
-                            </td>
+                        <div class="report-box">
 
-                            <td>
-                                14/20
-                            </td>
+                            <h4>
+                                ⭐ Moyennes
+                            </h4>
 
-                            <td>
-                                78%
-                            </td>
+                            <p>
+                                Les moyennes seront calculées à partir
+                                des résultats des examens.
+                            </p>
 
-                            <td class="success">
-                                Bon niveau
-                            </td>
-
-                        </tr>
+                        </div>
 
 
-                        <tr>
 
-                            <td>
-                                Aline Sophie
-                            </td>
+                        <!-- RECOMMANDATIONS -->
 
-                            <td>
-                                Base de données
-                            </td>
+                        <div class="report-box">
 
-                            <td>
-                                12/20
-                            </td>
+                            <h4>
+                                💡 Recommandations
+                            </h4>
 
-                            <td>
-                                61%
-                            </td>
+                            <p>
+                                L'IA pourra proposer des recommandations
+                                pédagogiques personnalisées.
+                            </p>
 
-                            <td class="warning">
-                                À surveiller
-                            </td>
-
-                        </tr>
+                        </div>
 
 
-                        <tr>
-
-                            <td>
-                                Patrick Nkomo
-                            </td>
-
-                            <td>
-                                Sécurité informatique
-                            </td>
-
-                            <td>
-                                9/20
-                            </td>
-
-                            <td>
-                                43%
-                            </td>
-
-                            <td class="danger">
-                                À accompagner
-                            </td>
-
-                        </tr>
+                    </div>
 
 
-                    </tbody>
+                </div>
 
-                </table>
 
             </div>
 
@@ -744,6 +636,119 @@
 
 
     </main>
+
+
+
+    <!-- =====================================================
+         FILTRAGE JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        const searchInput =
+            document.getElementById('searchStudent');
+
+        const filterClasse =
+            document.getElementById('filterClasse');
+
+        const filterStatut =
+            document.getElementById('filterStatut');
+
+
+        function filtrerEtudiants()
+        {
+
+            const recherche =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const classe =
+                filterClasse.value;
+
+
+            const statut =
+                filterStatut.value;
+
+
+            const cards =
+                document.querySelectorAll(
+                    '.student-progress'
+                );
+
+
+            cards.forEach(card =>
+            {
+
+                const nom =
+                    card.dataset.name;
+
+                const email =
+                    card.dataset.email;
+
+                const cardClasse =
+                    card.dataset.classe;
+
+                const cardStatut =
+                    card.dataset.statut;
+
+
+                const correspondRecherche =
+                    nom.includes(recherche) ||
+                    email.includes(recherche);
+
+
+                const correspondClasse =
+                    classe === '' ||
+                    cardClasse === classe;
+
+
+                const correspondStatut =
+                    statut === '' ||
+                    cardStatut === statut;
+
+
+                if (
+                    correspondRecherche &&
+                    correspondClasse &&
+                    correspondStatut
+                )
+                {
+
+                    card.style.display = '';
+
+                }
+                else
+                {
+
+                    card.style.display = 'none';
+
+                }
+
+            });
+
+        }
+
+
+        searchInput.addEventListener(
+            'input',
+            filtrerEtudiants
+        );
+
+
+        filterClasse.addEventListener(
+            'change',
+            filtrerEtudiants
+        );
+
+
+        filterStatut.addEventListener(
+            'change',
+            filtrerEtudiants
+        );
+
+    </script>
 
 
 </body>

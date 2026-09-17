@@ -1,82 +1,509 @@
+/* =========================================================
+   EDUNOVA IA — PAGE PARAMÈTRES
+   ========================================================= */
+
+
+/* =========================================================
+   CONTENEUR PRINCIPAL
+   ========================================================= */
+
 .settings-container{
+
     padding:40px;
+
     background:#f5f7ff;
+
     min-height:100vh;
+
 }
 
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
 .page-header{
+
     margin-bottom:30px;
+
 }
 
 .page-header h2{
+
     color:#6C63FF;
+
     margin-bottom:8px;
+
 }
 
 .page-header p{
+
     color:#666;
+
 }
+
+
+/* =========================================================
+   GRILLE
+   ========================================================= */
 
 .settings-grid{
+
     display:grid;
+
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
     gap:25px;
+
 }
 
+
+/* =========================================================
+   CARTES
+   ========================================================= */
+
 .settings-card{
+
     background:white;
+
     padding:25px;
+
     border-radius:15px;
+
     box-shadow:0 5px 15px rgba(0,0,0,.08);
+
 }
 
 .settings-card h3{
+
     color:#6C63FF;
+
     margin-bottom:20px;
+
 }
 
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
 .settings-card label{
+
     display:block;
+
     margin-top:15px;
+
     margin-bottom:8px;
+
     font-weight:bold;
+
 }
+
+
+/* =========================================================
+   CHAMPS
+   ========================================================= */
 
 .settings-card input[type="text"],
 .settings-card input[type="email"],
 .settings-card input[type="password"]{
+
     width:100%;
+
     padding:12px;
+
     border:1px solid #ddd;
+
     border-radius:8px;
+
     outline:none;
+
+    box-sizing:border-box;
+
 }
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
 
 .settings-card input:focus{
+
     border-color:#6C63FF;
+
 }
 
+
+/* =========================================================
+   CHECKBOX ET RADIO
+   ========================================================= */
+
 .checkbox-label{
+
     display:flex !important;
+
     align-items:center;
+
     gap:10px;
+
     font-weight:normal !important;
+
 }
 
 .checkbox-label input{
+
     width:auto;
+
 }
 
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+
 .settings-card button{
+
     margin-top:20px;
+
     background:#6C63FF;
+
     color:white;
+
     border:none;
+
     padding:12px 20px;
+
     border-radius:8px;
+
     cursor:pointer;
+
 }
 
 .settings-card button:hover{
+
     opacity:.9;
+
+}
+
+
+/* =========================================================
+   MESSAGES DE SUCCÈS
+   ========================================================= */
+
+.success-message{
+
+    background:#eaf8ef;
+
+    color:#18794e;
+
+    border:1px solid #b7e4c7;
+
+    border-radius:10px;
+
+    padding:14px 18px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+   MESSAGES D'ERREUR
+   ========================================================= */
+
+.error-message{
+
+    background:#fff1f2;
+
+    color:#b42318;
+
+    border:1px solid #fecdd3;
+
+    border-radius:10px;
+
+    padding:15px 20px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+
+}
+
+.error-message ul{
+
+    margin-top:8px;
+
+    padding-left:20px;
+
+}
+
+.field-error{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#b42318;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   BOUTON DÉCONNEXION
+   ========================================================= */
+
+.logout-button{
+
+    background:none !important;
+
+    border:none !important;
+
+    color:inherit !important;
+
+    font:inherit;
+
+    cursor:pointer;
+
+    width:100%;
+
+    text-align:left;
+
+    padding:0 !important;
+
+    margin:0 !important;
+
+}
+
+
+/* =========================================================
+   =========================================================
+   MODE SOMBRE
+   =========================================================
+   ========================================================= */
+
+
+/* Fond général */
+
+html.dark-mode,
+html.dark-mode body{
+
+    background:#111827 !important;
+
+    color:#f9fafb !important;
+
+}
+
+
+/* Contenu principal */
+
+html.dark-mode .main-content{
+
+    background:#111827 !important;
+
+    color:#f9fafb !important;
+
+}
+
+
+/* Conteneur */
+
+html.dark-mode .settings-container{
+
+    background:#111827 !important;
+
+    color:#f9fafb !important;
+
+}
+
+
+/* =========================================================
+   EN-TÊTE MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .page-header h2{
+
+    color:#8b85ff !important;
+
+}
+
+html.dark-mode .page-header p{
+
+    color:#9ca3af !important;
+
+}
+
+
+/* =========================================================
+   CARTES MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .settings-card{
+
+    background:#1f2937 !important;
+
+    color:#f9fafb !important;
+
+    border:1px solid #374151;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.30);
+
+}
+
+
+html.dark-mode .settings-card h3{
+
+    color:#8b85ff !important;
+
+}
+
+
+/* =========================================================
+   LABELS MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .settings-card label{
+
+    color:#e5e7eb !important;
+
+}
+
+
+/* =========================================================
+   CHAMPS MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .settings-card input[type="text"],
+html.dark-mode .settings-card input[type="email"],
+html.dark-mode .settings-card input[type="password"]{
+
+    background:#111827 !important;
+
+    color:#ffffff !important;
+
+    border:1px solid #4b5563 !important;
+
+}
+
+
+/* Placeholder */
+
+html.dark-mode .settings-card input::placeholder{
+
+    color:#9ca3af;
+
+}
+
+
+/* Focus */
+
+html.dark-mode .settings-card input:focus{
+
+    border-color:#8b85ff !important;
+
+    box-shadow:
+        0 0 0 3px rgba(108,99,255,.15);
+
+}
+
+
+/* =========================================================
+   CHECKBOX / RADIO MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .checkbox-label{
+
+    color:#e5e7eb !important;
+
+}
+
+
+/* =========================================================
+   BOUTONS MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .settings-card button{
+
+    background:#6C63FF !important;
+
+    color:#ffffff !important;
+
+}
+
+
+/* =========================================================
+   MESSAGE SUCCÈS MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .success-message{
+
+    background:#064e3b !important;
+
+    color:#a7f3d0 !important;
+
+    border-color:#065f46 !important;
+
+}
+
+
+/* =========================================================
+   MESSAGE ERREUR MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .error-message{
+
+    background:#450a0a !important;
+
+    color:#fecaca !important;
+
+    border-color:#7f1d1d !important;
+
+}
+
+
+/* =========================================================
+   SIDEBAR MODE SOMBRE
+   ========================================================= */
+
+html.dark-mode .sidebar{
+
+    background:#0f172a !important;
+
+}
+
+
+html.dark-mode .sidebar a{
+
+    color:#e5e7eb !important;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:900px){
+
+    .settings-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .settings-container{
+
+        padding:20px 15px;
+
+    }
+
 }

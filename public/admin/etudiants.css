@@ -1,750 +1,1216 @@
-/* =====================================================
-   PAGE ETUDIANTS - EDUNOVA IA
-   ===================================================== */
+/* =========================================================
+   EDUNOVA IA — PAGE ÉTUDIANTS
+   Design professionnel
+   ========================================================= */
 
 
-/* =====================================================
+/* =========================================================
    SECTION PRINCIPALE
-   ===================================================== */
+   ========================================================= */
 
 .students-section {
-    width: 100%;
-    max-width: 100%;
 
-    padding: 30px 35px;
-
-    overflow: visible;
-}
-
-
-/* =====================================================
-   CARTES STATISTIQUES
-   ===================================================== */
-
-.students-stats {
     width: 100%;
 
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0;
 
-    gap: 25px;
-    margin-bottom: 35px;
+    margin: 0;
+
 }
 
 
-.student-stat-card {
-    width: 100%;
-    min-width: 0;
-
-    background: #ffffff;
-
-    border-radius: 18px;
-
-    padding: 28px 30px;
-
-    position: relative;
-    overflow: hidden;
-
-    box-shadow: 0 6px 20px rgba(54, 63, 120, 0.07);
-
-    transition: 0.2s ease;
-}
-
-
-.student-stat-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow: 0 10px 25px rgba(54, 63, 120, 0.10);
-}
-
-
-.student-stat-card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 7px;
-
-    background: #625cf6;
-}
-
-
-.student-stat-card p {
-    color: #777b87;
-
-    font-size: 15px;
-
-    margin-bottom: 15px;
-}
-
-
-.student-stat-card h2 {
-    color: #625cf6;
-
-    font-size: 44px;
-
-    font-weight: 700;
-
-    line-height: 1;
-}
-
-
-/* =====================================================
-   SECTION PRINCIPALE
-   ===================================================== */
+/* =========================================================
+   EN-TÊTE DE SECTION
+   ========================================================= */
 
 .section-header {
+
     width: 100%;
 
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 25px;
 
-    margin-bottom: 18px;
+    margin-bottom: 22px;
+
 }
 
 
 .section-header > div {
+
     min-width: 0;
+
 }
 
 
 .section-header h3 {
+
+    margin: 0 0 6px 0;
+
     color: #17213c;
 
-    font-size: 24px;
+    font-size: 25px;
 
-    margin-bottom: 5px;
+    font-weight: 750;
+
+    line-height: 1.3;
+
 }
 
 
 .section-header p {
+
+    margin: 0;
+
     color: #777d91;
 
     font-size: 14px;
+
+    line-height: 1.5;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    BOUTON AJOUTER
-   ===================================================== */
+   ========================================================= */
 
 .add-btn {
+
     flex-shrink: 0;
 
-    border: none;
-
-    background: #625cf6;
-
-    color: white;
-
-    padding: 12px 20px;
-
-    border-radius: 9px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-
-.add-btn:hover {
-    background: #514be0;
-
-    transform: translateY(-1px);
-}
-
-
-/* =====================================================
-   RECHERCHE
-   ===================================================== */
-
-.search-box {
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin-bottom: 18px;
-}
-
-
-.search-box input {
-    width: 350px;
-
-    max-width: 100%;
-
-    height: 42px;
-
-    border: 1px solid #dfe2ed;
-
-    border-radius: 8px;
-
-    padding: 0 14px;
-
-    background: #ffffff;
-
-    color: #30364a;
-
-    font-size: 14px;
-
-    outline: none;
-
-    transition: 0.2s ease;
-}
-
-
-.search-box input:focus {
-    border-color: #625cf6;
-
-    box-shadow:
-        0 0 0 3px rgba(98, 92, 246, 0.10);
-}
-
-
-.search-box select {
-    height: 42px;
-
-    border: 1px solid #dfe2ed;
-
-    border-radius: 8px;
-
-    padding: 0 12px;
-
-    background: white;
-
-    color: #3d4254;
-
-    font-size: 14px;
-
-    outline: none;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-
-.search-box select:focus {
-    border-color: #625cf6;
-}
-
-
-/* =====================================================
-   CONTENEUR DU TABLEAU
-   ===================================================== */
-
-.table-container {
-    width: 100%;
-
-    max-width: 100%;
-
-    background: #ffffff;
-
-    border-radius: 16px;
-
-    /*
-       IMPORTANT :
-       Le tableau peut être plus large que l'écran.
-       On peut donc défiler horizontalement.
-    */
-
-    overflow-x: auto;
-
-    overflow-y: visible;
-
-    display: block;
-
-    box-shadow:
-        0 6px 20px rgba(54, 63, 120, 0.06);
-
-    -webkit-overflow-scrolling: touch;
-}
-
-
-/* =====================================================
-   BARRE DE DEFILEMENT DU TABLEAU
-   ===================================================== */
-
-.table-container::-webkit-scrollbar {
-    height: 9px;
-}
-
-
-.table-container::-webkit-scrollbar-track {
-    background: #f1f2f8;
-
-    border-radius: 10px;
-}
-
-
-.table-container::-webkit-scrollbar-thumb {
-    background: #625cf6;
-
-    border-radius: 10px;
-}
-
-
-.table-container::-webkit-scrollbar-thumb:hover {
-    background: #514be0;
-}
-
-
-/* =====================================================
-   TABLEAU
-   ===================================================== */
-
-.table-container table {
-    width: 100%;
-
-    /*
-       Le tableau possède une largeur minimale.
-       Cela empêche les colonnes de devenir trop petites.
-    */
-
-    min-width: 1100px;
-
-    border-collapse: collapse;
-
-    table-layout: auto;
-}
-
-
-/* =====================================================
-   EN-TETE DU TABLEAU
-   ===================================================== */
-
-.table-container thead {
-    background: #625cf6;
-}
-
-
-.table-container th {
-    color: white;
-
-    text-align: left;
-
-    padding: 18px 22px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-
-/* =====================================================
-   CELLULES
-   ===================================================== */
-
-.table-container td {
-    padding: 18px 22px;
-
-    color: #454b5d;
-
-    font-size: 14px;
-
-    border-bottom: 1px solid #eceef5;
-
-    white-space: nowrap;
-}
-
-
-.table-container tbody tr {
-    transition: 0.2s ease;
-}
-
-
-.table-container tbody tr:hover {
-    background: #f8f8ff;
-}
-
-
-.table-container td strong {
-    color: #343a4e;
-
-    font-weight: 600;
-}
-
-
-/* =====================================================
-   COLONNE ACTIONS
-   ===================================================== */
-
-/*
-   On réserve suffisamment d'espace aux boutons.
-*/
-
-.table-container th:last-child {
-    min-width: 160px;
-
-    text-align: center;
-}
-
-
-.table-container td:last-child {
-    min-width: 160px;
-
-    text-align: center;
-}
-
-
-/* =====================================================
-   ACTIONS
-   ===================================================== */
-
-.actions {
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 7px;
-
-    white-space: nowrap;
-}
-
-
-.actions button {
-    flex: 0 0 34px;
-
-    width: 34px;
-
-    min-width: 34px;
-
-    height: 34px;
-
-    border: 1px solid #dcdfea;
-
-    border-radius: 6px;
-
-    background: white;
-
-    cursor: pointer;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    transition: 0.2s ease;
-}
-
-
-.actions button:hover {
-    transform: translateY(-1px);
-}
-
-
-/* =====================================================
-   BOUTON VOIR
-   ===================================================== */
-
-.view-btn:hover {
-    background: #eef0ff;
-
-    border-color: #625cf6;
-}
-
-
-/* =====================================================
-   BOUTON MODIFIER
-   ===================================================== */
-
-.edit-btn:hover {
-    background: #fff7df;
-
-    border-color: #e3ad29;
-}
-
-
-/* =====================================================
-   BOUTON DESACTIVER
-   ===================================================== */
-
-.disable-btn:hover {
-    background: #ffecef;
-
-    border-color: #e04a63;
-}
-
-
-/* =====================================================
-   BOUTON REACTIVER
-   ===================================================== */
-
-.enable-btn:hover {
-    background: #e8f8ee;
-
-    border-color: #219653;
-}
-
-
-/* =====================================================
-   STATUT
-   ===================================================== */
-
-.status {
     display: inline-flex;
 
     align-items: center;
 
     justify-content: center;
 
-    padding: 6px 12px;
+    min-height: 46px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #625cf6;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(98, 92, 246, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.add-btn:hover {
+
+    background: #554ff0;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(98, 92, 246, 0.25);
+
+}
+
+
+.add-btn:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* =========================================================
+   RECHERCHE ET FILTRE
+   ========================================================= */
+
+.search-box {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.search-box input {
+
+    width: 495px;
+
+    max-width: 100%;
+
+    height: 50px;
+
+    padding: 0 17px;
+
+    border: 1px solid #dfe3ee;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #30364a;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-shadow:
+        0 3px 10px rgba(30, 41, 59, 0.03);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.search-box input::placeholder {
+
+    color: #858b9a;
+
+}
+
+
+.search-box input:focus {
+
+    border-color: #625cf6;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 92, 246, 0.10);
+
+}
+
+
+.search-box select {
+
+    min-width: 200px;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: 1px solid #dfe3ee;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #3d4254;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(30, 41, 59, 0.03);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.search-box select:focus {
+
+    border-color: #625cf6;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 92, 246, 0.10);
+
+}
+
+
+/* =========================================================
+   TABLEAU
+   ========================================================= */
+
+.table-container {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e9f1;
+
+    border-radius: 16px;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(30, 41, 59, 0.06);
+
+    -webkit-overflow-scrolling: touch;
+
+}
+
+
+/* =========================================================
+   BARRE DE DÉFILEMENT
+   ========================================================= */
+
+.table-container::-webkit-scrollbar {
+
+    height: 8px;
+
+}
+
+
+.table-container::-webkit-scrollbar-track {
+
+    background: #f1f2f8;
+
+    border-radius: 10px;
+
+}
+
+
+.table-container::-webkit-scrollbar-thumb {
+
+    background: #625cf6;
+
+    border-radius: 10px;
+
+}
+
+
+.table-container::-webkit-scrollbar-thumb:hover {
+
+    background: #554ff0;
+
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-container table {
+
+    width: 100%;
+
+    min-width: 1050px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    table-layout: auto;
+
+}
+
+
+/* =========================================================
+   EN-TÊTE TABLEAU
+   ========================================================= */
+
+.table-container thead {
+
+    background: #625cf6;
+
+}
+
+
+.table-container th {
+
+    height: 58px;
+
+    padding: 0 22px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    white-space: nowrap;
+
+    border: none;
+
+}
+
+
+.table-container th:first-child {
+
+    border-top-left-radius: 15px;
+
+}
+
+
+.table-container th:last-child {
+
+    border-top-right-radius: 15px;
+
+}
+
+
+/* =========================================================
+   LIGNES
+   ========================================================= */
+
+.table-container tbody tr {
+
+    background: #ffffff;
+
+    transition:
+        background 0.2s ease;
+
+}
+
+
+.table-container tbody tr:hover {
+
+    background: #fafaff;
+
+}
+
+
+/* =========================================================
+   CELLULES
+   ========================================================= */
+
+.table-container td {
+
+    min-height: 68px;
+
+    padding: 19px 22px;
+
+    color: #454b5d;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid #edf0f5;
+
+}
+
+
+.table-container tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+/* =========================================================
+   ID
+   ========================================================= */
+
+.table-container td:first-child {
+
+    color: #687086;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   NOM ÉTUDIANT
+   ========================================================= */
+
+.table-container td strong {
+
+    color: #202a43;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.table-container td:nth-child(3) {
+
+    color: #4f5870;
+
+}
+
+
+/* =========================================================
+   CLASSE
+   ========================================================= */
+
+.table-container td:nth-child(4) {
+
+    color: #596176;
+
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.table-container td:nth-child(6) {
+
+    color: #687086;
+
+}
+
+
+/* =========================================================
+   COLONNE ACTIONS
+   ========================================================= */
+
+.table-container th:last-child {
+
+    min-width: 150px;
+
+    text-align: center;
+
+}
+
+
+.table-container td:last-child {
+
+    min-width: 150px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   BOUTONS D'ACTIONS
+   ========================================================= */
+
+.actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+}
+
+
+.actions button {
+
+    width: 35px;
+
+    height: 35px;
+
+    min-width: 35px;
+
+    padding: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #dfe3ec;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.actions button:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================================
+   VOIR
+   ========================================================= */
+
+.view-btn:hover {
+
+    background: #eef0ff;
+
+    border-color: #625cf6;
+
+}
+
+
+/* =========================================================
+   MODIFIER
+   ========================================================= */
+
+.edit-btn:hover {
+
+    background: #fff7df;
+
+    border-color: #e3ad29;
+
+}
+
+
+/* =========================================================
+   DÉSACTIVER
+   ========================================================= */
+
+.disable-btn:hover {
+
+    background: #ffecef;
+
+    border-color: #e04a63;
+
+}
+
+
+/* =========================================================
+   RÉACTIVER
+   ========================================================= */
+
+.enable-btn:hover {
+
+    background: #e8f8ee;
+
+    border-color: #219653;
+
+}
+
+
+/* =========================================================
+   STATUT
+   ========================================================= */
+
+.status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 70px;
+
+    padding: 7px 13px;
 
     border-radius: 20px;
 
     font-size: 12px;
 
-    font-weight: 600;
+    font-weight: 700;
+
+    line-height: 1;
 
     white-space: nowrap;
+
 }
 
 
 .active-status {
+
     background: #e8f8ee;
 
     color: #219653;
+
 }
 
 
 .inactive-status {
+
     background: #ffecef;
 
     color: #e04a63;
+
 }
 
 
-/* =====================================================
-   CORRECTION POUR LE LAYOUT EDUNOVA
-   ===================================================== */
+/* =========================================================
+   MODAL
+   ========================================================= */
 
-/*
-   Si ton layout possède une sidebar de 260px,
-   cette règle laisse le reste de l'écran au contenu.
-*/
+.modal-overlay {
 
-.main-content {
-    width: calc(100% - 260px);
+    position: fixed;
 
-    margin-left: 260px;
+    inset: 0;
 
-    min-height: 100vh;
+    display: none;
 
-    overflow-x: hidden;
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 2000;
+
 }
 
 
-.main-content .students-section {
+.modal-overlay.active {
+
+    display: flex;
+
+}
+
+
+/* =========================================================
+   FENÊTRE MODALE
+   ========================================================= */
+
+.student-modal {
+
     width: 100%;
 
-    max-width: 100%;
+    max-width: 620px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.25);
+
+    animation: modalOpen 0.2s ease;
+
 }
 
 
-/* =====================================================
-   GRAND ECRAN
-   ===================================================== */
+@keyframes modalOpen {
 
-@media (min-width: 1400px) {
+    from {
 
-    .students-section {
-        padding: 35px 45px;
+        opacity: 0;
+
+        transform: translateY(15px) scale(0.98);
+
     }
 
+    to {
 
-    .students-stats {
-        gap: 30px;
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
     }
 
-
-    .student-stat-card {
-        padding: 30px 32px;
-    }
-
-
-    .table-container th,
-    .table-container td {
-        padding-left: 25px;
-
-        padding-right: 25px;
-    }
 }
 
 
-/* =====================================================
-   ECRAN MOYEN
-   ===================================================== */
+/* =========================================================
+   HEADER MODAL
+   ========================================================= */
+
+.modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 25px 28px;
+
+    border-bottom: 1px solid #edf0f5;
+
+}
+
+
+.modal-header h3 {
+
+    margin: 0 0 6px 0;
+
+    color: #17213c;
+
+    font-size: 21px;
+
+    font-weight: 750;
+
+}
+
+
+.modal-header p {
+
+    margin: 0;
+
+    color: #7a8192;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.close-modal {
+
+    width: 36px;
+
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f4f5f9;
+
+    color: #5c6475;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.close-modal:hover {
+
+    background: #ffecef;
+
+    color: #e04a63;
+
+}
+
+
+/* =========================================================
+   FORMULAIRE MODAL
+   ========================================================= */
+
+.student-form {
+
+    padding: 28px;
+
+}
+
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+.form-group {
+
+    margin-bottom: 18px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dfe3ec;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #30364a;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #625cf6;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 92, 246, 0.10);
+
+}
+
+
+/* =========================================================
+   FOOTER MODAL
+   ========================================================= */
+
+.modal-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding-top: 10px;
+
+    margin-top: 5px;
+
+    border-top: 1px solid #edf0f5;
+
+}
+
+
+.btn-cancel,
+.btn-submit {
+
+    min-height: 43px;
+
+    padding: 0 18px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.btn-cancel {
+
+    border: 1px solid #dfe3ec;
+
+    background: #ffffff;
+
+    color: #596176;
+
+}
+
+
+.btn-cancel:hover {
+
+    background: #f5f6fa;
+
+}
+
+
+.btn-submit {
+
+    border: 1px solid #625cf6;
+
+    background: #625cf6;
+
+    color: #ffffff;
+
+}
+
+
+.btn-submit:hover {
+
+    background: #554ff0;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1200px
+   ========================================================= */
 
 @media (max-width: 1200px) {
 
-    .students-stats {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+    .table-container table {
+
+        min-width: 1000px;
+
     }
 
-
-    .students-section {
-        padding: 25px;
-    }
 }
 
 
-/* =====================================================
-   TABLETTE
-   ===================================================== */
+/* =========================================================
+   RESPONSIVE — 900px
+   ========================================================= */
 
 @media (max-width: 900px) {
 
-    .main-content {
-        width: calc(100% - 230px);
-
-        margin-left: 230px;
-    }
-
-
-    .students-section {
-        padding: 22px;
-    }
-
-
     .section-header {
+
         align-items: flex-start;
+
     }
 
 
     .search-box input {
-        width: 280px;
+
+        width: 380px;
+
     }
+
 }
 
 
-/* =====================================================
-   PETIT ECRAN
-   ===================================================== */
+/* =========================================================
+   RESPONSIVE — 750px
+   ========================================================= */
 
-@media (max-width: 700px) {
-
-    .main-content {
-        width: 100%;
-
-        margin-left: 0;
-    }
-
-
-    .students-section {
-        padding: 20px 15px;
-    }
-
-
-    .students-stats {
-        grid-template-columns: 1fr;
-
-        gap: 18px;
-    }
-
-
-    .student-stat-card {
-        padding: 22px 25px;
-    }
-
-
-    .student-stat-card h2 {
-        font-size: 38px;
-    }
-
+@media (max-width: 750px) {
 
     .section-header {
+
         flex-direction: column;
 
-        align-items: flex-start;
+        align-items: stretch;
+
     }
 
 
     .add-btn {
-        width: 100%;
+
+        width: fit-content;
+
     }
 
 
     .search-box {
+
         flex-direction: column;
 
         align-items: stretch;
+
     }
 
 
     .search-box input,
     .search-box select {
+
         width: 100%;
+
+        min-width: 0;
+
     }
 
 
-    /*
-       Sur téléphone, le tableau reste large
-       mais peut être déplacé horizontalement.
-    */
+    .form-row {
 
-    .table-container {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .section-header h3 {
+
+        font-size: 22px;
+
+    }
+
+
+    .add-btn {
+
         width: 100%;
 
-        overflow-x: auto;
+    }
+
+
+    .table-container {
+
+        border-radius: 12px;
+
     }
 
 
     .table-container table {
-        min-width: 1100px;
+
+        min-width: 1000px;
+
     }
+
+
+    .table-container th {
+
+        height: 54px;
+
+        padding: 0 16px;
+
+    }
+
+
+    .table-container td {
+
+        padding: 17px 16px;
+
+    }
+
+
+    .student-modal {
+
+        max-height: 94vh;
+
+        border-radius: 14px;
+
+    }
+
+
+    .modal-header {
+
+        padding: 20px;
+
+    }
+
+
+    .student-form {
+
+        padding: 20px;
+
+    }
+
+
+    .modal-footer {
+
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+
+    }
+
+
+    .btn-cancel,
+    .btn-submit {
+
+        width: 100%;
+
+    }
+
 }
 
 
-/* =====================================================
-   TRES PETIT ECRAN
-   ===================================================== */
+/* =========================================================
+   RESPONSIVE — 450px
+   ========================================================= */
 
 @media (max-width: 450px) {
 
-    .students-section {
-        padding: 15px 10px;
-    }
-
-
-    .student-stat-card {
-        padding: 20px;
-    }
-
-
-    .student-stat-card p {
-        font-size: 14px;
-    }
-
-
-    .student-stat-card h2 {
-        font-size: 34px;
-    }
-
-
     .section-header h3 {
-        font-size: 21px;
+
+        font-size: 20px;
+
     }
+
+
+    .section-header p {
+
+        font-size: 13px;
+
+    }
+
+
+    .search-box input,
+    .search-box select {
+
+        height: 46px;
+
+    }
+
 }

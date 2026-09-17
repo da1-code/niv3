@@ -10,10 +10,10 @@ class LoginController extends Controller
     /**
      * Afficher la page de connexion
      */
-    public function showLogin()
-    {
-        return view('login');
-    }
+   public function showLogin()
+{
+    return view('auth.login');
+}
 
     /**
      * Traiter la connexion

@@ -2,18 +2,35 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EDUNOVA - Mes cours</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-   <link rel="stylesheet" href="/etudiant/dashboard.css">
-   <link rel="stylesheet" href="/etudiant/cours.css">
+    <title>
+        EDUNOVA - Mes cours
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/etudiant/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/etudiant/cours.css"
+    >
+
 </head>
+
 
 <body>
 
 <div class="student-container">
+
 
     <!-- =====================================================
          SIDEBAR
@@ -21,95 +38,197 @@
 
     <aside class="sidebar">
 
+
+        <!-- LOGO -->
+
         <div class="logo">
 
             <div class="logo-icon">
                 🎓
             </div>
 
+
             <div class="logo-text">
-                <h2>EDUNOVA</h2>
-                <span>Plateforme éducative</span>
+
+                <h2>
+                    EDUNOVA
+                </h2>
+
+                <span>
+                    Plateforme éducative
+                </span>
+
             </div>
 
         </div>
 
 
-        <!-- Profil rapide -->
+
+        <!-- =================================================
+             PROFIL ÉTUDIANT
+             ================================================= -->
 
         <div class="profile-mini">
 
+
             <div class="avatar">
-                👩‍🎓
+
+                {{ strtoupper(substr($etudiant->prenom, 0, 1)) }}
+
             </div>
 
+
             <div>
-                <strong>Daniella</strong>
-                <small>Étudiante</small>
+
+                <strong>
+
+                    {{ $etudiant->prenom }}
+                    {{ $etudiant->nom }}
+
+                </strong>
+
+
+                <small>
+                    Étudiante
+                </small>
+
             </div>
 
         </div>
 
 
-        <!-- Menu -->
+
+        <!-- =================================================
+             MENU
+             ================================================= -->
 
         <nav class="menu">
 
+
             <a href="/etudiant/dashboard">
-                <span>🏠</span>
+
+                <span>
+                    🏠
+                </span>
+
                 Tableau de bord
+
             </a>
+
+
 
             <a href="/etudiant/profil">
-                <span>👤</span>
+
+                <span>
+                    👤
+                </span>
+
                 Mon profil
+
             </a>
+
+
 
             <a href="/etudiant/profil-apprentissage">
-                <span>🧠</span>
+
+                <span>
+                    🧠
+                </span>
+
                 Profil d'apprentissage
+
             </a>
 
-            <a href="/etudiant/cours" class="active">
-                <span>📚</span>
+
+
+            <a
+                href="/etudiant/cours"
+                class="active"
+            >
+
+                <span>
+                    📚
+                </span>
+
                 Mes cours
+
             </a>
+
+
 
             <a href="/etudiant/examens">
-                <span>📝</span>
+
+                <span>
+                    📝
+                </span>
+
                 Examens
+
             </a>
+
+
 
             <a href="/etudiant/ia">
-                <span>🤖</span>
+
+                <span>
+                    🤖
+                </span>
+
                 Mon IA
+
             </a>
+
+
 
             <a href="/etudiant/statistiques">
-                <span>📊</span>
+
+                <span>
+                    📊
+                </span>
+
                 Mes statistiques
+
             </a>
 
+
+
             <a href="/etudiant/parametres">
-                <span>⚙️</span>
+
+                <span>
+                    ⚙️
+                </span>
+
                 Paramètres
+
             </a>
 
         </nav>
 
 
-        <!-- Déconnexion -->
+
+        <!-- =================================================
+             DÉCONNEXION
+             ================================================= -->
 
         <div class="sidebar-bottom">
 
-            <a href="/logout" class="logout">
-                <span>🚪</span>
+            <a
+                href="/logout"
+                class="logout"
+            >
+
+                <span>
+                    🚪
+                </span>
+
                 Déconnexion
+
             </a>
 
         </div>
 
     </aside>
+
 
 
     <!-- =====================================================
@@ -125,34 +244,64 @@
 
         <header class="topbar">
 
+
             <div class="page-title">
 
-                <h1>Mes cours 📚</h1>
+                <h1>
+                    Mes cours 📚
+                </h1>
+
 
                 <p>
-                    Consulte tes cours et poursuis ton apprentissage.
+                    Consulte les cours disponibles sur EDUNOVA.
                 </p>
 
             </div>
 
 
+
             <div class="top-actions">
 
-                <a href="#" class="notification">
+
+                <a
+                    href="#"
+                    class="notification"
+                >
+
                     🔔
+
                     <span></span>
+
                 </a>
 
 
+
+                <!-- UTILISATEUR RÉEL -->
+
                 <div class="student-user">
 
+
                     <div class="user-avatar">
-                        D
+
+                        {{ strtoupper(substr($etudiant->prenom, 0, 1)) }}
+
                     </div>
 
+
                     <div>
-                        <strong>Daniella</strong>
-                        <small>Étudiante</small>
+
+                        <strong>
+
+                            {{ $etudiant->prenom }}
+                            {{ $etudiant->nom }}
+
+                        </strong>
+
+
+                        <small>
+                            Étudiante
+                        </small>
+
                     </div>
 
                 </div>
@@ -162,63 +311,132 @@
         </header>
 
 
+
         <!-- =================================================
-             STATISTIQUES DES COURS
+             STATISTIQUES
              ================================================= -->
 
         <section class="course-overview">
 
+
+            <!-- TOTAL COURS -->
+
             <div class="overview-card">
+
 
                 <div class="overview-icon blue">
+
                     📚
+
                 </div>
 
+
                 <div>
-                    <span>Total des cours</span>
-                    <strong>12</strong>
+
+                    <span>
+                        Total des cours
+                    </span>
+
+
+                    <strong>
+
+                        {{ $cours->count() }}
+
+                    </strong>
+
                 </div>
 
             </div>
 
 
+
+            <!-- COURS DISPONIBLES -->
+
             <div class="overview-card">
+
 
                 <div class="overview-icon green">
-                    ✅
+
+                    📖
+
                 </div>
 
+
                 <div>
-                    <span>Cours terminés</span>
-                    <strong>5</strong>
+
+                    <span>
+                        Cours disponibles
+                    </span>
+
+
+                    <strong>
+
+                        {{ $cours->count() }}
+
+                    </strong>
+
                 </div>
 
             </div>
 
 
+
+            <!-- COURS AVEC DOCUMENT -->
+
             <div class="overview-card">
+
 
                 <div class="overview-icon purple">
-                    📖
+
+                    📄
+
                 </div>
 
+
                 <div>
-                    <span>En cours</span>
-                    <strong>4</strong>
+
+                    <span>
+                        Avec document
+                    </span>
+
+
+                    <strong>
+
+                        {{ $cours->whereNotNull('document')->count() }}
+
+                    </strong>
+
                 </div>
 
             </div>
 
 
+
+            <!-- COURS RÉCENTS -->
+
             <div class="overview-card">
 
+
                 <div class="overview-icon orange">
-                    ⏳
+
+                    🆕
+
                 </div>
 
+
                 <div>
-                    <span>À commencer</span>
-                    <strong>3</strong>
+
+                    <span>
+                        Ajoutés récemment
+                    </span>
+
+
+                    <strong>
+
+                        {{ $cours->take(5)->count() }}
+
+                    </strong>
+
                 </div>
 
             </div>
@@ -226,45 +444,66 @@
         </section>
 
 
+
         <!-- =================================================
-             RECHERCHE ET FILTRES
+             RECHERCHE
              ================================================= -->
 
         <section class="courses-toolbar">
 
+
             <div class="search-box">
 
-                <span>🔎</span>
+                <span>
+                    🔎
+                </span>
+
 
                 <input
                     type="text"
+                    id="courseSearch"
                     placeholder="Rechercher un cours..."
                 >
 
             </div>
 
 
+
+            <!-- FILTRES -->
+
             <div class="course-filters">
 
-                <button class="filter-btn active">
+
+                <button
+                    type="button"
+                    class="filter-btn active"
+                    onclick="filterCourses('all', this)"
+                >
                     Tous
                 </button>
 
-                <button class="filter-btn">
-                    En cours
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    onclick="filterCourses('scientifique', this)"
+                >
+                    Scientifique
                 </button>
 
-                <button class="filter-btn">
-                    Terminés
-                </button>
 
-                <button class="filter-btn">
-                    À commencer
+                <button
+                    type="button"
+                    class="filter-btn"
+                    onclick="filterCourses('litteraire', this)"
+                >
+                    Littéraire
                 </button>
 
             </div>
 
         </section>
+
 
 
         <!-- =================================================
@@ -273,519 +512,338 @@
 
         <div class="section-heading">
 
+
             <div>
 
-                <h2>Mes cours</h2>
+                <h2>
+                    Cours disponibles
+                </h2>
+
 
                 <p>
-                    Retrouve ici tous les cours disponibles dans ton espace.
+
+                    Les cours affichés ci-dessous proviennent
+                    directement de la base de données.
+
                 </p>
 
             </div>
 
+
             <span class="course-count">
-                12 cours
+
+                {{ $cours->count() }}
+
+                {{ $cours->count() > 1 ? 'cours' : 'cours' }}
+
             </span>
 
         </div>
+
 
 
         <!-- =================================================
              LISTE DES COURS
              ================================================= -->
 
-        <section class="courses-grid">
+        <section
+            class="courses-grid"
+            id="coursesGrid"
+        >
 
 
-            <!-- =================================================
-                 COURS 1
-                 ================================================= -->
+            @forelse($cours as $index => $unCours)
 
-            <article class="course-card">
 
-                <div class="course-header blue-bg">
+                <!-- =================================================
+                     CARTE COURS
+                     ================================================= -->
+
+                <article
+                    class="course-card"
+                    data-serie="{{ strtolower($unCours->serie ?? '') }}"
+                >
+
+
+                    <!-- HEADER -->
+
+                    <div
+                        class="
+                            course-header
+                            @if($index % 4 == 0)
+                                blue-bg
+                            @elseif($index % 4 == 1)
+                                purple-bg
+                            @elseif($index % 4 == 2)
+                                green-bg
+                            @else
+                                orange-bg
+                            @endif
+                        "
+                    >
+
+
+                        <div class="course-icon">
+
+
+                            @if($index % 4 == 0)
+
+                                💻
+
+                            @elseif($index % 4 == 1)
+
+                                📚
+
+                            @elseif($index % 4 == 2)
+
+                                🤖
+
+                            @else
+
+                                📖
+
+                            @endif
+
+
+                        </div>
+
+
+
+                        <span class="course-status new">
+
+                            Disponible
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CORPS -->
+
+                    <div class="course-body">
+
+
+                        <!-- CATÉGORIE / CLASSE -->
+
+                        <span class="course-category">
+
+                            {{ $unCours->classe ?? 'Classe non définie' }}
+
+                        </span>
+
+
+
+                        <!-- TITRE -->
+
+                        <h3>
+
+                            {{ $unCours->titre }}
+
+                        </h3>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <p>
+
+                            {{ $unCours->description ?? 'Aucune description disponible pour ce cours.' }}
+
+                        </p>
+
+
+
+                        <!-- INFORMATIONS -->
+
+                        <div class="course-meta">
+
+
+                            <span>
+
+                                🎓
+
+                                {{ $unCours->classe ?? 'Classe non définie' }}
+
+                            </span>
+
+
+                            <span>
+
+                                📘
+
+                                {{ $unCours->serie ?? 'Série non définie' }}
+
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- DOCUMENT -->
+
+                        <div class="progress-info">
+
+
+                            <div>
+
+                                <span>
+                                    Document
+                                </span>
+
+
+                                <strong>
+
+                                    @if($unCours->document)
+
+                                        Disponible
+
+                                    @else
+
+                                        Non disponible
+
+                                    @endif
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="progress-bar">
+
+
+                                @if($unCours->document)
+
+                                    <span style="width: 100%;"></span>
+
+                                @else
+
+                                    <span style="width: 0%;"></span>
+
+                                @endif
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- BOUTON -->
+
+                        @if($unCours->document)
+
+
+                            <a
+                                href="{{ asset('storage/' . $unCours->document) }}"
+                                target="_blank"
+                                class="course-btn"
+                            >
+
+                                Consulter le cours →
+
+                            </a>
+
+
+                        @else
+
+
+                            <button
+                                type="button"
+                                class="course-btn"
+                            >
+
+                                Cours disponible →
+
+                            </button>
+
+
+                        @endif
+
+                    </div>
+
+                </article>
+
+
+            @empty
+
+
+                <!-- =================================================
+                     AUCUN COURS
+                     ================================================= -->
+
+                <div class="empty-courses">
+
 
                     <div class="course-icon">
-                        💻
+                        📚
                     </div>
 
-                    <span class="course-status progress">
-                        En cours
-                    </span>
-
-                </div>
-
-
-                <div class="course-body">
-
-                    <span class="course-category">
-                        Informatique
-                    </span>
 
                     <h3>
-                        Développement Web
+                        Aucun cours disponible
                     </h3>
 
-                    <p>
-                        Apprends les bases du développement web,
-                        HTML, CSS, JavaScript et les technologies modernes.
-                    </p>
-
-
-                    <div class="course-meta">
-
-                        <span>
-                            📑 8 chapitres
-                        </span>
-
-                        <span>
-                            ⏱️ 12h
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-info">
-
-                        <div>
-
-                            <span>Progression</span>
-
-                            <strong>75%</strong>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span style="width: 75%;"></span>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="course-btn">
-                        Continuer le cours →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
-                 COURS 2
-                 ================================================= -->
-
-            <article class="course-card">
-
-                <div class="course-header purple-bg">
-
-                    <div class="course-icon">
-                        🗄️
-                    </div>
-
-                    <span class="course-status progress">
-                        En cours
-                    </span>
-
-                </div>
-
-
-                <div class="course-body">
-
-                    <span class="course-category">
-                        Informatique
-                    </span>
-
-                    <h3>
-                        Base de données
-                    </h3>
 
                     <p>
-                        Découvre la conception, la gestion et la sécurité
-                        des bases de données relationnelles.
+
+                        Aucun cours n'est actuellement enregistré
+                        dans la base de données.
+
                     </p>
 
-
-                    <div class="course-meta">
-
-                        <span>
-                            📑 10 chapitres
-                        </span>
-
-                        <span>
-                            ⏱️ 15h
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-info">
-
-                        <div>
-
-                            <span>Progression</span>
-
-                            <strong>60%</strong>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span style="width: 60%;"></span>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="course-btn">
-                        Continuer le cours →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
-                 COURS 3
-                 ================================================= -->
-
-            <article class="course-card">
-
-                <div class="course-header green-bg">
-
-                    <div class="course-icon">
-                        🤖
-                    </div>
-
-                    <span class="course-status progress">
-                        En cours
-                    </span>
-
                 </div>
 
 
-                <div class="course-body">
-
-                    <span class="course-category">
-                        Intelligence artificielle
-                    </span>
-
-                    <h3>
-                        Intelligence Artificielle
-                    </h3>
-
-                    <p>
-                        Découvre les concepts fondamentaux de l'intelligence
-                        artificielle et de l'apprentissage automatique.
-                    </p>
-
-
-                    <div class="course-meta">
-
-                        <span>
-                            📑 7 chapitres
-                        </span>
-
-                        <span>
-                            ⏱️ 10h
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-info">
-
-                        <div>
-
-                            <span>Progression</span>
-
-                            <strong>45%</strong>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span style="width: 45%;"></span>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="course-btn">
-                        Continuer le cours →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
-                 COURS 4
-                 ================================================= -->
-
-            <article class="course-card">
-
-                <div class="course-header orange-bg">
-
-                    <div class="course-icon">
-                        📱
-                    </div>
-
-                    <span class="course-status new">
-                        Nouveau
-                    </span>
-
-                </div>
-
-
-                <div class="course-body">
-
-                    <span class="course-category">
-                        Développement
-                    </span>
-
-                    <h3>
-                        Développement Mobile
-                    </h3>
-
-                    <p>
-                        Apprends les principes de conception et de développement
-                        des applications mobiles.
-                    </p>
-
-
-                    <div class="course-meta">
-
-                        <span>
-                            📑 9 chapitres
-                        </span>
-
-                        <span>
-                            ⏱️ 14h
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-info">
-
-                        <div>
-
-                            <span>Progression</span>
-
-                            <strong>0%</strong>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span style="width: 0%;"></span>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="course-btn">
-                        Commencer le cours →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
-                 COURS 5
-                 ================================================= -->
-
-            <article class="course-card">
-
-                <div class="course-header cyan-bg">
-
-                    <div class="course-icon">
-                        🔐
-                    </div>
-
-                    <span class="course-status completed">
-                        Terminé
-                    </span>
-
-                </div>
-
-
-                <div class="course-body">
-
-                    <span class="course-category">
-                        Sécurité
-                    </span>
-
-                    <h3>
-                        Sécurité des bases de données
-                    </h3>
-
-                    <p>
-                        Comprends les mécanismes de protection,
-                        d'accès et de sécurité des données.
-                    </p>
-
-
-                    <div class="course-meta">
-
-                        <span>
-                            📑 6 chapitres
-                        </span>
-
-                        <span>
-                            ⏱️ 8h
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-info">
-
-                        <div>
-
-                            <span>Progression</span>
-
-                            <strong>100%</strong>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span style="width: 100%;"></span>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="course-btn">
-                        Revoir le cours →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
-                 COURS 6
-                 ================================================= -->
-
-            <article class="course-card">
-
-                <div class="course-header pink-bg">
-
-                    <div class="course-icon">
-                        📊
-                    </div>
-
-                    <span class="course-status completed">
-                        Terminé
-                    </span>
-
-                </div>
-
-
-                <div class="course-body">
-
-                    <span class="course-category">
-                        Informatique
-                    </span>
-
-                    <h3>
-                        Analyse des données
-                    </h3>
-
-                    <p>
-                        Découvre les méthodes utilisées pour analyser,
-                        interpréter et présenter des données.
-                    </p>
-
-
-                    <div class="course-meta">
-
-                        <span>
-                            📑 5 chapitres
-                        </span>
-
-                        <span>
-                            ⏱️ 7h
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-info">
-
-                        <div>
-
-                            <span>Progression</span>
-
-                            <strong>100%</strong>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <span style="width: 100%;"></span>
-
-                        </div>
-
-                    </div>
-
-
-                    <a href="#" class="course-btn">
-                        Revoir le cours →
-                    </a>
-
-                </div>
-
-            </article>
+            @endforelse
 
 
         </section>
 
 
+
         <!-- =================================================
-             RECOMMANDATION IA
+             IA
              ================================================= -->
 
         <section class="course-ai">
+
 
             <div class="ai-icon">
                 🤖
             </div>
 
+
             <div class="ai-content">
 
+
                 <span>
-                    RECOMMANDATION EDUNOVA IA
+                    EDUNOVA IA
                 </span>
 
+
                 <h2>
-                    Continue ton apprentissage !
+                    Besoin d'aide avec tes cours ?
                 </h2>
 
+
                 <p>
-                    D'après ta progression, nous te recommandons de
-                    poursuivre le cours de <strong>Développement Web</strong>.
-                    Tu es déjà à 75% du parcours.
+
+                    Ton assistant IA pourra t'aider à comprendre
+                    les cours disponibles sur EDUNOVA.
+
                 </p>
 
             </div>
 
-            <a href="/etudiant/ia" class="ai-btn">
+
+            <a
+                href="/etudiant/ia"
+                class="ai-btn"
+            >
+
                 Demander à mon IA →
+
             </a>
 
         </section>
@@ -795,5 +853,111 @@
 
 </div>
 
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+
+/*
+|--------------------------------------------------------------------------
+| RECHERCHE
+|--------------------------------------------------------------------------
+*/
+
+const searchInput = document.getElementById('courseSearch');
+
+
+searchInput.addEventListener('input', function () {
+
+
+    const search = this.value.toLowerCase();
+
+
+    const cards = document.querySelectorAll('.course-card');
+
+
+    cards.forEach(function (card) {
+
+
+        const text = card.innerText.toLowerCase();
+
+
+        if (text.includes(search)) {
+
+            card.style.display = '';
+
+        } else {
+
+            card.style.display = 'none';
+
+        }
+
+    });
+
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| FILTRE PAR SÉRIE
+|--------------------------------------------------------------------------
+*/
+
+function filterCourses(filter, button)
+{
+
+
+    const cards = document.querySelectorAll('.course-card');
+
+    const buttons = document.querySelectorAll('.filter-btn');
+
+
+    buttons.forEach(function (btn) {
+
+        btn.classList.remove('active');
+
+    });
+
+
+    button.classList.add('active');
+
+
+    cards.forEach(function (card) {
+
+
+        const serie = card.dataset.serie;
+
+
+        if (filter === 'all') {
+
+            card.style.display = '';
+
+        }
+
+        else if (serie.includes(filter)) {
+
+            card.style.display = '';
+
+        }
+
+        else {
+
+            card.style.display = 'none';
+
+        }
+
+    });
+
+}
+
+</script>
+
+
 </body>
+
 </html>

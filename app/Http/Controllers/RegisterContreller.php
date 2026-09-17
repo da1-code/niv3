@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Classe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -13,7 +15,10 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('register');
+        // Récupérer toutes les classes
+        $classes = Classe::orderBy('nom', 'asc')->get();
+
+        return view('register', compact('classes'));
     }
 
 
@@ -25,13 +30,11 @@ class RegisterController extends Controller
         // Validation
         $request->validate([
 
-            'nom' => 'required|string|max:100',
-
-            'prenom' => 'required|string|max:100',
+            'name' => 'required|string|max:255',
 
             'email' => 'required|email|max:255|unique:users,email',
 
-            'role' => 'required|in:etudiant,professeur',
+            'idclasse' => 'required|exists:classes,id',
 
             'password' => 'required|min:8|confirmed',
 
@@ -41,13 +44,15 @@ class RegisterController extends Controller
         // Création du compte
         $user = User::create([
 
-            'nom' => $request->nom,
-
-            'prenom' => $request->prenom,
+            'name' => $request->name,
 
             'email' => $request->email,
 
-            'role' => $request->role,
+            // Tout nouvel inscrit est étudiant
+            'role' => 'etudiant',
+
+            // Enregistrement de sa classe
+            'idclasse' => $request->idclasse,
 
             'password' => Hash::make($request->password),
 
@@ -57,17 +62,10 @@ class RegisterController extends Controller
 
 
         // Connexion automatique après inscription
-        auth()->login($user);
+        Auth::login($user);
 
 
-        // Redirection selon le rôle
-        if ($user->role === 'professeur') {
-
-            return redirect('/prof/dashboard');
-
-        }
-
-
-        return redirect('/etudiant/dashboard');
+        // Redirection vers le dashboard étudiant
+        return redirect()->route('etudiant.dashboard');
     }
 }

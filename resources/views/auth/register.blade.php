@@ -1,286 +1,194 @@
-<!DOCTYPE html>
-<html lang="fr">
+<x-guest-layout>
 
-<head>
+    <form method="POST" action="{{ route('register.post') }}">
 
-    <meta charset="UTF-8">
+        @csrf
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- =====================================================
+             NOM
+        ====================================================== -->
+        <div>
+            <x-input-label
+                for="name"
+                :value="__('Nom')"
+            />
 
-    <title>EDUNOVA IA - Inscription</title>
+            <x-text-input
+                id="name"
+                class="block mt-1 w-full"
+                type="text"
+                name="name"
+                :value="old('name')"
+                required
+                autofocus
+                autocomplete="name"
+            />
 
-    <link rel="stylesheet" href="/register.css">
-
-</head>
-
-<body>
-
-<div class="register-container">
-
-    <div class="register-box">
-
-        <!-- LOGO -->
-        <div class="logo">
-            <div class="logo-icon">🎓</div>
-            <h1>EDUNOVA <span>IA</span></h1>
+            <x-input-error
+                :messages="$errors->get('name')"
+                class="mt-2"
+            />
         </div>
 
-        <h2>Créer un compte</h2>
 
-        <p class="subtitle">
-            Rejoignez EDUNOVA IA et commencez votre parcours éducatif.
-        </p>
+        <!-- =====================================================
+             EMAIL
+        ====================================================== -->
+        <div class="mt-4">
+
+            <x-input-label
+                for="email"
+                :value="__('Adresse email')"
+            />
+
+            <x-text-input
+                id="email"
+                class="block mt-1 w-full"
+                type="email"
+                name="email"
+                :value="old('email')"
+                required
+                autocomplete="username"
+            />
+
+            <x-input-error
+                :messages="$errors->get('email')"
+                class="mt-2"
+            />
+
+        </div>
 
 
-        <!-- MESSAGE D'ERREUR -->
-        @if ($errors->any())
+        <!-- =====================================================
+             CLASSE
+        ====================================================== -->
+        <div class="mt-4">
 
-            <div class="error-message">
+            <x-input-label
+                for="idclasse"
+                :value="__('Classe')"
+            />
 
-                @foreach ($errors->all() as $error)
+            <select
+                id="idclasse"
+                name="idclasse"
+                class="block mt-1 w-full border-gray-300
+                       focus:border-indigo-500
+                       focus:ring-indigo-500
+                       rounded-md shadow-sm"
+                required
+            >
 
-                    <p>⚠️ {{ $error }}</p>
+                <option value="">
+                    -- Sélectionnez votre classe --
+                </option>
+
+                @foreach($classes as $classe)
+
+                    <option
+                        value="{{ $classe->id }}"
+                        {{ old('idclasse') == $classe->id ? 'selected' : '' }}
+                    >
+                        {{ $classe->nom }}
+                    </option>
 
                 @endforeach
 
-            </div>
-
-        @endif
-
-
-        <!-- FORMULAIRE -->
-
-        <form action="/register" method="POST">
-
-            <input
-                type="hidden"
-                name="_token"
-                value="{{ csrf_token() }}"
-            >
-
-
-            <!-- NOM + PRÉNOM -->
-
-            <div class="form-row">
-
-                <div class="input-group">
-
-                    <label for="nom">
-                        Nom
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nom"
-                        name="nom"
-                        placeholder="Votre nom"
-                        value="{{ old('nom') }}"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="input-group">
-
-                    <label for="prenom">
-                        Prénom
-                    </label>
-
-                    <input
-                        type="text"
-                        id="prenom"
-                        name="prenom"
-                        placeholder="Votre prénom"
-                        value="{{ old('prenom') }}"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- EMAIL -->
-
-            <div class="input-group">
-
-                <label for="email">
-                    Adresse email
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="exemple@email.com"
-                    value="{{ old('email') }}"
-                    required
-                >
-
-            </div>
-
-
-            <!-- TYPE DE COMPTE -->
-
-            <div class="input-group">
-
-                <label>
-                    Je suis
-                </label>
-
-                <div class="role-selection">
-
-
-                    <!-- ÉTUDIANT -->
-
-                    <label class="role-card">
-
-                        <input
-                            type="radio"
-                            name="role"
-                            value="etudiant"
-                            {{ old('role', 'etudiant') == 'etudiant' ? 'checked' : '' }}
-                            required
-                        >
-
-                        <span class="role-content">
-
-                            <span class="role-icon">
-                                👨‍🎓
-                            </span>
-
-                            <span>
-
-                                <strong>Étudiant</strong>
-
-                                <small>
-                                    Accéder aux cours et examens
-                                </small>
-
-                            </span>
-
-                        </span>
-
-                    </label>
-
-
-                    <!-- ENSEIGNANT -->
-
-                    <label class="role-card">
-
-                        <input
-                            type="radio"
-                            name="role"
-                            value="professeur"
-                            {{ old('role') == 'professeur' ? 'checked' : '' }}
-                        >
-
-                        <span class="role-content">
-
-                            <span class="role-icon">
-                                👨‍🏫
-                            </span>
-
-                            <span>
-
-                                <strong>Enseignant</strong>
-
-                                <small>
-                                    Gérer les cours et examens
-                                </small>
-
-                            </span>
-
-                        </span>
-
-                    </label>
-
-                </div>
-
-            </div>
-
-
-            <!-- MOT DE PASSE -->
-
-            <div class="input-group">
-
-                <label for="password">
-                    Mot de passe
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Créer un mot de passe"
-                    required
-                >
-
-            </div>
-
-
-            <!-- CONFIRMATION -->
-
-            <div class="input-group">
-
-                <label for="password_confirmation">
-                    Confirmer le mot de passe
-                </label>
-
-                <input
-                    type="password"
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    placeholder="Confirmer votre mot de passe"
-                    required
-                >
-
-            </div>
-
-
-            <!-- BOUTON -->
-
-            <button
-                type="submit"
-                class="btn-register"
-            >
-
-                Créer mon compte
-                <span>→</span>
-
-            </button>
-
-        </form>
-
-
-        <!-- CONNEXION -->
-
-        <div class="login-link">
-
-            <p>
-
-                Vous avez déjà un compte ?
-
-                <a href="/login">
-                    Se connecter
-                </a>
-
-            </p>
+            </select>
+
+            <x-input-error
+                :messages="$errors->get('idclasse')"
+                class="mt-2"
+            />
 
         </div>
 
 
-        <div class="security-info">
+        <!-- =====================================================
+             MOT DE PASSE
+        ====================================================== -->
+        <div class="mt-4">
 
-            🔒 Vos informations sont protégées.
+            <x-input-label
+                for="password"
+                :value="__('Mot de passe')"
+            />
+
+            <x-text-input
+                id="password"
+                class="block mt-1 w-full"
+                type="password"
+                name="password"
+                required
+                autocomplete="new-password"
+            />
+
+            <x-input-error
+                :messages="$errors->get('password')"
+                class="mt-2"
+            />
 
         </div>
 
-    </div>
 
-</div>
+        <!-- =====================================================
+             CONFIRMATION DU MOT DE PASSE
+        ====================================================== -->
+        <div class="mt-4">
 
-</body>
+            <x-input-label
+                for="password_confirmation"
+                :value="__('Confirmer le mot de passe')"
+            />
 
-</html>
+            <x-text-input
+                id="password_confirmation"
+                class="block mt-1 w-full"
+                type="password"
+                name="password_confirmation"
+                required
+                autocomplete="new-password"
+            />
+
+            <x-input-error
+                :messages="$errors->get('password_confirmation')"
+                class="mt-2"
+            />
+
+        </div>
+
+
+        <!-- =====================================================
+             BOUTONS
+        ====================================================== -->
+        <div class="flex items-center justify-end mt-6">
+
+            <!-- Retour vers connexion -->
+            <a
+                class="underline text-sm text-gray-600
+                       dark:text-gray-400
+                       hover:text-gray-900
+                       dark:hover:text-gray-100
+                       rounded-md
+                       focus:outline-none
+                       focus:ring-2
+                       focus:ring-offset-2
+                       focus:ring-indigo-500"
+                href="{{ route('login') }}"
+            >
+                {{ __('Déjà inscrit ?') }}
+            </a>
+
+
+            <!-- Bouton inscription -->
+            <x-primary-button class="ms-4">
+
+                {{ __('S’inscrire') }}
+
+            </x-primary-button>
+
+        </div>
+
+    </form>
+
+</x-guest-layout>

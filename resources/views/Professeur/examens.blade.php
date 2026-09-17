@@ -114,11 +114,59 @@
                 </div>
 
 
-                <a href="#" class="btn-add">
+                <button
+                    type="button"
+                    class="btn-add"
+                    id="ouvrirExamen"
+                >
                     + Créer un examen
-                </a>
+                </button>
 
             </div>
+
+
+
+            <!-- =================================================
+                 MESSAGE DE SUCCÈS
+                 ================================================= -->
+
+            @if(session('success'))
+
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+
+            @endif
+
+
+
+            <!-- =================================================
+                 ERREURS DE VALIDATION
+                 ================================================= -->
+
+            @if($errors->any())
+
+                <div class="error-message">
+
+                    <strong>
+                        Veuillez corriger les erreurs suivantes :
+                    </strong>
+
+                    <ul>
+
+                        @foreach($errors->all() as $error)
+
+                            <li>
+                                {{ $error }}
+                            </li>
+
+                        @endforeach
+
+                    </ul>
+
+                </div>
+
+            @endif
 
 
 
@@ -142,12 +190,13 @@
                         </span>
 
                         <strong>
-                            6
+                            {{ $examens->count() }}
                         </strong>
 
                     </div>
 
                 </div>
+
 
 
                 <div class="exam-stat-card">
@@ -163,12 +212,13 @@
                         </span>
 
                         <strong>
-                            4
+                            {{ $examens->where('statut', 'publie')->count() }}
                         </strong>
 
                     </div>
 
                 </div>
+
 
 
                 <div class="exam-stat-card">
@@ -184,12 +234,13 @@
                         </span>
 
                         <strong>
-                            1
+                            {{ $examens->where('statut', 'brouillon')->count() }}
                         </strong>
 
                     </div>
 
                 </div>
+
 
 
                 <div class="exam-stat-card">
@@ -205,7 +256,7 @@
                         </span>
 
                         <strong>
-                            108
+                            0
                         </strong>
 
                     </div>
@@ -225,36 +276,29 @@
 
                 <input
                     type="text"
+                    id="rechercheExamen"
                     placeholder="🔍 Rechercher un examen..."
                 >
 
 
-                <select>
+                <select id="filtreCours">
 
                     <option value="">
                         Tous les cours
                     </option>
 
-                    <option value="ia">
-                        Intelligence Artificielle
-                    </option>
+                    @foreach($examens->pluck('cours')->unique() as $cours)
 
-                    <option value="laravel">
-                        Développement Laravel
-                    </option>
+                        <option value="{{ strtolower($cours) }}">
+                            {{ $cours }}
+                        </option>
 
-                    <option value="bd">
-                        Base de données
-                    </option>
-
-                    <option value="securite">
-                        Sécurité informatique
-                    </option>
+                    @endforeach
 
                 </select>
 
 
-                <select>
+                <select id="filtreStatut">
 
                     <option value="">
                         Tous les statuts
@@ -266,10 +310,6 @@
 
                     <option value="brouillon">
                         Brouillon
-                    </option>
-
-                    <option value="termine">
-                        Terminé
                     </option>
 
                 </select>
@@ -303,303 +343,1133 @@
 
 
 
-                <!-- EXAMEN 1 -->
+                <!-- =================================================
+                     EXAMENS ENREGISTRÉS
+                     ================================================= -->
 
-                <div class="exam-card">
+                @forelse($examens as $examen)
 
-
-                    <div class="exam-icon">
-                        🤖
-                    </div>
-
-
-                    <div class="exam-info">
-
-                        <h3>
-                            Examen Intelligence Artificielle
-                        </h3>
-
-                        <p>
-                            Évaluation sur les concepts fondamentaux
-                            de l'intelligence artificielle.
-                        </p>
+                    <div
+                        class="exam-card"
+                        data-titre="{{ strtolower($examen->titre) }}"
+                        data-cours="{{ strtolower($examen->cours) }}"
+                        data-statut="{{ $examen->statut }}"
+                    >
 
 
-                        <div class="exam-meta">
+                        <!-- ICÔNE -->
 
-                            <span>
-                                📚 Intelligence Artificielle
-                            </span>
+                        <div class="exam-icon">
 
-                            <span>
-                                📅 15 Septembre 2026
-                            </span>
+                            @if(str_contains(strtolower($examen->cours), 'intelligence'))
 
-                            <span>
-                                ⏱️ 1h30
-                            </span>
+                                🤖
 
-                            <span>
-                                ❓ 20 questions
-                            </span>
+                            @elseif(str_contains(strtolower($examen->cours), 'laravel'))
+
+                                💻
+
+                            @elseif(str_contains(strtolower($examen->cours), 'base'))
+
+                                🗄️
+
+                            @else
+
+                                📝
+
+                            @endif
+
+                        </div>
+
+
+
+                        <!-- INFORMATIONS -->
+
+                        <div class="exam-info">
+
+                            <h3>
+                                {{ $examen->titre }}
+                            </h3>
+
+
+                            <p>
+                                {{ $examen->description ?? 'Aucune description disponible.' }}
+                            </p>
+
+
+                            <div class="exam-meta">
+
+
+                                <span>
+                                    📚 {{ $examen->cours }}
+                                </span>
+
+
+                                <span>
+                                    🏫
+
+                                    @php
+                                        $classeExamen = $classes->firstWhere('id', $examen->idclasse);
+                                    @endphp
+
+                                    {{ $classeExamen ? $classeExamen->nom : 'Classe inconnue' }}
+
+                                </span>
+
+
+                                <span>
+                                    🎓
+
+                                    @if($examen->serie === 'scientifique')
+                                        Scientifique
+                                    @else
+                                        Littéraire
+                                    @endif
+
+                                </span>
+
+
+                                <span>
+                                    📅
+
+                                    @if($examen->date_examen)
+
+                                        {{ \Carbon\Carbon::parse($examen->date_examen)->format('d/m/Y') }}
+
+                                    @else
+
+                                        À définir
+
+                                    @endif
+
+                                </span>
+
+
+                                @if($examen->document)
+
+                                    <span>
+                                        📄 Sujet disponible
+                                    </span>
+
+                                @endif
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- STATUT -->
+
+                        <div
+                            class="exam-status
+                            @if($examen->statut === 'publie')
+                                published
+                            @else
+                                draft
+                            @endif"
+                        >
+
+                            @if($examen->statut === 'publie')
+
+                                Publié
+
+                            @else
+
+                                Brouillon
+
+                            @endif
+
+                        </div>
+
+
+
+                        <!-- ACTIONS -->
+
+                        <div class="exam-actions">
+
+
+                            @if($examen->document)
+
+                                <a
+                                    href="{{ asset('storage/' . $examen->document) }}"
+                                    target="_blank"
+                                    class="btn-view"
+                                >
+                                    👁 Voir le sujet
+                                </a>
+
+                            @else
+
+                                <span class="btn-view">
+                                    Aucun fichier
+                                </span>
+
+                            @endif
+
+
+                            <a
+                                href="#"
+                                class="btn-edit"
+                            >
+                                ✏️ Modifier
+                            </a>
+
+
+                            <button
+                                type="button"
+                                class="btn-delete"
+                                onclick="return confirm('Voulez-vous vraiment supprimer cet examen ?')"
+                            >
+                                🗑️ Supprimer
+                            </button>
 
                         </div>
 
                     </div>
 
-
-                    <div class="exam-status published">
-                        Publié
-                    </div>
+                @empty
 
 
-                    <div class="exam-actions">
+                    <div class="empty-exam">
 
-                        <a href="#" class="btn-view">
-                            👁 Voir
-                        </a>
+                        <div>
+                            📝
+                        </div>
 
-                        <a href="#" class="btn-edit">
-                            ✏️ Modifier
-                        </a>
-
-                        <button
-                            type="button"
-                            class="btn-delete"
-                        >
-                            🗑️ Supprimer
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- EXAMEN 2 -->
-
-                <div class="exam-card">
-
-
-                    <div class="exam-icon">
-                        💻
-                    </div>
-
-
-                    <div class="exam-info">
 
                         <h3>
-                            Évaluation Laravel
+                            Aucun examen
                         </h3>
 
+
                         <p>
-                            Évaluation des connaissances sur le framework
-                            Laravel et le développement web.
+                            Vous n'avez pas encore créé d'examen.
                         </p>
 
 
-                        <div class="exam-meta">
-
-                            <span>
-                                📚 Développement Laravel
-                            </span>
-
-                            <span>
-                                📅 20 Septembre 2026
-                            </span>
-
-                            <span>
-                                ⏱️ 2h
-                            </span>
-
-                            <span>
-                                ❓ 25 questions
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="exam-status published">
-                        Publié
-                    </div>
-
-
-                    <div class="exam-actions">
-
-                        <a href="#" class="btn-view">
-                            👁 Voir
-                        </a>
-
-                        <a href="#" class="btn-edit">
-                            ✏️ Modifier
-                        </a>
-
                         <button
                             type="button"
-                            class="btn-delete"
+                            class="btn-add"
+                            onclick="ouvrirModalExamen()"
                         >
-                            🗑️ Supprimer
+                            + Créer mon premier examen
                         </button>
 
                     </div>
 
-                </div>
 
-
-
-                <!-- EXAMEN 3 -->
-
-                <div class="exam-card">
-
-
-                    <div class="exam-icon">
-                        🗄️
-                    </div>
-
-
-                    <div class="exam-info">
-
-                        <h3>
-                            Examen Base de données
-                        </h3>
-
-                        <p>
-                            Évaluation sur SQL, la modélisation et
-                            la gestion des bases de données.
-                        </p>
-
-
-                        <div class="exam-meta">
-
-                            <span>
-                                📚 Base de données
-                            </span>
-
-                            <span>
-                                📅 25 Septembre 2026
-                            </span>
-
-                            <span>
-                                ⏱️ 1h30
-                            </span>
-
-                            <span>
-                                ❓ 20 questions
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="exam-status finished">
-                        Terminé
-                    </div>
-
-
-                    <div class="exam-actions">
-
-                        <a href="#" class="btn-view">
-                            👁 Résultats
-                        </a>
-
-                        <a href="#" class="btn-edit">
-                            ✏️ Modifier
-                        </a>
-
-                        <button
-                            type="button"
-                            class="btn-delete"
-                        >
-                            🗑️ Supprimer
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- EXAMEN 4 -->
-
-                <div class="exam-card">
-
-
-                    <div class="exam-icon">
-                        🔐
-                    </div>
-
-
-                    <div class="exam-info">
-
-                        <h3>
-                            Sécurité informatique
-                        </h3>
-
-                        <p>
-                            Contrôle des connaissances sur la sécurité,
-                            le contrôle d'accès et la protection des données.
-                        </p>
-
-
-                        <div class="exam-meta">
-
-                            <span>
-                                📚 Sécurité informatique
-                            </span>
-
-                            <span>
-                                📅 À définir
-                            </span>
-
-                            <span>
-                                ⏱️ 1h
-                            </span>
-
-                            <span>
-                                ❓ 15 questions
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="exam-status draft">
-                        Brouillon
-                    </div>
-
-
-                    <div class="exam-actions">
-
-                        <a href="#" class="btn-view">
-                            👁 Voir
-                        </a>
-
-                        <a href="#" class="btn-edit">
-                            ✏️ Modifier
-                        </a>
-
-                        <button
-                            type="button"
-                            class="btn-delete"
-                        >
-                            🗑️ Supprimer
-                        </button>
-
-                    </div>
-
-                </div>
+                @endforelse
 
 
             </div>
 
         </div>
 
-
     </main>
+
+
+
+    <!-- =====================================================
+         MODALE : CRÉER UN EXAMEN
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalExamen"
+    >
+
+        <div class="exam-modal">
+
+
+            <!-- =================================================
+                 HEADER MODALE
+                 ================================================= -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>
+                        📝 Créer un examen
+                    </h2>
+
+                    <p>
+                        Créez une nouvelle évaluation pour vos étudiants.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="fermerExamen"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORMULAIRE
+                 ================================================= -->
+
+            <form
+                action="{{ route('examen.ajout') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                id="formExamen"
+            >
+
+                @csrf
+
+
+
+                <!-- =================================================
+                     TITRE
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="titreExamen">
+                        Titre de l'examen
+                    </label>
+
+                    <input
+                        type="text"
+                        id="titreExamen"
+                        name="titre"
+                        value="{{ old('titre') }}"
+                        placeholder="Ex : Examen Intelligence Artificielle"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DESCRIPTION
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="descriptionExamen">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="descriptionExamen"
+                        name="description"
+                        rows="4"
+                        placeholder="Décrivez brièvement l'objectif de l'examen..."
+                    >{{ old('description') }}</textarea>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CLASSE
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="classeExamen">
+                        Classe
+                    </label>
+
+                    <select
+                        id="classeExamen"
+                        name="idclasse"
+                        required
+                    >
+
+                        <option value="">
+                            Sélectionner une classe
+                        </option>
+
+
+                        @foreach($classes as $classe)
+
+                            <option
+                                value="{{ $classe->id }}"
+                                {{ old('idclasse') == $classe->id ? 'selected' : '' }}
+                            >
+                                {{ $classe->nom }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     COURS + SÉRIE
+                     ================================================= -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="coursExamen">
+                            Cours
+                        </label>
+
+                        <input
+                            type="text"
+                            id="coursExamen"
+                            name="cours"
+                            value="{{ old('cours') }}"
+                            placeholder="Ex : Intelligence Artificielle"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="serieExamen">
+                            Série
+                        </label>
+
+                        <select
+                            id="serieExamen"
+                            name="serie"
+                            required
+                        >
+
+                            <option value="">
+                                Sélectionner
+                            </option>
+
+
+                            <option
+                                value="scientifique"
+                                {{ old('serie') == 'scientifique' ? 'selected' : '' }}
+                            >
+                                Scientifique
+                            </option>
+
+
+                            <option
+                                value="litteraire"
+                                {{ old('serie') == 'litteraire' ? 'selected' : '' }}
+                            >
+                                Littéraire
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DATE
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="dateExamen">
+                        Date de l'examen
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dateExamen"
+                        name="date_examen"
+                        value="{{ old('date_examen') }}"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FICHIER DE L'EXAMEN
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="document">
+                        Fichier de l'examen
+                    </label>
+
+
+                    <div class="file-upload">
+
+                        <input
+                            type="file"
+                            id="document"
+                            name="document"
+                            accept=".pdf,.doc,.docx"
+                            required
+                        >
+
+
+                        <label
+                            for="document"
+                            class="file-label"
+                        >
+                            📄 Choisir un fichier
+                        </label>
+
+
+                        <span id="nomFichier">
+                            Aucun fichier sélectionné
+                        </span>
+
+                    </div>
+
+
+                    <small>
+                        Formats acceptés : PDF, DOC, DOCX — Taille maximale : 10 Mo.
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STATUT
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="statutExamen">
+                        Statut
+                    </label>
+
+                    <select
+                        id="statutExamen"
+                        name="statut"
+                        required
+                    >
+
+                        <option
+                            value="brouillon"
+                            {{ old('statut', 'brouillon') == 'brouillon' ? 'selected' : '' }}
+                        >
+                            🟠 Brouillon
+                        </option>
+
+
+                        <option
+                            value="publie"
+                            {{ old('statut') == 'publie' ? 'selected' : '' }}
+                        >
+                            🟢 Publier immédiatement
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BOUTONS
+                     ================================================= -->
+
+                <div class="modal-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        id="annulerExamen"
+                    >
+                        Annuler
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-submit"
+                    >
+                        📝 Créer l'examen
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CSS MODALE
+         ===================================================== -->
+
+    <style>
+
+        .success-message {
+            margin: 0 0 20px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            font-size: 14px;
+        }
+
+
+        .error-message {
+            margin: 0 0 20px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            font-size: 14px;
+        }
+
+
+        .error-message ul {
+            margin: 8px 0 0 20px;
+        }
+
+
+        .empty-exam {
+            text-align: center;
+            padding: 50px 20px;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+
+        .empty-exam > div {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+
+        .empty-exam h3 {
+            margin: 0 0 8px;
+            color: #1e293b;
+        }
+
+
+        .empty-exam p {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.68);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+
+        .exam-modal {
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            animation: apparitionExamen 0.25s ease;
+        }
+
+
+        @keyframes apparitionExamen {
+
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px 28px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+
+        .modal-header h2 {
+            margin: 0 0 6px;
+            color: #4f46e5;
+            font-size: 22px;
+        }
+
+
+        .modal-header p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 25px;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: #ef4444;
+        }
+
+
+        #formExamen {
+            padding: 25px 28px 28px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dbe2ea;
+            border-radius: 9px;
+            background: #f8fafc;
+            color: #1e293b;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+            box-sizing: border-box;
+        }
+
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #6366f1;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.10);
+        }
+
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+
+        /* =====================================================
+           CHOIX DU FICHIER
+           ===================================================== */
+
+        .file-upload {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 12px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+
+        .file-label {
+            display: inline-block !important;
+            margin: 0 !important;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4f46e5 !important;
+            cursor: pointer;
+            font-weight: 600 !important;
+            transition: 0.2s;
+        }
+
+
+        .file-label:hover {
+            background: #e0e7ff;
+        }
+
+
+        #nomFichier {
+            color: #64748b;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+
+        .form-group small {
+            display: block;
+            margin-top: 7px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+
+        .modal-actions button {
+            border: none;
+            border-radius: 9px;
+            padding: 12px 20px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+
+        .btn-cancel:hover {
+            background: #e2e8f0;
+        }
+
+
+        .btn-submit {
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #7c3aed
+            );
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.25);
+        }
+
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 7px 20px rgba(99, 102, 241, 0.35);
+        }
+
+
+        @media (max-width: 650px) {
+
+            .exam-modal {
+                max-height: 95vh;
+                border-radius: 14px;
+            }
+
+
+            .modal-header,
+            #formExamen {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+
+            .modal-actions {
+                flex-direction: column-reverse;
+            }
+
+
+            .modal-actions button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           MODALE
+           ===================================================== */
+
+        const ouvrirExamen =
+            document.getElementById('ouvrirExamen');
+
+        const modalExamen =
+            document.getElementById('modalExamen');
+
+        const fermerExamen =
+            document.getElementById('fermerExamen');
+
+        const annulerExamen =
+            document.getElementById('annulerExamen');
+
+
+        function ouvrirModalExamen() {
+
+            modalExamen.classList.add('active');
+
+            document.body.style.overflow = 'hidden';
+
+        }
+
+
+        ouvrirExamen.addEventListener('click', function () {
+
+            ouvrirModalExamen();
+
+        });
+
+
+        function fermerModalExamen() {
+
+            modalExamen.classList.remove('active');
+
+            document.body.style.overflow = '';
+
+        }
+
+
+        fermerExamen.addEventListener(
+            'click',
+            fermerModalExamen
+        );
+
+
+        annulerExamen.addEventListener(
+            'click',
+            fermerModalExamen
+        );
+
+
+        modalExamen.addEventListener('click', function (event) {
+
+            if (event.target === modalExamen) {
+
+                fermerModalExamen();
+
+            }
+
+        });
+
+
+        document.addEventListener('keydown', function (event) {
+
+            if (
+                event.key === 'Escape' &&
+                modalExamen.classList.contains('active')
+            ) {
+
+                fermerModalExamen();
+
+            }
+
+        });
+
+
+
+        /* =====================================================
+           NOM DU FICHIER SÉLECTIONNÉ
+           ===================================================== */
+
+        const documentExamen =
+            document.getElementById('document');
+
+        const nomFichier =
+            document.getElementById('nomFichier');
+
+
+        documentExamen.addEventListener('change', function () {
+
+            if (this.files.length > 0) {
+
+                nomFichier.textContent =
+                    this.files[0].name;
+
+            } else {
+
+                nomFichier.textContent =
+                    'Aucun fichier sélectionné';
+
+            }
+
+        });
+
+
+
+        /* =====================================================
+           RECHERCHE DES EXAMENS
+           ===================================================== */
+
+        const rechercheExamen =
+            document.getElementById('rechercheExamen');
+
+        const filtreCours =
+            document.getElementById('filtreCours');
+
+        const filtreStatut =
+            document.getElementById('filtreStatut');
+
+
+        function filtrerExamens() {
+
+            const recherche =
+                rechercheExamen.value.toLowerCase().trim();
+
+            const cours =
+                filtreCours.value.toLowerCase();
+
+            const statut =
+                filtreStatut.value.toLowerCase();
+
+
+            const cartes =
+                document.querySelectorAll('.exam-card');
+
+
+            cartes.forEach(function (carte) {
+
+                const titre =
+                    carte.dataset.titre || '';
+
+                const coursExamen =
+                    carte.dataset.cours || '';
+
+                const statutExamen =
+                    carte.dataset.statut || '';
+
+
+                const correspondRecherche =
+                    titre.includes(recherche);
+
+
+                const correspondCours =
+                    cours === '' ||
+                    coursExamen.includes(cours);
+
+
+                const correspondStatut =
+                    statut === '' ||
+                    statutExamen === statut;
+
+
+                if (
+                    correspondRecherche &&
+                    correspondCours &&
+                    correspondStatut
+                ) {
+
+                    carte.style.display = '';
+
+                } else {
+
+                    carte.style.display = 'none';
+
+                }
+
+            });
+
+        }
+
+
+        rechercheExamen.addEventListener(
+            'input',
+            filtrerExamens
+        );
+
+
+        filtreCours.addEventListener(
+            'change',
+            filtrerExamens
+        );
+
+
+        filtreStatut.addEventListener(
+            'change',
+            filtrerExamens
+        );
+
+    </script>
 
 
 </body>

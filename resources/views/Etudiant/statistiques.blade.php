@@ -2,865 +2,1407 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mes statistiques - EDUNOVA IA</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-   <link rel="stylesheet" href="/etudiant/dashboard.css">
-   <link rel="stylesheet" href="/etudiant/statistiques.css">
+    <title>
+        Mes statistiques - EDUNOVA IA
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="/etudiant/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/etudiant/statistiques.css"
+    >
+
 </head>
+
 
 <body>
 
+
 <div class="student-layout">
 
-    {{-- =====================================================
+
+    <!-- =====================================================
          SIDEBAR
-    ====================================================== --}}
+    ====================================================== -->
+
     <aside class="sidebar">
 
+
+        <!-- LOGO -->
+
         <div class="logo-area">
-            <div class="logo-icon">E</div>
+
+
+            <div class="logo-icon">
+                E
+            </div>
+
 
             <div class="logo-text">
-                <h2>EDUNOVA</h2>
-                <span>IA Éducative</span>
+
+                <h2>
+                    EDUNOVA
+                </h2>
+
+
+                <span>
+                    IA Éducative
+                </span>
+
             </div>
+
+
         </div>
+
+
+
+        <!-- =================================================
+             MENU
+        ================================================== -->
 
         <nav class="menu">
 
+
             <a href="/etudiant/dashboard">
-                <span>🏠</span>
+
+                <span>
+                    🏠
+                </span>
+
                 Tableau de bord
+
             </a>
+
+
 
             <a href="/etudiant/profil">
-                <span>👤</span>
+
+                <span>
+                    👤
+                </span>
+
                 Mon profil
+
             </a>
+
+
 
             <a href="/etudiant/profil-apprentissage">
-                <span>🧠</span>
+
+                <span>
+                    🧠
+                </span>
+
                 Profil d'apprentissage
+
             </a>
+
+
 
             <a href="/etudiant/cours">
-                <span>📚</span>
+
+                <span>
+                    📚
+                </span>
+
                 Mes cours
+
             </a>
+
+
 
             <a href="/etudiant/examens">
-                <span>📝</span>
+
+                <span>
+                    📝
+                </span>
+
                 Examens
+
             </a>
+
+
 
             <a href="/etudiant/ia">
-                <span>🤖</span>
+
+                <span>
+                    🤖
+                </span>
+
                 Mon IA
+
             </a>
 
-            <a href="/etudiant/statistiques" class="active">
-                <span>📊</span>
+
+
+            <a
+                href="/etudiant/statistiques"
+                class="active"
+            >
+
+                <span>
+                    📊
+                </span>
+
                 Mes statistiques
+
             </a>
+
+
 
             <a href="/etudiant/parametres">
-                <span>⚙️</span>
+
+                <span>
+                    ⚙️
+                </span>
+
                 Paramètres
+
             </a>
+
 
         </nav>
 
+
+
+        <!-- =================================================
+             UTILISATEUR
+        ================================================== -->
+
         <div class="sidebar-footer">
+
 
             <div class="user-mini">
 
+
                 <div class="user-avatar">
-                    D
+
+                    {{ strtoupper(substr($etudiant->prenom, 0, 1)) }}
+
                 </div>
 
+
                 <div class="user-info">
-                    <strong>Daniella</strong>
-                    <span>Étudiante</span>
+
+                    <strong>
+
+                        {{ $etudiant->prenom }}
+                        {{ $etudiant->nom }}
+
+                    </strong>
+
+
+                    <span>
+                        Étudiante
+                    </span>
+
                 </div>
+
 
             </div>
 
+
         </div>
+
 
     </aside>
 
 
-    {{-- =====================================================
+
+    <!-- =====================================================
          CONTENU PRINCIPAL
-    ====================================================== --}}
+    ====================================================== -->
+
     <main class="main-content">
 
-        {{-- TOPBAR --}}
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
         <header class="topbar">
+
 
             <div class="topbar-title">
 
-                <h1>Mes statistiques</h1>
+
+                <h1>
+                    Mes statistiques
+                </h1>
+
 
                 <p>
-                    Analyse ta progression et améliore tes performances.
+                    Consulte les données réelles de ton espace EDUNOVA.
                 </p>
 
+
             </div>
+
+
 
             <div class="topbar-actions">
 
-                <button class="notification-btn">
+
+                <button
+                    type="button"
+                    class="notification-btn"
+                >
+
                     🔔
+
                     <span class="notification-dot"></span>
+
                 </button>
+
+
 
                 <div class="profile-mini">
 
+
                     <div class="profile-avatar">
-                        D
+
+                        {{ strtoupper(substr($etudiant->prenom, 0, 1)) }}
+
                     </div>
 
+
                     <div>
-                        <strong>Daniella</strong>
-                        <span>Étudiante</span>
+
+
+                        <strong>
+
+                            {{ $etudiant->prenom }}
+                            {{ $etudiant->nom }}
+
+                        </strong>
+
+
+                        <span>
+                            Étudiante
+                        </span>
+
+
                     </div>
+
 
                 </div>
 
+
             </div>
+
 
         </header>
 
 
-        {{-- =====================================================
+
+        <!-- =================================================
              PAGE STATISTIQUES
-        ====================================================== --}}
+        ================================================== -->
+
         <section class="statistiques-page">
 
 
-            {{-- INTRODUCTION --}}
+            <!-- =================================================
+                 INTRODUCTION
+            ================================================== -->
+
             <div class="stats-intro">
+
 
                 <div class="stats-intro-content">
 
+
                     <span class="section-badge">
-                        📊 MES PERFORMANCES
+
+                        📊 MES DONNÉES
+
                     </span>
+
 
                     <h2>
-                        Suis ton évolution scolaire
+
+                        Suis ton activité sur EDUNOVA
+
                     </h2>
 
+
                     <p>
-                        Consulte tes résultats, identifie tes points forts
-                        et découvre les domaines dans lesquels tu peux
-                        encore progresser.
+
+                        Consulte les cours et les examens actuellement
+                        enregistrés dans ton espace étudiant.
+
                     </p>
 
+
                 </div>
+
+
 
                 <div class="stats-intro-icon">
+
                     📈
+
                 </div>
+
 
             </div>
 
 
-            {{-- =================================================
+
+            <!-- =================================================
                  CARTES PRINCIPALES
-            ================================================== --}}
+            ================================================== -->
+
             <div class="main-stats-grid">
 
+
+                <!-- COURS -->
+
                 <div class="main-stat-card">
 
+
                     <div class="main-stat-top">
+
 
                         <div class="main-stat-icon blue">
-                            🎯
+
+                            📚
+
                         </div>
 
-                        <span class="stat-evolution positive">
-                            +8%
-                        </span>
 
                     </div>
 
+
                     <span class="main-stat-label">
-                        Moyenne générale
+
+                        Cours disponibles
+
                     </span>
 
+
                     <strong class="main-stat-value">
-                        15,8<span>/20</span>
+
+                        {{ $nombreCours }}
+
                     </strong>
 
+
                     <p>
-                        Par rapport à la période précédente
+
+                        Cours actuellement enregistrés
+
                     </p>
+
 
                 </div>
 
 
+
+                <!-- EXAMENS -->
+
                 <div class="main-stat-card">
 
+
                     <div class="main-stat-top">
+
 
                         <div class="main-stat-icon green">
-                            ✅
+
+                            📝
+
                         </div>
 
-                        <span class="stat-evolution positive">
-                            +2
-                        </span>
 
                     </div>
 
+
                     <span class="main-stat-label">
-                        Examens réussis
+
+                        Examens disponibles
+
                     </span>
 
+
                     <strong class="main-stat-value">
-                        8
+
+                        {{ $nombreExamens }}
+
                     </strong>
 
+
                     <p>
-                        Sur 10 examens réalisés
+
+                        Examens actuellement enregistrés
+
                     </p>
+
 
                 </div>
 
 
+
+                <!-- DOCUMENTS -->
+
                 <div class="main-stat-card">
 
+
                     <div class="main-stat-top">
+
 
                         <div class="main-stat-icon orange">
-                            📚
+
+                            📄
+
                         </div>
 
-                        <span class="stat-evolution positive">
-                            +12%
-                        </span>
 
                     </div>
 
+
                     <span class="main-stat-label">
-                        Cours terminés
+
+                        Documents disponibles
+
                     </span>
 
+
                     <strong class="main-stat-value">
-                        12
+
+                        {{ $nombreDocuments }}
+
                     </strong>
 
+
                     <p>
-                        Sur 18 cours disponibles
+
+                        Documents associés aux cours
+
                     </p>
+
 
                 </div>
 
+
+
+                <!-- ACTIVITÉ -->
 
                 <div class="main-stat-card">
 
+
                     <div class="main-stat-top">
 
+
                         <div class="main-stat-icon purple">
-                            ⏱️
+
+                            📊
+
                         </div>
 
-                        <span class="stat-evolution positive">
-                            +5h
-                        </span>
 
                     </div>
 
+
                     <span class="main-stat-label">
-                        Temps d'étude
+
+                        Ressources disponibles
+
                     </span>
 
+
                     <strong class="main-stat-value">
-                        24h
+
+                        {{ $nombreCours + $nombreExamens }}
+
                     </strong>
 
+
                     <p>
-                        Cette semaine
+
+                        Cours et examens enregistrés
+
                     </p>
 
+
                 </div>
+
 
             </div>
 
 
-            {{-- =================================================
-                 GRAPHIQUE + OBJECTIFS
-            ================================================== --}}
+
+            <!-- =================================================
+                 COURS + EXAMENS
+            ================================================== -->
+
             <div class="stats-two-columns">
 
 
-                {{-- ÉVOLUTION --}}
+                <!-- =================================================
+                     COURS RÉCENTS
+                ================================================== -->
+
                 <div class="stats-panel evolution-panel">
 
+
                     <div class="panel-header">
 
+
                         <div>
+
+
                             <h2>
-                                Évolution de mes résultats
+
+                                Cours récemment ajoutés
+
                             </h2>
 
+
                             <p>
-                                Progression de ta moyenne au fil des évaluations.
+
+                                Les derniers cours enregistrés dans EDUNOVA.
+
                             </p>
+
+
                         </div>
+
 
                         <span class="period-badge">
-                            Cette période
+
+                            {{ $nombreCours }} cours
+
                         </span>
 
+
                     </div>
 
-                    <div class="chart-area">
 
-                        <div class="chart-y-axis">
 
-                            <span>20</span>
-                            <span>15</span>
-                            <span>10</span>
-                            <span>5</span>
-                            <span>0</span>
+                    <div class="results-list">
 
-                        </div>
 
-                        <div class="chart-content">
+                        @forelse($coursRecents as $index => $cours)
 
-                            <div class="chart-lines">
 
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                            <div class="result-row">
+
+
+                                <div class="result-left">
+
+
+                                    <div class="result-icon database">
+
+
+                                        @if($index % 4 == 0)
+
+                                            📚
+
+                                        @elseif($index % 4 == 1)
+
+                                            💻
+
+                                        @elseif($index % 4 == 2)
+
+                                            🤖
+
+                                        @else
+
+                                            📖
+
+                                        @endif
+
+
+                                    </div>
+
+
+                                    <div>
+
+
+                                        <strong>
+
+                                            {{ $cours->titre }}
+
+                                        </strong>
+
+
+                                        <span>
+
+                                            {{ $cours->classe ?? 'Classe non définie' }}
+
+                                            •
+
+                                            {{ $cours->serie ?? 'Série non définie' }}
+
+                                        </span>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="result-right">
+
+
+                                    <span class="result-badge good">
+
+                                        Disponible
+
+                                    </span>
+
+
+                                </div>
+
 
                             </div>
 
-                            <div class="chart-bars">
 
-                                <div class="chart-column">
-                                    <div class="chart-value">12</div>
-                                    <div class="chart-bar bar-1"></div>
-                                    <span>Juin</span>
+                        @empty
+
+
+                            <div class="empty-stat">
+
+
+                                <div>
+                                    📚
                                 </div>
 
-                                <div class="chart-column">
-                                    <div class="chart-value">13</div>
-                                    <div class="chart-bar bar-2"></div>
-                                    <span>Juil.</span>
-                                </div>
 
-                                <div class="chart-column">
-                                    <div class="chart-value">14</div>
-                                    <div class="chart-bar bar-3"></div>
-                                    <span>Août</span>
-                                </div>
+                                <p>
 
-                                <div class="chart-column">
-                                    <div class="chart-value">15,8</div>
-                                    <div class="chart-bar bar-4"></div>
-                                    <span>Sept.</span>
-                                </div>
+                                    Aucun cours enregistré.
+
+                                </p>
+
 
                             </div>
 
-                        </div>
+
+                        @endforelse
+
 
                     </div>
+
 
                 </div>
 
 
-                {{-- OBJECTIFS --}}
+
+                <!-- =================================================
+                     EXAMENS RÉCENTS
+                ================================================== -->
+
                 <div class="stats-panel objectives-panel">
+
 
                     <div class="panel-header">
 
+
                         <div>
+
+
                             <h2>
-                                Mes objectifs
+
+                                Examens récents
+
                             </h2>
 
+
                             <p>
-                                Ton avancement actuel.
+
+                                Les dernières évaluations enregistrées.
+
                             </p>
+
+
                         </div>
+
+
+                        <span class="period-badge">
+
+                            {{ $nombreExamens }} examens
+
+                        </span>
+
 
                     </div>
 
 
-                    <div class="objective">
 
-                        <div class="objective-info">
+                    <div class="results-list">
 
-                            <span>
-                                Moyenne visée
-                            </span>
 
-                            <strong>
-                                15,8 / 16
-                            </strong>
+                        @forelse($examensRecents as $index => $examen)
 
-                        </div>
 
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill blue-progress"
-                                style="width: 98%;">
+                            <div class="result-row">
+
+
+                                <div class="result-left">
+
+
+                                    <div class="result-icon programming">
+
+
+                                        @if($index % 4 == 0)
+
+                                            📝
+
+                                        @elseif($index % 4 == 1)
+
+                                            🤖
+
+                                        @elseif($index % 4 == 2)
+
+                                            💻
+
+                                        @else
+
+                                            📐
+
+                                        @endif
+
+
+                                    </div>
+
+
+                                    <div>
+
+
+                                        <strong>
+
+                                            {{ $examen->titre ?? 'Examen sans titre' }}
+
+                                        </strong>
+
+
+                                        <span>
+
+
+                                            @if(!empty($examen->classe))
+
+                                                {{ $examen->classe }}
+
+                                            @else
+
+                                                Classe non définie
+
+                                            @endif
+
+
+                                            •
+
+
+                                            @if($examen->created_at)
+
+                                                {{ $examen->created_at->format('d/m/Y') }}
+
+                                            @else
+
+                                                Date non définie
+
+                                            @endif
+
+
+                                        </span>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="result-right">
+
+
+                                    <span class="result-badge good">
+
+                                        Disponible
+
+                                    </span>
+
+
+                                </div>
+
+
                             </div>
-                        </div>
-
-                        <small>
-                            98% de l'objectif atteint
-                        </small>
-
-                    </div>
 
 
-                    <div class="objective">
+                        @empty
 
-                        <div class="objective-info">
 
-                            <span>
-                                Cours terminés
-                            </span>
+                            <div class="empty-stat">
 
-                            <strong>
-                                12 / 18
-                            </strong>
 
-                        </div>
+                                <div>
+                                    📝
+                                </div>
 
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill green-progress"
-                                style="width: 67%;">
+
+                                <p>
+
+                                    Aucun examen enregistré.
+
+                                </p>
+
+
                             </div>
-                        </div>
 
-                        <small>
-                            67% de l'objectif atteint
-                        </small>
+
+                        @endforelse
+
 
                     </div>
 
-
-                    <div class="objective">
-
-                        <div class="objective-info">
-
-                            <span>
-                                Temps d'étude
-                            </span>
-
-                            <strong>
-                                24h / 30h
-                            </strong>
-
-                        </div>
-
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill orange-progress"
-                                style="width: 80%;">
-                            </div>
-                        </div>
-
-                        <small>
-                            80% de l'objectif atteint
-                        </small>
-
-                    </div>
 
                 </div>
+
 
             </div>
 
 
-            {{-- =================================================
-                 POINTS FORTS / POINTS À AMÉLIORER
-            ================================================== --}}
+
+            <!-- =================================================
+                 INFORMATIONS COURS
+            ================================================== -->
+
             <div class="performance-grid">
 
 
-                {{-- POINTS FORTS --}}
+                <!-- =================================================
+                     RÉPARTITION DES COURS
+                ================================================== -->
+
                 <div class="performance-panel">
 
+
                     <div class="performance-header">
+
 
                         <div class="performance-icon success-icon">
-                            ⭐
+
+                            📚
+
                         </div>
+
 
                         <div>
+
+
                             <h2>
-                                Mes points forts
+
+                                Informations sur les cours
+
                             </h2>
 
+
                             <p>
-                                Les domaines où tu performes le mieux.
+
+                                Données calculées à partir de la base.
+
                             </p>
+
+
                         </div>
 
+
                     </div>
+
 
 
                     <div class="strength-item">
 
+
                         <div class="strength-title">
 
+
                             <span>
-                                Base de données
+
+                                Total des cours
+
                             </span>
 
+
                             <strong>
-                                18/20
+
+                                {{ $nombreCours }}
+
                             </strong>
 
+
                         </div>
+
 
                         <div class="mini-progress">
+
+
                             <div
                                 class="mini-progress-fill strength-fill"
-                                style="width: 90%;">
+                                style="width: 100%;"
+                            >
                             </div>
+
+
                         </div>
 
+
+                        <small>
+
+                            Nombre total de cours enregistrés.
+
+                        </small>
+
+
                     </div>
+
 
 
                     <div class="strength-item">
 
-                        <div class="strength-title">
-
-                            <span>
-                                Programmation
-                            </span>
-
-                            <strong>
-                                17/20
-                            </strong>
-
-                        </div>
-
-                        <div class="mini-progress">
-                            <div
-                                class="mini-progress-fill strength-fill"
-                                style="width: 85%;">
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="strength-item">
 
                         <div class="strength-title">
 
+
                             <span>
-                                Intelligence artificielle
+
+                                Documents disponibles
+
                             </span>
 
+
                             <strong>
-                                16/20
+
+                                {{ $nombreDocuments }}
+
                             </strong>
 
+
                         </div>
+
 
                         <div class="mini-progress">
+
+
                             <div
                                 class="mini-progress-fill strength-fill"
-                                style="width: 80%;">
+                                style="width:
+                                    {{ $nombreCours > 0
+                                        ? min(100, ($nombreDocuments / $nombreCours) * 100)
+                                        : 0
+                                    }}%;"
+                            >
                             </div>
+
+
                         </div>
 
+
+                        <small>
+
+                            Cours possédant un document.
+
+                        </small>
+
+
                     </div>
+
 
                 </div>
 
 
-                {{-- À AMÉLIORER --}}
+
+                <!-- =================================================
+                     RÉPARTITION DES EXAMENS
+                ================================================== -->
+
                 <div class="performance-panel">
+
 
                     <div class="performance-header">
 
+
                         <div class="performance-icon warning-icon">
-                            💡
+
+                            📝
+
                         </div>
+
 
                         <div>
+
+
                             <h2>
-                                À améliorer
+
+                                Informations sur les examens
+
                             </h2>
 
+
                             <p>
-                                Les domaines qui méritent plus d'attention.
+
+                                Données actuellement disponibles.
+
                             </p>
+
+
                         </div>
 
+
                     </div>
+
 
 
                     <div class="strength-item">
 
+
                         <div class="strength-title">
 
+
                             <span>
-                                Génie logiciel
+
+                                Total des examens
+
                             </span>
 
+
                             <strong>
-                                13/20
+
+                                {{ $nombreExamens }}
+
                             </strong>
 
+
                         </div>
+
 
                         <div class="mini-progress">
+
+
                             <div
                                 class="mini-progress-fill warning-fill"
-                                style="width: 65%;">
+                                style="width: 100%;"
+                            >
                             </div>
+
+
                         </div>
 
+
+                        <small>
+
+                            Nombre total d'examens enregistrés.
+
+                        </small>
+
+
                     </div>
+
 
 
                     <div class="strength-item">
 
-                        <div class="strength-title">
-
-                            <span>
-                                Réseaux
-                            </span>
-
-                            <strong>
-                                12/20
-                            </strong>
-
-                        </div>
-
-                        <div class="mini-progress">
-                            <div
-                                class="mini-progress-fill warning-fill"
-                                style="width: 60%;">
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="strength-item">
 
                         <div class="strength-title">
 
+
                             <span>
-                                Algorithmique
+
+                                Examens récents affichés
+
                             </span>
 
+
                             <strong>
-                                11/20
+
+                                {{ $examensRecents->count() }}
+
                             </strong>
 
+
                         </div>
+
 
                         <div class="mini-progress">
+
+
                             <div
                                 class="mini-progress-fill warning-fill"
-                                style="width: 55%;">
+                                style="width:
+                                    {{ $nombreExamens > 0
+                                        ? min(100, ($examensRecents->count() / $nombreExamens) * 100)
+                                        : 0
+                                    }}%;"
+                            >
                             </div>
+
+
                         </div>
 
+
+                        <small>
+
+                            Maximum 5 derniers examens affichés.
+
+                        </small>
+
+
                     </div>
+
 
                 </div>
+
 
             </div>
 
 
-            {{-- =================================================
-                 DERNIERS RÉSULTATS
-            ================================================== --}}
+
+            <!-- =================================================
+                 DERNIERS COURS
+            ================================================== -->
+
             <div class="stats-panel recent-results">
+
 
                 <div class="panel-header">
 
+
                     <div>
+
+
                         <h2>
-                            Derniers résultats
+
+                            Activité récente
+
                         </h2>
 
+
                         <p>
-                            Aperçu de tes dernières évaluations.
+
+                            Aperçu des dernières ressources ajoutées.
+
                         </p>
+
+
                     </div>
 
-                    <a href="/etudiant/examens" class="view-all">
-                        Voir tous les examens →
+
+                    <a
+                        href="/etudiant/cours"
+                        class="view-all"
+                    >
+
+                        Voir tous les cours →
+
                     </a>
 
+
                 </div>
+
 
 
                 <div class="results-list">
 
 
-                    <div class="result-row">
+                    @forelse($coursRecents->take(3) as $index => $cours)
 
-                        <div class="result-left">
 
-                            <div class="result-icon database">
-                                🗄️
+                        <div class="result-row">
+
+
+                            <div class="result-left">
+
+
+                                <div class="result-icon database">
+
+
+                                    @if($index % 3 == 0)
+
+                                        📚
+
+                                    @elseif($index % 3 == 1)
+
+                                        💻
+
+                                    @else
+
+                                        🤖
+
+                                    @endif
+
+
+                                </div>
+
+
+                                <div>
+
+
+                                    <strong>
+
+                                        {{ $cours->titre }}
+
+                                    </strong>
+
+
+                                    <span>
+
+
+                                        {{ $cours->classe ?? 'Classe non définie' }}
+
+                                        •
+
+                                        {{ $cours->serie ?? 'Série non définie' }}
+
+
+                                        @if($cours->created_at)
+
+                                            •
+                                            {{ $cours->created_at->format('d/m/Y') }}
+
+                                        @endif
+
+
+                                    </span>
+
+
+                                </div>
+
+
                             </div>
+
+
+                            <div class="result-right">
+
+
+                                <span class="result-badge good">
+
+                                    Disponible
+
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    @empty
+
+
+                        <div class="empty-stat">
+
 
                             <div>
-                                <strong>
-                                    Modélisation des données
-                                </strong>
-
-                                <span>
-                                    Base de données • 02 Sept. 2026
-                                </span>
+                                📚
                             </div>
 
-                        </div>
 
-                        <div class="result-right">
+                            <p>
 
-                            <strong class="result-score">
-                                17/20
-                            </strong>
+                                Aucune activité récente.
 
-                            <span class="result-badge good">
-                                Très bien
-                            </span>
+                            </p>
+
 
                         </div>
 
-                    </div>
 
+                    @endforelse
 
-                    <div class="result-row">
-
-                        <div class="result-left">
-
-                            <div class="result-icon programming">
-                                💻
-                            </div>
-
-                            <div>
-                                <strong>
-                                    Programmation Java
-                                </strong>
-
-                                <span>
-                                    Programmation • 29 Août 2026
-                                </span>
-                            </div>
-
-                        </div>
-
-                        <div class="result-right">
-
-                            <strong class="result-score">
-                                16/20
-                            </strong>
-
-                            <span class="result-badge good">
-                                Très bien
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="result-row">
-
-                        <div class="result-left">
-
-                            <div class="result-icon uml">
-                                📐
-                            </div>
-
-                            <div>
-                                <strong>
-                                    Méthodes UML
-                                </strong>
-
-                                <span>
-                                    Génie logiciel • 21 Août 2026
-                                </span>
-                            </div>
-
-                        </div>
-
-                        <div class="result-right">
-
-                            <strong class="result-score average">
-                                13/20
-                            </strong>
-
-                            <span class="result-badge average-badge">
-                                Bien
-                            </span>
-
-                        </div>
-
-                    </div>
 
                 </div>
+
 
             </div>
 
 
-            {{-- =================================================
-                 CONSEIL EDUNOVA
-            ================================================== --}}
+
+            <!-- =================================================
+                 BLOC IA
+            ================================================== -->
+
             <div class="ai-stat-card">
 
+
                 <div class="ai-stat-icon">
+
                     🤖
+
                 </div>
+
 
                 <div class="ai-stat-content">
 
+
                     <span>
-                        ANALYSE EDUNOVA IA
+
+                        EDUNOVA IA
+
                     </span>
 
+
                     <h3>
-                        Ta progression est encourageante !
+
+                        Analyse personnalisée de ton apprentissage
+
                     </h3>
 
+
                     <p>
-                        Tes résultats montrent une progression régulière.
-                        Continue à travailler tes matières les plus faibles
-                        pour atteindre ton objectif de moyenne.
+
+                        Ton assistant IA pourra analyser ton profil
+                        d'apprentissage, tes activités et tes résultats
+                        lorsque ces données seront enregistrées dans
+                        la base de données.
+
                     </p>
+
 
                 </div>
 
-                <a href="/etudiant/ia" class="ai-stat-button">
-                    Voir mes recommandations
-                    <span>→</span>
+
+                <a
+                    href="/etudiant/ia"
+                    class="ai-stat-button"
+                >
+
+                    Consulter mon IA
+
+                    <span>
+                        →
+                    </span>
+
                 </a>
+
 
             </div>
 
 
         </section>
 
+
     </main>
+
 
 </div>
 
+
 </body>
+
 </html>

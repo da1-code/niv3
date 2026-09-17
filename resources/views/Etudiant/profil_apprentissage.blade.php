@@ -7,10 +7,8 @@
 
     <title>EDUNOVA - Profil d'apprentissage</title>
 
-    
-   <link rel="stylesheet" href="/etudiant/dashboard.css">
-   <link rel="stylesheet" href="/etudiant/profil_apprentissage.css">
- 
+    <link rel="stylesheet" href="/etudiant/dashboard.css">
+    <link rel="stylesheet" href="/etudiant/profil_apprentissage.css">
 
 </head>
 
@@ -31,15 +29,27 @@
             </div>
         </div>
 
+
         <!-- Petit profil -->
         <div class="profile-mini">
-            <div class="avatar">👩‍🎓</div>
+
+            <div class="avatar">
+                {{ strtoupper(substr($etudiant->prenom ?? 'E', 0, 1)) }}
+            </div>
 
             <div>
-                <strong>Daniella</strong>
+
+                <strong>
+                    {{ $etudiant->prenom ?? '' }}
+                    {{ $etudiant->nom ?? '' }}
+                </strong>
+
                 <small>Étudiante</small>
+
             </div>
+
         </div>
+
 
         <!-- Menu -->
         <nav class="menu">
@@ -86,12 +96,21 @@
 
         </nav>
 
+
         <!-- Déconnexion -->
         <div class="sidebar-bottom">
-            <a href="/logout" class="logout">
-                <span>🚪</span>
-                Déconnexion
-            </a>
+
+            <form action="/logout" method="POST">
+
+                @csrf
+
+                <button type="submit" class="logout">
+                    <span>🚪</span>
+                    Déconnexion
+                </button>
+
+            </form>
+
         </div>
 
     </aside>
@@ -113,6 +132,7 @@
 
             </div>
 
+
             <div class="top-actions">
 
                 <a href="#" class="notification">
@@ -120,15 +140,22 @@
                     <span></span>
                 </a>
 
+
                 <div class="student-user">
 
                     <div class="user-avatar">
-                        D
+                        {{ strtoupper(substr($etudiant->prenom ?? 'E', 0, 1)) }}
                     </div>
 
                     <div>
-                        <strong>Daniella</strong>
+
+                        <strong>
+                            {{ $etudiant->prenom ?? '' }}
+                            {{ $etudiant->nom ?? '' }}
+                        </strong>
+
                         <small>Étudiante</small>
+
                     </div>
 
                 </div>
@@ -165,6 +192,7 @@
 
             @csrf
 
+
             <!-- ================= TYPE D'APPRENTISSAGE ================= -->
             <section class="learning-card">
 
@@ -175,18 +203,21 @@
                     </div>
 
                     <div>
+
                         <h2>Comment apprends-tu le mieux ?</h2>
 
                         <p>
                             Sélectionne la méthode qui correspond le mieux
                             à ta façon de retenir les informations.
                         </p>
+
                     </div>
 
                 </div>
 
 
                 <div class="learning-options">
+
 
                     <!-- Visuel -->
                     <label class="learning-option">
@@ -372,8 +403,13 @@
                             </span>
 
                             <div>
+
                                 <strong>Le matin</strong>
-                                <small>Je suis plus concentré(e) le matin.</small>
+
+                                <small>
+                                    Je suis plus concentré(e) le matin.
+                                </small>
+
                             </div>
 
                         </div>
@@ -396,8 +432,13 @@
                             </span>
 
                             <div>
+
                                 <strong>L'après-midi</strong>
-                                <small>Je travaille mieux dans l'après-midi.</small>
+
+                                <small>
+                                    Je travaille mieux dans l'après-midi.
+                                </small>
+
                             </div>
 
                         </div>
@@ -420,8 +461,13 @@
                             </span>
 
                             <div>
+
                                 <strong>Le soir</strong>
-                                <small>Je suis plus concentré(e) le soir.</small>
+
+                                <small>
+                                    Je suis plus concentré(e) le soir.
+                                </small>
+
                             </div>
 
                         </div>
@@ -444,8 +490,13 @@
                             </span>
 
                             <div>
+
                                 <strong>Variable</strong>
-                                <small>Mon rythme dépend de mon emploi du temps.</small>
+
+                                <small>
+                                    Mon rythme dépend de mon emploi du temps.
+                                </small>
+
                             </div>
 
                         </div>
@@ -561,6 +612,7 @@
 
 
                 <div class="ai-preferences">
+
 
                     <label class="preference-item">
 
@@ -720,4 +772,5 @@
 </div>
 
 </body>
+
 </html>

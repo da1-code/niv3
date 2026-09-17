@@ -1,809 +1,1076 @@
 /* =========================================================
-   EDUNOVA - MES COURS
-   CSS spécifique à la page
-   Le fond, la sidebar et les éléments communs
-   sont gérés par dashboard.css
+   EDUNOVA IA — ENSEIGNANT — MES COURS
+   CSS COMPLET
+   Design professionnel violet / bleu
    ========================================================= */
 
 
 /* =========================================================
-   VUE D'ENSEMBLE DES COURS
+   1. BASE
    ========================================================= */
 
-.course-overview {
-    display: grid;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    grid-template-columns: repeat(4, 1fr);
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f6fc;
+    color: #25264a;
+}
 
-    gap: 18px;
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
 
-    margin-bottom: 28px;
+a {
+    text-decoration: none;
 }
 
 
 /* =========================================================
-   CARTES STATISTIQUES
+   2. CONTENU PRINCIPAL
    ========================================================= */
 
-.overview-card {
+.main-content {
+    min-height: 100vh;
+    padding: 30px;
+    background: #f5f6fc;
+}
+
+.courses-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   3. EN-TÊTE
+   ========================================================= */
+
+.page-header {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    background: #ffffff;
+
+    padding: 24px 28px;
+
+    border-radius: 16px;
+
+    border: 1px solid #e7e8f2;
+
+    box-shadow: 0 5px 20px rgba(40, 38, 90, 0.06);
+
+    margin-bottom: 22px;
+}
+
+.page-header h2 {
+    color: #28275c;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.page-header p {
+    color: #7c7d9b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   4. BOUTON AJOUTER
+   ========================================================= */
+
+.btn-add {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #665df5,
+        #5548df
+    );
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    box-shadow: 0 7px 18px rgba(99, 91, 240, 0.22);
+
+    transition: all 0.25s ease;
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 25px rgba(99, 91, 240, 0.30);
+}
+
+
+/* =========================================================
+   5. BARRE DE RECHERCHE
+   ========================================================= */
+
+.search-section {
+    display: flex;
+
     align-items: center;
 
     gap: 15px;
 
+    background: #ffffff;
+
     padding: 18px 20px;
 
-    background: rgba(255, 255, 255, 0.94);
+    border-radius: 14px;
 
-    border: 1px solid rgba(226, 232, 240, 0.9);
+    border: 1px solid #e7e8f2;
 
-    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(40, 38, 90, 0.04);
 
-    box-shadow: 0 7px 22px rgba(15, 23, 42, 0.05);
+    margin-bottom: 25px;
 }
 
-.overview-icon {
-    width: 48px;
-    height: 48px;
+.search-section input {
+    flex: 1;
 
-    flex-shrink: 0;
+    min-width: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 44px;
 
-    border-radius: 12px;
+    padding: 0 15px;
 
-    font-size: 21px;
-}
-
-.overview-icon.blue {
-    background: #eff6ff;
-}
-
-.overview-icon.green {
-    background: #ecfdf5;
-}
-
-.overview-icon.purple {
-    background: #f5f3ff;
-}
-
-.overview-icon.orange {
-    background: #fff7ed;
-}
-
-.overview-card span {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #64748b;
-
-    font-size: 12px;
-}
-
-.overview-card strong {
-    display: block;
-
-    color: #1e293b;
-
-    font-size: 22px;
-    font-weight: 750;
-}
-
-
-/* =========================================================
-   BARRE DE RECHERCHE ET FILTRES
-   ========================================================= */
-
-.courses-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-bottom: 27px;
-
-    padding: 17px 20px;
-
-    background: rgba(255, 255, 255, 0.92);
-
-    border: 1px solid rgba(226, 232, 240, 0.9);
-
-    border-radius: 15px;
-
-    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
-}
-
-
-/* Recherche */
-
-.search-box {
-    width: 330px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 0 14px;
-
-    height: 43px;
-
-    background: #f8fafc;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 10px;
-}
-
-.search-box span {
-    font-size: 17px;
-}
-
-.search-box input {
-    width: 100%;
-
-    border: none;
-    outline: none;
-
-    background: transparent;
-
-    color: #1e293b;
-
-    font-family: inherit;
-
-    font-size: 13px;
-}
-
-.search-box input::placeholder {
-    color: #94a3b8;
-}
-
-
-/* Filtres */
-
-.course-filters {
-    display: flex;
-    align-items: center;
-
-    gap: 7px;
-}
-
-.filter-btn {
-    min-height: 38px;
-
-    padding: 0 14px;
-
-    border: 1px solid transparent;
+    border: 1px solid #dfe1ec;
 
     border-radius: 9px;
 
-    background: transparent;
+    background: #fafaff;
 
-    color: #64748b;
+    color: #29295a;
 
-    font-family: inherit;
+    font-size: 14px;
 
-    font-size: 12px;
-    font-weight: 650;
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.search-section input:focus {
+    border-color: #665df5;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(102, 93, 245, 0.10);
+}
+
+.search-section select {
+    width: 230px;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dfe1ec;
+
+    border-radius: 9px;
+
+    background: #fafaff;
+
+    color: #555676;
+
+    font-size: 14px;
+
+    outline: none;
 
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
 }
 
-.filter-btn:hover {
-    background: #f1f5f9;
+.search-section select:focus {
+    border-color: #665df5;
 
-    color: #334155;
-}
-
-.filter-btn.active {
-    background: #2563eb;
-
-    color: white;
-
-    box-shadow: 0 5px 12px rgba(37, 99, 235, 0.18);
+    box-shadow:
+        0 0 0 3px rgba(102, 93, 245, 0.10);
 }
 
 
 /* =========================================================
-   TITRE DE SECTION
+   6. GRILLE DES COURS
    ========================================================= */
 
-.section-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 18px;
-}
-
-.section-heading h2 {
-    margin: 0 0 5px;
-
-    color: #1e293b;
-
-    font-size: 20px;
-    font-weight: 750;
-}
-
-.section-heading p {
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 12px;
-}
-
-.course-count {
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    background: #eff6ff;
-
-    color: #2563eb;
-
-    font-size: 12px;
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   GRILLE DES COURS
-   ========================================================= */
-
-.courses-grid {
+.course-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 20px;
+    gap: 22px;
 
-    margin-bottom: 28px;
+    align-items: stretch;
 }
 
 
 /* =========================================================
-   CARTE COURS
+   7. CARTE COURS
    ========================================================= */
 
 .course-card {
-    overflow: hidden;
+    position: relative;
 
-    background: rgba(255, 255, 255, 0.95);
+    display: flex;
 
-    border: 1px solid rgba(226, 232, 240, 0.9);
+    flex-direction: column;
 
-    border-radius: 17px;
+    min-width: 0;
 
-    box-shadow: 0 7px 23px rgba(15, 23, 42, 0.055);
+    background: #ffffff;
+
+    border: 1px solid #e5e6f0;
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 5px 20px rgba(39, 37, 88, 0.06);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .course-card:hover {
     transform: translateY(-4px);
 
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+    border-color: #d5d2ff;
+
+    box-shadow:
+        0 12px 30px rgba(39, 37, 88, 0.11);
 }
 
 
 /* =========================================================
-   EN-TETE DU COURS
+   8. ICÔNE DU COURS
    ========================================================= */
-
-.course-header {
-    height: 115px;
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 20px;
-}
-
-
-/* Couleurs */
-
-.blue-bg {
-    background: linear-gradient(
-        135deg,
-        #dbeafe,
-        #bfdbfe
-    );
-}
-
-.purple-bg {
-    background: linear-gradient(
-        135deg,
-        #ede9fe,
-        #ddd6fe
-    );
-}
-
-.green-bg {
-    background: linear-gradient(
-        135deg,
-        #dcfce7,
-        #bbf7d0
-    );
-}
-
-.orange-bg {
-    background: linear-gradient(
-        135deg,
-        #ffedd5,
-        #fed7aa
-    );
-}
-
-.cyan-bg {
-    background: linear-gradient(
-        135deg,
-        #cffafe,
-        #a5f3fc
-    );
-}
-
-.pink-bg {
-    background: linear-gradient(
-        135deg,
-        #fce7f3,
-        #fbcfe8
-    );
-}
-
-
-/* Icône */
 
 .course-icon {
-    width: 57px;
-    height: 57px;
+    width: 52px;
+
+    height: 52px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    background: rgba(255, 255, 255, 0.82);
+    margin-bottom: 17px;
 
-    border-radius: 15px;
-
-    font-size: 27px;
-
-    box-shadow: 0 5px 13px rgba(15, 23, 42, 0.07);
-}
-
-
-/* Statut */
-
-.course-status {
-    position: absolute;
-
-    top: 17px;
-    right: 17px;
-
-    padding: 6px 10px;
-
-    border-radius: 20px;
-
-    background: white;
-
-    font-size: 10px;
-    font-weight: 750;
-}
-
-.course-status.progress {
-    color: #2563eb;
-}
-
-.course-status.completed {
-    color: #16a34a;
-}
-
-.course-status.new {
-    color: #ea580c;
-}
-
-
-/* =========================================================
-   CORPS DU COURS
-   ========================================================= */
-
-.course-body {
-    padding: 21px;
-}
-
-.course-category {
-    display: inline-block;
-
-    margin-bottom: 8px;
-
-    color: #2563eb;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 0.4px;
-
-    text-transform: uppercase;
-}
-
-.course-body h3 {
-    margin: 0 0 8px;
-
-    color: #1e293b;
-
-    font-size: 17px;
-    font-weight: 750;
-}
-
-.course-body p {
-    min-height: 63px;
-
-    margin: 0 0 17px;
-
-    color: #64748b;
-
-    font-size: 12px;
-
-    line-height: 1.65;
-}
-
-
-/* =========================================================
-   INFORMATIONS COURS
-   ========================================================= */
-
-.course-meta {
-    display: flex;
-    align-items: center;
-
-    gap: 17px;
-
-    padding-bottom: 17px;
-
-    border-bottom: 1px solid #eef2f7;
-}
-
-.course-meta span {
-    color: #64748b;
-
-    font-size: 11px;
-}
-
-
-/* =========================================================
-   PROGRESSION
-   ========================================================= */
-
-.progress-info {
-    padding: 17px 0;
-}
-
-.progress-info > div:first-child {
-    display: flex;
-    justify-content: space-between;
-
-    margin-bottom: 8px;
-}
-
-.progress-info span {
-    color: #64748b;
-
-    font-size: 11px;
-}
-
-.progress-info strong {
-    color: #1e293b;
-
-    font-size: 11px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 7px;
-
-    overflow: hidden;
-
-    background: #e2e8f0;
-
-    border-radius: 20px;
-}
-
-.progress-bar span {
-    display: block;
-
-    height: 100%;
-
-    background: #2563eb;
-
-    border-radius: 20px;
-}
-
-
-/* =========================================================
-   BOUTON COURS
-   ========================================================= */
-
-.course-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-
-    min-height: 40px;
-
-    border-radius: 9px;
-
-    background: #eff6ff;
-
-    color: #2563eb;
-
-    text-decoration: none;
-
-    font-size: 12px;
-    font-weight: 750;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
-}
-
-.course-btn:hover {
-    background: #2563eb;
-
-    color: white;
-}
-
-
-/* =========================================================
-   RECOMMANDATION IA
-   ========================================================= */
-
-.course-ai {
-    display: flex;
-    align-items: center;
-
-    gap: 18px;
-
-    margin-bottom: 25px;
-
-    padding: 22px 24px;
+    border-radius: 13px;
 
     background: linear-gradient(
         135deg,
-        #eff6ff,
-        #f5f3ff
+        #eeeaff,
+        #e4e1ff
     );
 
-    border: 1px solid #dbeafe;
+    color: #5c52e8;
 
-    border-radius: 17px;
-}
+    font-size: 24px;
 
-.ai-icon {
-    width: 55px;
-    height: 55px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    background: white;
-
-    font-size: 26px;
-
-    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.08);
-}
-
-.ai-content {
-    flex: 1;
-}
-
-.ai-content > span {
-    display: block;
-
-    margin-bottom: 4px;
-
-    color: #2563eb;
-
-    font-size: 9px;
-    font-weight: 850;
-
-    letter-spacing: 0.8px;
-}
-
-.ai-content h2 {
-    margin: 0 0 5px;
-
-    color: #1e293b;
-
-    font-size: 16px;
-}
-
-.ai-content p {
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-.ai-content strong {
-    color: #334155;
-}
-
-.ai-btn {
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 41px;
-
-    padding: 0 17px;
-
-    border-radius: 9px;
-
-    background: #2563eb;
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 11px;
-    font-weight: 750;
-
-    box-shadow: 0 5px 13px rgba(37, 99, 235, 0.18);
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.ai-btn:hover {
-    background: #1d4ed8;
-
-    transform: translateY(-1px);
+    box-shadow:
+        0 5px 12px rgba(91, 82, 232, 0.08);
 }
 
 
 /* =========================================================
-   RESPONSIVE - 1100px
+   9. TITRE
+   ========================================================= */
+
+.course-card h3 {
+    color: #29295b;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    margin-bottom: 9px;
+}
+
+
+/* =========================================================
+   10. DESCRIPTION
+   ========================================================= */
+
+.course-card > p {
+    color: #777994;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+
+    min-height: 42px;
+}
+
+
+/* =========================================================
+   11. INFORMATIONS DU COURS
+   ========================================================= */
+
+.course-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    padding: 14px 0;
+
+    margin-bottom: 18px;
+
+    border-top: 1px solid #eeeeF5;
+
+    border-bottom: 1px solid #eeeeF5;
+}
+
+.course-info span {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: #70718f;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   12. ACTIONS
+   ========================================================= */
+
+.actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 8px;
+
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   13. BOUTON VOIR
+   ========================================================= */
+
+.btn-view {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+
+    background: #f0efff;
+
+    border: 1px solid #dedbff;
+
+    color: #554bdc;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.btn-view:hover {
+    background: #665df5;
+
+    border-color: #665df5;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   14. BOUTON MODIFIER
+   ========================================================= */
+
+.btn-edit {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+
+    background: #f1f7ff;
+
+    border: 1px solid #d8e8ff;
+
+    color: #3675cf;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.btn-edit:hover {
+    background: #4b83df;
+
+    border-color: #4b83df;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   15. BOUTON SUPPRIMER
+   ========================================================= */
+
+.btn-delete {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+
+    background: #fff4f4;
+
+    border: 1px solid #ffdede;
+
+    color: #dc4d5c;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+    background: #dc4d5c;
+
+    border-color: #dc4d5c;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   16. MODALE
+   ========================================================= */
+
+.modal-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(19, 24, 48, 0.68);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+/* =========================================================
+   17. CONTENU MODALE
+   ========================================================= */
+
+.course-modal {
+    width: 100%;
+
+    max-width: 680px;
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation: apparitionModal 0.25s ease;
+}
+
+@keyframes apparitionModal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-20px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   18. HEADER MODALE
+   ========================================================= */
+
+.modal-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px 28px;
+
+    border-bottom: 1px solid #e8e9f0;
+}
+
+.modal-header h2 {
+    color: #5047d9;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.modal-header p {
+    color: #777993;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   19. FERMER MODALE
+   ========================================================= */
+
+.modal-close {
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f3f4f8;
+
+    color: #62647d;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: #ffe8ea;
+
+    color: #dc4d5c;
+}
+
+
+/* =========================================================
+   20. FORMULAIRE
+   ========================================================= */
+
+#formCours {
+    padding: 25px 28px 28px;
+}
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #292b50;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    border: 1px solid #dfe2eb;
+
+    border-radius: 9px;
+
+    background: #fafbfe;
+
+    color: #292b50;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+    height: 45px;
+
+    padding: 0 13px;
+}
+
+.form-group textarea {
+    padding: 12px 13px;
+
+    min-height: 105px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #665df5;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(102, 93, 245, 0.10);
+}
+
+
+/* =========================================================
+   21. DEUX CHAMPS SUR UNE LIGNE
+   ========================================================= */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   22. UPLOAD FICHIER
+   ========================================================= */
+
+.file-upload {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    min-height: 65px;
+
+    padding: 10px 12px;
+
+    border: 1px dashed #b7b2f8;
+
+    border-radius: 10px;
+
+    background: #faf9ff;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-label {
+    display: inline-flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 !important;
+
+    min-height: 38px;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    background: #eeecff;
+
+    color: #554bdc !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.file-label:hover {
+    background: #dfdcff;
+}
+
+#nomFichier {
+    color: #777993;
+
+    font-size: 12px;
+}
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #9294a9;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   23. BOUTONS MODALE
+   ========================================================= */
+
+.modal-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 20px;
+
+    margin-top: 24px;
+
+    border-top: 1px solid #e8e9f0;
+}
+
+.modal-actions button {
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+/* ANNULER */
+
+.btn-cancel {
+    background: #f1f3f7;
+
+    color: #60627a;
+}
+
+.btn-cancel:hover {
+    background: #e5e7ed;
+
+    color: #3f4156;
+}
+
+
+/* ENVOYER */
+
+.modal-actions .btn-submit {
+    background: linear-gradient(
+        135deg,
+        #665df5,
+        #5548df
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 15px rgba(102, 93, 245, 0.20);
+}
+
+.modal-actions .btn-submit:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(102, 93, 245, 0.30);
+}
+
+
+/* =========================================================
+   24. SCROLLBAR MODALE
+   ========================================================= */
+
+.course-modal::-webkit-scrollbar {
+    width: 7px;
+}
+
+.course-modal::-webkit-scrollbar-track {
+    background: #f4f4f8;
+}
+
+.course-modal::-webkit-scrollbar-thumb {
+    background: #c9c7e9;
+
+    border-radius: 10px;
+}
+
+.course-modal::-webkit-scrollbar-thumb:hover {
+    background: #aaa7d8;
+}
+
+
+/* =========================================================
+   25. RESPONSIVE TABLETTE
    ========================================================= */
 
 @media (max-width: 1100px) {
 
-    .course-overview {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .courses-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .course-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
 }
 
 
 /* =========================================================
-   RESPONSIVE - 850px
+   26. RESPONSIVE PETIT ÉCRAN
    ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 800px) {
 
-    .courses-toolbar {
+    .main-content {
+        padding: 20px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .btn-add {
+        width: 100%;
+    }
+
+    .search-section {
         flex-direction: column;
 
         align-items: stretch;
     }
 
-    .search-box {
+    .search-section select {
         width: 100%;
     }
 
-    .course-filters {
-        flex-wrap: wrap;
-    }
-
-    .course-ai {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .ai-btn {
-        margin-left: 73px;
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE - 700px
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    .courses-grid {
+    .course-grid {
         grid-template-columns: 1fr;
     }
 
-    .course-overview {
-        grid-template-columns: 1fr 1fr;
-    }
-
 }
 
 
 /* =========================================================
-   RESPONSIVE - TELEPHONE
+   27. MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
 
-    .course-overview {
-        grid-template-columns: 1fr;
-    }
-
-    .courses-toolbar {
+    .main-content {
         padding: 15px;
     }
 
-    .course-filters {
-        display: grid;
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 7px;
-    }
-
-    .filter-btn {
-        width: 100%;
-    }
-
-    .section-heading {
-        align-items: flex-start;
-
-        gap: 10px;
-    }
-
-    .section-heading h2 {
-        font-size: 18px;
-    }
-
-    .course-count {
-        font-size: 10px;
-    }
-
-    .course-ai {
-        flex-direction: column;
-
+    .page-header {
         padding: 20px;
     }
 
-    .ai-btn {
-        width: 100%;
+    .page-header h2 {
+        font-size: 21px;
+    }
 
-        margin-left: 0;
+    .search-section {
+        padding: 15px;
+    }
+
+    .course-card {
+        padding: 18px;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-view,
+    .btn-edit,
+    .btn-delete {
+        width: 100%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .course-modal {
+        max-height: 95vh;
+
+        border-radius: 14px;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    #formCours {
+        padding: 20px;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   28. TRÈS PETIT ÉCRAN
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .page-header {
+        padding: 17px;
+    }
+
+    .course-card {
+        padding: 16px;
+    }
+
+    .course-info {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
     }
 
 }

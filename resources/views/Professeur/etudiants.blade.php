@@ -68,9 +68,25 @@
             </li>
 
             <li>
-                <a href="/prof/deconnexion">
-                    🚪 Déconnexion
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button
+                        type="submit"
+                        style="
+                            background: none;
+                            border: none;
+                            color: inherit;
+                            font: inherit;
+                            cursor: pointer;
+                            width: 100%;
+                            text-align: left;
+                            padding: 0;
+                        "
+                    >
+                        🚪 Déconnexion
+                    </button>
+                </form>
             </li>
 
         </ul>
@@ -102,8 +118,8 @@
                     </h2>
 
                     <p>
-                        Suivez les performances et l'évolution
-                        pédagogique de vos étudiants.
+                        Consultez les étudiants inscrits sur EDUNOVA IA
+                        et leur classe.
                     </p>
 
                 </div>
@@ -119,6 +135,8 @@
             <div class="student-stats">
 
 
+                <!-- TOTAL ÉTUDIANTS -->
+
                 <div class="student-stat-card">
 
                     <div class="stat-icon">
@@ -132,7 +150,7 @@
                         </span>
 
                         <strong>
-                            120
+                            {{ $etudiants->count() }}
                         </strong>
 
                     </div>
@@ -140,20 +158,22 @@
                 </div>
 
 
+                <!-- ÉTUDIANTS ACTIFS -->
+
                 <div class="student-stat-card">
 
                     <div class="stat-icon">
-                        📈
+                        ✅
                     </div>
 
                     <div>
 
                         <span>
-                            Progression moyenne
+                            Étudiants actifs
                         </span>
 
                         <strong>
-                            85%
+                            {{ $etudiants->where('actif', true)->count() }}
                         </strong>
 
                     </div>
@@ -161,20 +181,22 @@
                 </div>
 
 
+                <!-- ÉTUDIANTS INACTIFS -->
+
                 <div class="student-stat-card">
 
                     <div class="stat-icon">
-                        ⭐
+                        ⏸️
                     </div>
 
                     <div>
 
                         <span>
-                            Moyenne générale
+                            Étudiants inactifs
                         </span>
 
                         <strong>
-                            15.8/20
+                            {{ $etudiants->where('actif', false)->count() }}
                         </strong>
 
                     </div>
@@ -182,83 +204,75 @@
                 </div>
 
 
+                <!-- CLASSES -->
+
                 <div class="student-stat-card">
 
                     <div class="stat-icon">
-                        ⚠️
+                        🏫
                     </div>
 
                     <div>
 
                         <span>
-                            À accompagner
+                            Classes représentées
                         </span>
 
                         <strong>
-                            12
+                            {{ $etudiants->pluck('idclasse')->filter()->unique()->count() }}
                         </strong>
 
                     </div>
 
                 </div>
+
 
             </div>
 
 
 
             <!-- =================================================
-                 RECHERCHE ET FILTRES
+                 RECHERCHE
                  ================================================= -->
 
             <div class="student-filters">
 
                 <input
                     type="text"
+                    id="searchStudent"
                     placeholder="🔍 Rechercher un étudiant..."
                 >
 
 
-                <select>
+                <select id="filterClasse">
 
                     <option value="">
-                        Tous les cours
+                        Toutes les classes
                     </option>
 
-                    <option>
-                        Intelligence Artificielle
-                    </option>
+                    @foreach($etudiants->pluck('classe')->filter()->unique('id') as $classe)
 
-                    <option>
-                        Développement Laravel
-                    </option>
+                        <option value="{{ $classe->id }}">
+                            {{ $classe->nom }}
+                        </option>
 
-                    <option>
-                        Base de données
-                    </option>
-
-                    <option>
-                        Sécurité informatique
-                    </option>
+                    @endforeach
 
                 </select>
 
 
-                <select>
+                <select id="filterStatut">
 
                     <option value="">
-                        Tous les niveaux
+                        Tous les statuts
                     </option>
 
-                    <option>
-                        Excellent
+                    <option value="actif">
+                        Actif
                     </option>
 
-                    <option>
-                        Bon niveau
-                    </option>
-
-                    <option>
-                        À améliorer
+                    <option value="inactif">
+                        Inactif
                     </option>
 
                 </select>
@@ -279,12 +293,12 @@
                     <div>
 
                         <h3>
-                            📋 Suivi des étudiants
+                            📋 Liste des étudiants
                         </h3>
 
                         <p>
-                            Consultez les performances et les rapports
-                            pédagogiques de vos étudiants.
+                            Les informations ci-dessous sont récupérées
+                            directement depuis la base de données.
                         </p>
 
                     </div>
@@ -293,344 +307,155 @@
 
 
 
-                <!-- ÉTUDIANT 1 -->
+                <!-- =================================================
+                     MESSAGE SI AUCUN ÉTUDIANT
+                     ================================================= -->
 
-                <div class="student-card">
+                @if($etudiants->isEmpty())
 
+                    <div class="empty-state">
 
-                    <div class="student-avatar">
-                        DA
-                    </div>
-
-
-                    <div class="student-main">
+                        <div style="font-size: 45px;">
+                            👨‍🎓
+                        </div>
 
                         <h3>
-                            Daniella A.
+                            Aucun étudiant
                         </h3>
 
-                        <p class="student-email">
-                            daniella@edunova.com
+                        <p>
+                            Aucun étudiant n'est actuellement enregistré
+                            dans la base de données.
                         </p>
 
-
-                        <div class="student-course">
-
-                            📚 Intelligence Artificielle
-
-                        </div>
-
                     </div>
 
+                @else
 
-                    <div class="student-performance">
 
-                        <span>
-                            Progression
-                        </span>
+                    <!-- =================================================
+                         BOUCLE DES ÉTUDIANTS
+                         ================================================= -->
 
-                        <div class="mini-progress">
+                    <div id="studentsList">
+
+                        @foreach($etudiants as $etudiant)
 
                             <div
-                                class="mini-progress-value"
-                                style="width: 92%;"
-                            ></div>
-
-                        </div>
-
-                        <strong>
-                            92%
-                        </strong>
-
-                    </div>
+                                class="student-card"
+                                data-name="{{ strtolower($etudiant->name) }}"
+                                data-email="{{ strtolower($etudiant->email) }}"
+                                data-classe="{{ $etudiant->idclasse }}"
+                                data-statut="{{ $etudiant->actif ? 'actif' : 'inactif' }}"
+                            >
 
 
-                    <div class="student-average">
+                                <!-- AVATAR -->
 
-                        <span>
-                            Moyenne
-                        </span>
+                                <div class="student-avatar">
 
-                        <strong>
-                            17.5/20
-                        </strong>
+                                    {{ strtoupper(substr($etudiant->name, 0, 2)) }}
 
-                    </div>
-
-
-                    <div class="student-level excellent">
-                        Excellent
-                    </div>
-
-
-                    <div class="student-actions">
-
-                        <a
-                            href="#"
-                            class="btn-report"
-                        >
-                            📊 Voir le rapport
-                        </a>
-
-                    </div>
-
-                </div>
+                                </div>
 
 
 
-                <!-- ÉTUDIANT 2 -->
+                                <!-- INFORMATIONS PRINCIPALES -->
 
-                <div class="student-card">
+                                <div class="student-main">
 
+                                    <h3>
+                                        {{ $etudiant->name }}
+                                    </h3>
 
-                    <div class="student-avatar">
-                        MK
-                    </div>
+                                    <p class="student-email">
 
+                                        {{ $etudiant->email }}
 
-                    <div class="student-main">
-
-                        <h3>
-                            Marc K.
-                        </h3>
-
-                        <p class="student-email">
-                            marc@edunova.com
-                        </p>
+                                    </p>
 
 
-                        <div class="student-course">
+                                    <div class="student-course">
 
-                            📚 Développement Laravel
+                                        🏫
 
-                        </div>
+                                        @if($etudiant->classe)
 
-                    </div>
+                                            {{ $etudiant->classe->nom }}
 
+                                        @else
 
-                    <div class="student-performance">
+                                            Classe non renseignée
 
-                        <span>
-                            Progression
-                        </span>
+                                        @endif
 
-                        <div class="mini-progress">
+                                    </div>
 
-                            <div
-                                class="mini-progress-value"
-                                style="width: 78%;"
-                            ></div>
-
-                        </div>
-
-                        <strong>
-                            78%
-                        </strong>
-
-                    </div>
+                                </div>
 
 
-                    <div class="student-average">
 
-                        <span>
-                            Moyenne
-                        </span>
+                                <!-- CLASSE -->
 
-                        <strong>
-                            14.2/20
-                        </strong>
+                                <div class="student-average">
 
-                    </div>
+                                    <span>
+                                        Classe
+                                    </span>
+
+                                    <strong>
+
+                                        {{ $etudiant->classe->nom ?? 'Non renseignée' }}
+
+                                    </strong>
+
+                                </div>
 
 
-                    <div class="student-level good">
-                        Bon niveau
-                    </div>
+
+                                <!-- STATUT -->
+
+                                <div
+                                    class="student-level
+                                    {{ $etudiant->actif ? 'excellent' : 'warning' }}"
+                                >
+
+                                    @if($etudiant->actif)
+
+                                        Actif
+
+                                    @else
+
+                                        Inactif
+
+                                    @endif
+
+                                </div>
 
 
-                    <div class="student-actions">
 
-                        <a
-                            href="#"
-                            class="btn-report"
-                        >
-                            📊 Voir le rapport
-                        </a>
+                                <!-- ACTION -->
+
+                                <div class="student-actions">
+
+                                    <a
+                                        href="#"
+                                        class="btn-report"
+                                        onclick="return false;"
+                                    >
+                                        📊 Voir le rapport
+                                    </a>
+
+                                </div>
+
+
+                            </div>
+
+                        @endforeach
 
                     </div>
 
-                </div>
-
-
-
-                <!-- ÉTUDIANT 3 -->
-
-                <div class="student-card">
-
-
-                    <div class="student-avatar">
-                        JE
-                    </div>
-
-
-                    <div class="student-main">
-
-                        <h3>
-                            Jean E.
-                        </h3>
-
-                        <p class="student-email">
-                            jean@edunova.com
-                        </p>
-
-
-                        <div class="student-course">
-
-                            📚 Base de données
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="student-performance">
-
-                        <span>
-                            Progression
-                        </span>
-
-                        <div class="mini-progress">
-
-                            <div
-                                class="mini-progress-value"
-                                style="width: 61%;"
-                            ></div>
-
-                        </div>
-
-                        <strong>
-                            61%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="student-average">
-
-                        <span>
-                            Moyenne
-                        </span>
-
-                        <strong>
-                            10.8/20
-                        </strong>
-
-                    </div>
-
-
-                    <div class="student-level warning">
-                        À améliorer
-                    </div>
-
-
-                    <div class="student-actions">
-
-                        <a
-                            href="#"
-                            class="btn-report"
-                        >
-                            📊 Voir le rapport
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- ÉTUDIANT 4 -->
-
-                <div class="student-card">
-
-
-                    <div class="student-avatar">
-                        SM
-                    </div>
-
-
-                    <div class="student-main">
-
-                        <h3>
-                            Sarah M.
-                        </h3>
-
-                        <p class="student-email">
-                            sarah@edunova.com
-                        </p>
-
-
-                        <div class="student-course">
-
-                            📚 Sécurité informatique
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="student-performance">
-
-                        <span>
-                            Progression
-                        </span>
-
-                        <div class="mini-progress">
-
-                            <div
-                                class="mini-progress-value"
-                                style="width: 87%;"
-                            ></div>
-
-                        </div>
-
-                        <strong>
-                            87%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="student-average">
-
-                        <span>
-                            Moyenne
-                        </span>
-
-                        <strong>
-                            16.1/20
-                        </strong>
-
-                    </div>
-
-
-                    <div class="student-level excellent">
-                        Excellent
-                    </div>
-
-
-                    <div class="student-actions">
-
-                        <a
-                            href="#"
-                            class="btn-report"
-                        >
-                            📊 Voir le rapport
-                        </a>
-
-                    </div>
-
-                </div>
-
+                @endif
 
 
             </div>
@@ -638,7 +463,7 @@
 
 
             <!-- =================================================
-                 RAPPORT PÉDAGOGIQUE
+                 INFORMATIONS PÉDAGOGIQUES
                  ================================================= -->
 
             <div class="reports-section">
@@ -649,11 +474,13 @@
                     <div>
 
                         <h3>
-                            📊 Exemple de rapport pédagogique
+                            📊 Suivi pédagogique
                         </h3>
 
                         <p>
-                            Analyse détaillée des performances d'un étudiant.
+                            Les statistiques de progression, les moyennes
+                            et les recommandations seront disponibles lorsque
+                            les données pédagogiques seront enregistrées.
                         </p>
 
                     </div>
@@ -664,127 +491,56 @@
                 <div class="report-card">
 
 
-                    <div class="report-header">
-
-                        <div class="report-student">
-
-                            <div class="report-avatar">
-                                DA
-                            </div>
-
-                            <div>
-
-                                <h3>
-                                    Daniella A.
-                                </h3>
-
-                                <p>
-                                    Intelligence Artificielle
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="report-score">
-
-                            <span>
-                                Score global
-                            </span>
-
-                            <strong>
-                                92%
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-
                     <div class="report-grid">
 
 
-                        <!-- POINTS FORTS -->
+                        <!-- PROGRESSION -->
 
-                        <div class="report-box strengths">
+                        <div class="report-box">
 
                             <h4>
-                                💪 Points forts
+                                📈 Progression
                             </h4>
 
-                            <ul>
-
-                                <li>
-                                    Très bonne compréhension des concepts d'IA
-                                </li>
-
-                                <li>
-                                    Excellente capacité d'analyse
-                                </li>
-
-                                <li>
-                                    Bonne résolution des exercices
-                                </li>
-
-                            </ul>
+                            <p>
+                                Aucune donnée de progression disponible
+                                pour le moment.
+                            </p>
 
                         </div>
 
 
 
-                        <!-- POINTS À AMÉLIORER -->
+                        <!-- MOYENNE -->
 
-                        <div class="report-box weaknesses">
+                        <div class="report-box">
 
                             <h4>
-                                ⚠️ Points à améliorer
+                                ⭐ Moyenne générale
                             </h4>
 
-                            <ul>
-
-                                <li>
-                                    Approfondir les algorithmes avancés
-                                </li>
-
-                                <li>
-                                    Améliorer la régularité des révisions
-                                </li>
-
-                                <li>
-                                    Renforcer la pratique sur les projets
-                                </li>
-
-                            </ul>
+                            <p>
+                                Les moyennes seront affichées lorsque
+                                les résultats des examens seront enregistrés.
+                            </p>
 
                         </div>
 
 
 
-                        <!-- RECOMMANDATIONS -->
+                        <!-- IA -->
 
-                        <div class="report-box recommendations">
+                        <div class="report-box">
 
                             <h4>
-                                💡 Recommandations
+                                🤖 Analyse IA
                             </h4>
 
-                            <ul>
-
-                                <li>
-                                    Proposer des exercices supplémentaires
-                                </li>
-
-                                <li>
-                                    Encourager les projets pratiques
-                                </li>
-
-                                <li>
-                                    Suivre la progression chaque semaine
-                                </li>
-
-                            </ul>
+                            <p>
+                                L'analyse personnalisée par l'IA sera
+                                affichée lorsque les données d'apprentissage
+                                des étudiants seront disponibles.
+                            </p>
 
                         </div>
 
@@ -801,6 +557,101 @@
 
 
     </main>
+
+
+
+    <!-- =====================================================
+         RECHERCHE / FILTRES JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        const searchInput = document.getElementById('searchStudent');
+        const filterClasse = document.getElementById('filterClasse');
+        const filterStatut = document.getElementById('filterStatut');
+
+        function filtrerEtudiants() {
+
+            const recherche =
+                searchInput.value.toLowerCase().trim();
+
+            const classe =
+                filterClasse.value;
+
+            const statut =
+                filterStatut.value;
+
+            const cards =
+                document.querySelectorAll('.student-card');
+
+
+            cards.forEach(card => {
+
+                const nom =
+                    card.dataset.name;
+
+                const email =
+                    card.dataset.email;
+
+                const cardClasse =
+                    card.dataset.classe;
+
+                const cardStatut =
+                    card.dataset.statut;
+
+
+                const correspondRecherche =
+                    nom.includes(recherche) ||
+                    email.includes(recherche);
+
+
+                const correspondClasse =
+                    classe === '' ||
+                    cardClasse === classe;
+
+
+                const correspondStatut =
+                    statut === '' ||
+                    cardStatut === statut;
+
+
+                if (
+                    correspondRecherche &&
+                    correspondClasse &&
+                    correspondStatut
+                ) {
+
+                    card.style.display = '';
+
+                } else {
+
+                    card.style.display = 'none';
+
+                }
+
+            });
+
+        }
+
+
+        searchInput.addEventListener(
+            'input',
+            filtrerEtudiants
+        );
+
+
+        filterClasse.addEventListener(
+            'change',
+            filtrerEtudiants
+        );
+
+
+        filterStatut.addEventListener(
+            'change',
+            filtrerEtudiants
+        );
+
+    </script>
 
 
 </body>
