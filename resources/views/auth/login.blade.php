@@ -1,183 +1,47 @@
-<!DOCTYPE html>
-<html lang="fr">
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-<head>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>EDUNOVA IA - Connexion</title>
-
-    <link rel="stylesheet" href="/css/login.css">
-
-</head>
-
-<body>
-
-<div class="login-container">
-
-    <div class="login-box">
-
-        <!-- LOGO -->
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                🎓
-            </div>
-
-            <h1>
-                EDUNOVA <span>IA</span>
-            </h1>
-
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
 
-        <!-- TITRE -->
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
 
-        <h2>Bienvenue !</h2>
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
 
-        <p class="subtitle">
-            Connectez-vous à votre espace EDUNOVA IA.
-        </p>
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+            </label>
+        </div>
 
-
-        <!-- MESSAGE DE SUCCÈS -->
-
-        @if(session('success'))
-
-            <div class="success-message">
-                ✓ {{ session('success') }}
-            </div>
-
-        @endif
-
-
-        <!-- ERREURS -->
-
-        @if ($errors->any())
-
-            <div class="error-message">
-
-                @foreach ($errors->all() as $error)
-
-                    <p>⚠️ {{ $error }}</p>
-
-                @endforeach
-
-            </div>
-
-        @endif
-
-
-        <!-- FORMULAIRE -->
-
-        <form action="/login" method="POST">
-
-            <input
-                type="hidden"
-                name="_token"
-                value="{{ csrf_token() }}"
-            >
-
-
-            <!-- EMAIL -->
-
-            <div class="input-group">
-
-                <label for="email">
-                    Adresse email
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    placeholder="exemple@email.com"
-                    required
-                    autofocus
-                >
-
-            </div>
-
-
-            <!-- MOT DE PASSE -->
-
-            <div class="input-group">
-
-                <div class="password-label">
-
-                    <label for="password">
-                        Mot de passe
-                    </label>
-
-                </div>
-
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Entrez votre mot de passe"
-                    required
-                >
-
-            </div>
-
-
-            <!-- CONNEXION -->
-
-            <button
-                type="submit"
-                class="btn-login"
-            >
-
-                Se connecter
-
-                <span>→</span>
-
-            </button>
-
-        </form>
-
-
-        <!-- INSCRIPTION -->
-
-        <div class="register-link">
-
-            <p>
-
-                Vous n'avez pas encore de compte ?
-
-                <a href="/register">
-                    Créer un compte
+        <div class="flex items-center justify-end mt-4">
+            @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
                 </a>
+            @endif
 
-            </p>
-
+            <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
         </div>
-
-
-        <!-- RETOUR ACCUEIL -->
-
-        <a href="/" class="back-home">
-            ← Retour à l'accueil
-        </a>
-
-
-        <!-- SÉCURITÉ -->
-
-        <div class="security-info">
-
-            🔒 Connexion sécurisée EDUNOVA IA
-
-        </div>
-
-    </div>
-
-</div>
-
-</body>
-
-</html>
+    </form>
+</x-guest-layout>

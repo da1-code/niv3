@@ -7,6 +7,29 @@ use App\Http\Controllers\ProfesseursController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
+
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
 route::get('/accueil/index',[AccueilController::class,'index'])->name('accueil.index');
 route::get('/index',[EtudiantController::class,'index'])->name('etudiant.index');
@@ -31,8 +54,8 @@ route::get('/etudiant/cours',[EtudiantController::class,'cours'])->name('etudian
 route::get('/etudiant/examens',[EtudiantController::class,'examens'])->name('etudiant.examens');
 route::get('/etudiant/statistiques',[EtudiantController::class,'statistiques'])->name('etudaint.statistiques');
 route::get('/etudiant/parametres',[EtudiantController::class,'parametres'])->name('etudiant.parametres');
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
-Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.post');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+});
+
+require __DIR__.'/auth.php';
