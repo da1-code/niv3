@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/admin/dashboard.css">
-<link rel="stylesheet" href="/admin/etudiants.css">
-    
+
+    <link rel="stylesheet" href="/admin/dashboard.css">
+    <link rel="stylesheet" href="/admin/etudiants.css">
 
     <title>Utilisateurs - EDUNOVA IA</title>
 </head>
@@ -15,7 +15,10 @@
 
 <div class="admin-container">
 
-    <!-- SIDEBAR -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
     <aside class="sidebar">
 
         <div class="logo">
@@ -30,12 +33,11 @@
                 </a>
             </li>
 
-               <li class="active">
+            <li class="active">
                 <a href="/admin/users">
                     👥 Utilisateurs
                 </a>
             </li>
-
 
             <li>
                 <a href="/admin/etudiants">
@@ -43,14 +45,18 @@
                 </a>
             </li>
 
-           <li>
+            <li>
                 <a href="/admin/professeurs">
-                   👨‍🏫 Enseignants
+                    👨‍🏫 Enseignants
                 </a>
-           </li>
-          
+            </li>
 
-         
+            <li>
+                <a href="/admin/classes">
+                    🏫 Classes
+                </a>
+            </li>
+
             <li>
                 <a href="/admin/cours">
                     📚 Cours
@@ -86,10 +92,14 @@
     </aside>
 
 
-    <!-- CONTENU PRINCIPAL -->
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
     <main class="main-content">
 
         <!-- TOPBAR -->
+
         <header class="topbar">
 
             <div>
@@ -104,7 +114,6 @@
 
             </div>
 
-
             <div class="profile">
 
                 <img
@@ -113,7 +122,8 @@
                 >
 
                 <span>
-                    {{ Auth::user()->name ?? 'Administrateur' }}
+                    {{ Auth::user()->prenom ?? 'Administrateur' }}
+                    {{ Auth::user()->nom ?? '' }}
                 </span>
 
             </div>
@@ -121,64 +131,70 @@
         </header>
 
 
-        <!-- CARTES STATISTIQUES -->
+        <!-- =====================================================
+             CARTES STATISTIQUES
+        ====================================================== -->
+
         <section class="cards">
 
-            <div class="card">
+    <div class="card">
 
-                <h3>
-                    Total utilisateurs
-                </h3>
+        <h3>
+            Total utilisateurs
+        </h3>
 
-                <p>
-                    285
-                </p>
+        <p>
+            {{ $users->count() }}
+        </p>
 
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Étudiants
-                </h3>
-
-                <p>
-                    245
-                </p>
-
-            </div>
+    </div>
 
 
-            <div class="card">
+    <div class="card">
 
-                <h3>
-                    Enseignants
-                </h3>
+        <h3>
+            Étudiants
+        </h3>
 
-                <p>
-                    18
-                </p>
+        <p>
+            {{ $users->where('role', 'etudiant')->count() }}
+        </p>
 
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    Administrateurs
-                </h3>
-
-                <p>
-                    2
-                </p>
-
-            </div>
-
-        </section>
+    </div>
 
 
-        <!-- SECTION UTILISATEURS -->
+    <div class="card">
+
+        <h3>
+            Enseignants
+        </h3>
+
+        <p>
+            {{ $users->where('role', 'professeur')->count() }}
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Administrateurs
+        </h3>
+
+        <p>
+            {{ $users->where('role', 'admin')->count() }}
+        </p>
+
+    </div>
+
+</section>
+
+
+        <!-- =====================================================
+             SECTION UTILISATEURS
+        ====================================================== -->
+
         <section class="users-section">
 
             <div class="section-header">
@@ -196,14 +212,23 @@
                 </div>
 
 
-                <button class="add-btn">
+                <!-- BOUTON NOUVEL UTILISATEUR -->
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    id="ouvrirUtilisateur"
+                >
                     + Nouvel utilisateur
                 </button>
 
             </div>
 
 
-            <!-- RECHERCHE -->
+            <!-- =================================================
+                 RECHERCHE
+            ================================================== -->
+
             <div class="search-box">
 
                 <input
@@ -252,7 +277,10 @@
             </div>
 
 
-            <!-- TABLEAU -->
+            <!-- =================================================
+                 TABLEAU
+            ================================================== -->
+
             <div class="table-container">
 
                 <table>
@@ -262,17 +290,11 @@
                         <tr>
 
                             <th>ID</th>
-
                             <th>Nom</th>
-
                             <th>Email</th>
-
                             <th>Rôle</th>
-
                             <th>Statut</th>
-
                             <th>Date d'inscription</th>
-
                             <th>Actions</th>
 
                         </tr>
@@ -280,263 +302,135 @@
                     </thead>
 
 
-                    <tbody>
+                   <tbody>
 
+    @forelse($users as $user)
 
-                        <!-- ADMINISTRATEUR -->
-                        <tr>
+        <tr>
 
-                            <td>
-                                #001
-                            </td>
+            <td>
+                #{{ str_pad($user->id, 3, '0', STR_PAD_LEFT) }}
+            </td>
 
-                            <td>
-                                <strong>Administrateur</strong>
-                            </td>
 
-                            <td>
-                                admin@edunova.com
-                            </td>
+            <td>
+                <strong>
+                    {{ $user->nom }} {{ $user->prenom }}
+                </strong>
+            </td>
 
-                            <td>
 
-                                <span class="role admin-role">
-                                    Administrateur
-                                </span>
+            <td>
+                {{ $user->email }}
+            </td>
 
-                            </td>
 
-                            <td>
+            <td>
 
-                                <span class="status active-status">
-                                    Actif
-                                </span>
+                @if($user->role === 'admin')
 
-                            </td>
+                    <span class="role admin-role">
+                        Administrateur
+                    </span>
 
-                            <td>
-                                01 Août 2026
-                            </td>
+                @elseif($user->role === 'professeur')
 
-                            <td class="actions">
+                    <span class="role teacher-role">
+                        Enseignant
+                    </span>
 
-                                <button
-                                    class="view-btn"
-                                    title="Voir"
-                                >
-                                    👁
-                                </button>
+                @elseif($user->role === 'etudiant')
 
-                                <button
-                                    class="edit-btn"
-                                    title="Modifier"
-                                >
-                                    ✏
-                                </button>
+                    <span class="role student-role">
+                        Étudiant
+                    </span>
 
-                                <button
-                                    class="disable-btn"
-                                    title="Désactiver"
-                                >
-                                    ⛔
-                                </button>
+                @endif
 
-                            </td>
+            </td>
 
-                        </tr>
 
+            <td>
 
-                        <!-- ENSEIGNANT -->
-                        <tr>
+                @if($user->actif)
 
-                            <td>
-                                #002
-                            </td>
+                    <span class="status active-status">
+                        Actif
+                    </span>
 
-                            <td>
-                                <strong>Jean Dupont</strong>
-                            </td>
+                @else
 
-                            <td>
-                                jean@edunova.com
-                            </td>
+                    <span class="status inactive-status">
+                        Désactivé
+                    </span>
 
-                            <td>
+                @endif
 
-                                <span class="role teacher-role">
-                                    Enseignant
-                                </span>
+            </td>
 
-                            </td>
 
-                            <td>
+            <td>
+                {{ $user->created_at->format('d/m/Y') }}
+            </td>
 
-                                <span class="status active-status">
-                                    Actif
-                                </span>
 
-                            </td>
+            <td class="actions">
 
-                            <td>
-                                05 Août 2026
-                            </td>
+                <button
+                    class="view-btn"
+                    title="Voir"
+                >
+                    👁
+                </button>
 
-                            <td class="actions">
 
-                                <button
-                                    class="view-btn"
-                                    title="Voir"
-                                >
-                                    👁
-                                </button>
+                <button
+                    class="edit-btn"
+                    title="Modifier"
+                >
+                    ✏
+                </button>
 
-                                <button
-                                    class="edit-btn"
-                                    title="Modifier"
-                                >
-                                    ✏
-                                </button>
 
-                                <button
-                                    class="disable-btn"
-                                    title="Désactiver"
-                                >
-                                    ⛔
-                                </button>
+                @if($user->actif)
 
-                            </td>
+                    <button
+                        class="disable-btn"
+                        title="Désactiver"
+                    >
+                        ⛔
+                    </button>
 
-                        </tr>
+                @else
 
+                    <button
+                        class="enable-btn"
+                        title="Réactiver"
+                    >
+                        ✓
+                    </button>
 
-                        <!-- ETUDIANT -->
-                        <tr>
+                @endif
 
-                            <td>
-                                #003
-                            </td>
+            </td>
 
-                            <td>
-                                <strong>Daniella</strong>
-                            </td>
+        </tr>
 
-                            <td>
-                                daniella@email.com
-                            </td>
+    @empty
 
-                            <td>
+        <tr>
 
-                                <span class="role student-role">
-                                    Étudiant
-                                </span>
+            <td colspan="7" style="text-align: center; padding: 30px;">
 
-                            </td>
+                Aucun utilisateur enregistré.
 
-                            <td>
+            </td>
 
-                                <span class="status active-status">
-                                    Actif
-                                </span>
+        </tr>
 
-                            </td>
+    @endforelse
 
-                            <td>
-                                20 Août 2026
-                            </td>
-
-                            <td class="actions">
-
-                                <button
-                                    class="view-btn"
-                                    title="Voir"
-                                >
-                                    👁
-                                </button>
-
-                                <button
-                                    class="edit-btn"
-                                    title="Modifier"
-                                >
-                                    ✏
-                                </button>
-
-                                <button
-                                    class="disable-btn"
-                                    title="Désactiver"
-                                >
-                                    ⛔
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- UTILISATEUR DESACTIVE -->
-                        <tr>
-
-                            <td>
-                                #004
-                            </td>
-
-                            <td>
-                                <strong>Marie</strong>
-                            </td>
-
-                            <td>
-                                marie@email.com
-                            </td>
-
-                            <td>
-
-                                <span class="role student-role">
-                                    Étudiant
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <span class="status inactive-status">
-                                    Désactivé
-                                </span>
-
-                            </td>
-
-                            <td>
-                                12 Août 2026
-                            </td>
-
-                            <td class="actions">
-
-                                <button
-                                    class="view-btn"
-                                    title="Voir"
-                                >
-                                    👁
-                                </button>
-
-                                <button
-                                    class="edit-btn"
-                                    title="Modifier"
-                                >
-                                    ✏
-                                </button>
-
-                                <button
-                                    class="enable-btn"
-                                    title="Réactiver"
-                                >
-                                    ✓
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-
-                    </tbody>
-
+</tbody>
                 </table>
 
             </div>
@@ -547,6 +441,598 @@
 
 </div>
 
-</body>
 
+<!-- =========================================================
+     MODAL : NOUVEL UTILISATEUR
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="modalUtilisateur"
+>
+
+    <div class="user-modal">
+
+        <!-- EN-TÊTE -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>
+                    Ajouter un utilisateur
+                </h3>
+
+                <p>
+                    Créez un nouveau compte sur EDUNOVA IA.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="close-modal"
+                id="fermerUtilisateur"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- FORMULAIRE -->
+
+        <form
+            class="user-form"
+            action="{{route('register')}}"
+            method="POST"
+        >
+       
+        @csrf
+
+            <!-- NOM + PRÉNOM -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="nom">
+                        Nom
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nom"
+                        name="name"
+                        placeholder="Ex : Dupont"
+                        required
+                    >
+
+                </div>
+
+
+  
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Adresse email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="exemple@edunova.com"
+                    required
+                >
+
+            </div>
+
+
+            <!-- MOT DE PASSE -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Entrez un mot de passe"
+                    required
+                >
+
+            </div>
+
+
+            <!-- RÔLE -->
+
+            <div class="form-group">
+
+                <label for="role">
+                    Rôle
+                </label>
+
+                <select
+                    id="role"
+                    name="role"
+                    required
+                >
+
+                    <option value="">
+                        Sélectionner un rôle
+                    </option>
+
+                    <option value="etudiant">
+                        👨‍🎓 Étudiant
+                    </option>
+
+                    <option value="professeur">
+                        👨‍🏫 Enseignant
+                    </option>
+
+                    <option value="admin">
+                        👨‍💼 Administrateur
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- STATUT -->
+
+            <div class="form-group">
+
+                <label for="actif">
+                    Statut du compte
+                </label>
+
+                <select
+                    id="actif"
+                    name="actif"
+                    required
+                >
+
+                    <option value="1">
+                        Actif
+                    </option>
+
+                    <option value="0">
+                        Désactivé
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- BOUTONS -->
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    id="annulerUtilisateur"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-submit"
+                >
+                    Créer l'utilisateur
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CSS DU MODAL
+========================================================= -->
+
+<style>
+
+    /* ================= MODAL ================= */
+
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 15, 45, 0.65);
+        backdrop-filter: blur(5px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px;
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: 0.25s ease;
+
+        z-index: 9999;
+    }
+
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    /* ================= BOITE ================= */
+
+    .user-modal {
+        width: 100%;
+        max-width: 650px;
+
+        max-height: 90vh;
+        overflow-y: auto;
+
+        background: #ffffff;
+
+        border-radius: 18px;
+
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+
+        transform: translateY(-20px) scale(0.97);
+
+        transition: 0.25s ease;
+    }
+
+
+    .modal-overlay.active .user-modal {
+        transform: translateY(0) scale(1);
+    }
+
+
+    /* ================= HEADER ================= */
+
+    .modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        padding: 24px 28px;
+
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    .modal-header h3 {
+        margin: 0 0 6px;
+
+        font-size: 21px;
+
+        color: #242044;
+    }
+
+
+    .modal-header p {
+        margin: 0;
+
+        color: #77758a;
+
+        font-size: 14px;
+    }
+
+
+    .close-modal {
+        width: 36px;
+        height: 36px;
+
+        border: none;
+
+        border-radius: 50%;
+
+        background: #f2efff;
+
+        color: #5b3cc4;
+
+        font-size: 25px;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: 0.2s ease;
+    }
+
+
+    .close-modal:hover {
+        background: #5b3cc4;
+        color: white;
+    }
+
+
+    /* ================= FORMULAIRE ================= */
+
+    .user-form {
+        padding: 26px 28px;
+    }
+
+
+    .form-row {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 18px;
+    }
+
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+
+    .form-group label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        color: #302b52;
+    }
+
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+
+        padding: 12px 14px;
+
+        border: 1px solid #ddd9eb;
+
+        border-radius: 9px;
+
+        background: #fafaff;
+
+        color: #27233f;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.2s ease;
+    }
+
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #6d4bd8;
+
+        background: #ffffff;
+
+        box-shadow: 0 0 0 3px rgba(109, 75, 216, 0.10);
+    }
+
+
+    .form-group input::placeholder {
+        color: #aaa6ba;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    .modal-footer {
+        display: flex;
+
+        justify-content: flex-end;
+
+        gap: 12px;
+
+        margin-top: 8px;
+
+        padding-top: 20px;
+
+        border-top: 1px solid #eeeeee;
+    }
+
+
+    .btn-cancel,
+    .btn-submit {
+        padding: 11px 20px;
+
+        border-radius: 9px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+
+    .btn-cancel {
+        border: 1px solid #ddd9eb;
+
+        background: #ffffff;
+
+        color: #625d78;
+    }
+
+
+    .btn-cancel:hover {
+        background: #f5f3fa;
+    }
+
+
+    .btn-submit {
+        border: none;
+
+        background: linear-gradient(
+            135deg,
+            #5b3cc4,
+            #7557df
+        );
+
+        color: white;
+
+        box-shadow: 0 6px 15px rgba(91, 60, 196, 0.22);
+    }
+
+
+    .btn-submit:hover {
+        transform: translateY(-1px);
+
+        box-shadow: 0 8px 18px rgba(91, 60, 196, 0.30);
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 650px) {
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+
+        .user-modal {
+            max-height: 95vh;
+        }
+
+
+        .modal-header {
+            padding: 20px;
+        }
+
+
+        .user-form {
+            padding: 20px;
+        }
+
+
+        .modal-footer {
+            flex-direction: column;
+        }
+
+
+        .btn-cancel,
+        .btn-submit {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* ================= ELEMENTS ================= */
+
+    const ouvrirUtilisateur =
+        document.getElementById("ouvrirUtilisateur");
+
+    const modalUtilisateur =
+        document.getElementById("modalUtilisateur");
+
+    const fermerUtilisateur =
+        document.getElementById("fermerUtilisateur");
+
+    const annulerUtilisateur =
+        document.getElementById("annulerUtilisateur");
+
+
+    /* ================= OUVRIR ================= */
+
+    ouvrirUtilisateur.addEventListener("click", function () {
+
+        modalUtilisateur.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+
+    /* ================= FERMER ================= */
+
+    function fermerModalUtilisateur() {
+
+        modalUtilisateur.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    fermerUtilisateur.addEventListener(
+        "click",
+        fermerModalUtilisateur
+    );
+
+
+    annulerUtilisateur.addEventListener(
+        "click",
+        fermerModalUtilisateur
+    );
+
+
+    /* ================= CLIC SUR L'ARRIÈRE-PLAN ================= */
+
+    modalUtilisateur.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === modalUtilisateur) {
+
+                fermerModalUtilisateur();
+
+            }
+
+        }
+    );
+
+
+    /* ================= TOUCHE ESC ================= */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                fermerModalUtilisateur();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
 </html>

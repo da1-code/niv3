@@ -10,12 +10,12 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'nom',
-        'prenom',
+        'name',
         'email',
         'password',
         'role',
-        'actif'
+        'actif',
+        'idclasse',
     ];
 
     protected $hidden = [
@@ -23,45 +23,24 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | RELATION AVEC LA CLASSE
+    |--------------------------------------------------------------------------
+    */
 
-    // Un professeur possède plusieurs cours
-    public function cours()
+    public function classe()
     {
-        return $this->hasMany(Cours::class, 'professeur_id');
+        return $this->belongsTo(
+            Classe::class,
+            'idclasse'
+        );
     }
-
-
-    // Un étudiant possède un profil d'apprentissage
     public function profilApprentissage()
-    {
-        return $this->hasOne(ProfilApprentissage::class);
-    }
-
-
-    // Historique des conversations IA
-    public function conversationsIa()
-    {
-        return $this->hasMany(ConversationIa::class);
-    }
-
-
-    // Inscriptions aux cours
-    public function inscriptionsCours()
-    {
-        return $this->hasMany(InscriptionCours::class);
-    }
-
-
-    // Progression dans les cours
-    public function progressions()
-    {
-        return $this->hasMany(Progression::class);
-    }
-
-
-    // Avis donnés
-    public function feedbacks()
-    {
-        return $this->hasMany(Feedback::class);
-    }
+{
+    return $this->hasOne(
+        ProfilApprentissage::class,
+        'iduser'
+    );
+}
 }

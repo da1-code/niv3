@@ -1,20 +1,16 @@
 <x-guest-layout>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="nom" :value="old('nom')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-         <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Prenom')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
-        </div>
+         
 
         <!-- Email Address -->
         <div class="mt-4">

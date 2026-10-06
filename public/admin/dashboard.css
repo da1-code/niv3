@@ -1,29 +1,50 @@
 /* =========================================================
-   EDUNOVA IA - DASHBOARD ADMIN
+   EDUNOVA IA - DASHBOARD ADMINISTRATEUR
+   Design professionnel
+   ========================================================= */
+
+
+/* =========================================================
+   RÉINITIALISATION
    ========================================================= */
 
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
     font-family: Arial, Helvetica, sans-serif;
+
 }
 
 
 /* =========================================================
-   COULEURS EDUNOVA
+   COULEURS EDUNOVA IA
    ========================================================= */
 
 :root {
+
     --primary: #625cf6;
+
     --primary-dark: #554ff0;
+
     --primary-light: #f0efff;
 
     --text-dark: #172554;
+
     --text: #334155;
+
     --text-light: #64748b;
 
     --border: #e5e7eb;
+
+    --background: #f4f6ff;
+
+    --white: #ffffff;
+
 }
 
 
@@ -32,33 +53,45 @@
    ========================================================= */
 
 body {
+
     min-height: 100vh;
 
-    background: #f4f6ff;
+    background: var(--background);
 
     color: #1e293b;
 
     background-image:
+
         linear-gradient(
             rgba(244, 246, 255, 0.90),
             rgba(244, 246, 255, 0.90)
         ),
+
         url("/images/fond-edunova.png");
 
     background-size: cover;
+
     background-position: center;
+
     background-repeat: no-repeat;
+
     background-attachment: fixed;
+
 }
 
 
 /* =========================================================
-   CONTENEUR
+   CONTENEUR PRINCIPAL
    ========================================================= */
 
 .admin-container {
+
     display: flex;
+
     min-height: 100vh;
+
+    width: 100%;
+
 }
 
 
@@ -67,12 +100,15 @@ body {
    ========================================================= */
 
 .sidebar {
+
     position: fixed;
 
     left: 0;
+
     top: 0;
 
     width: 240px;
+
     height: 100vh;
 
     padding: 30px 15px;
@@ -83,6 +119,9 @@ body {
         5px 0 25px rgba(98, 92, 246, 0.18);
 
     z-index: 1000;
+
+    overflow-y: auto;
+
 }
 
 
@@ -91,12 +130,16 @@ body {
    ========================================================= */
 
 .logo {
+
     text-align: center;
 
     margin-bottom: 45px;
+
 }
 
+
 .logo h2 {
+
     color: white;
 
     font-size: 27px;
@@ -104,6 +147,7 @@ body {
     font-weight: 800;
 
     letter-spacing: 0.5px;
+
 }
 
 
@@ -112,19 +156,27 @@ body {
    ========================================================= */
 
 .menu {
+
     list-style: none;
 
     padding: 0;
+
     margin: 0;
+
 }
+
 
 .menu li {
-    margin-bottom: 8px;
+
+    margin-bottom: 10px;
 
     border-radius: 13px;
+
 }
 
+
 .menu li a {
+
     display: flex;
 
     align-items: center;
@@ -145,7 +197,11 @@ body {
 
     border-radius: 13px;
 
-    transition: all 0.25s ease;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+
 }
 
 
@@ -154,11 +210,16 @@ body {
    ========================================================= */
 
 .menu li:hover {
+
     background: rgba(255, 255, 255, 0.14);
+
 }
 
+
 .menu li:hover a {
+
     color: white;
+
 }
 
 
@@ -167,14 +228,65 @@ body {
    ========================================================= */
 
 .menu li.active {
+
     background: white;
 
     box-shadow:
         0 6px 18px rgba(54, 49, 160, 0.15);
+
 }
 
+
 .menu li.active a {
+
     color: var(--primary);
+
+}
+
+
+/* =========================================================
+   BOUTON DÉCONNEXION
+   ========================================================= */
+
+.logout-button {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 0 18px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.96);
+
+    border: none;
+
+    border-radius: 13px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+
+}
+
+
+.menu li:hover .logout-button {
+
+    color: white;
+
 }
 
 
@@ -183,6 +295,7 @@ body {
    ========================================================= */
 
 .main-content {
+
     width: calc(100% - 240px);
 
     margin-left: 240px;
@@ -190,6 +303,7 @@ body {
     min-height: 100vh;
 
     padding: 30px 35px 50px;
+
 }
 
 
@@ -198,6 +312,7 @@ body {
    ========================================================= */
 
 .topbar {
+
     width: 100%;
 
     min-height: 145px;
@@ -220,6 +335,7 @@ body {
 
     box-shadow:
         0 8px 28px rgba(30, 41, 59, 0.07);
+
 }
 
 
@@ -228,6 +344,7 @@ body {
    ========================================================= */
 
 .topbar h2 {
+
     color: var(--text-dark);
 
     font-size: 34px;
@@ -235,28 +352,36 @@ body {
     font-weight: 750;
 
     margin-bottom: 8px;
+
 }
 
+
 .topbar p {
+
     color: var(--text-light);
 
     font-size: 17px;
+
 }
 
 
 /* =========================================================
-   PROFIL
+   PROFIL ADMIN
    ========================================================= */
 
 .profile {
+
     display: flex;
 
     align-items: center;
 
     gap: 13px;
+
 }
 
+
 .profile img {
+
     width: 60px;
 
     height: 60px;
@@ -269,32 +394,38 @@ body {
 
     box-shadow:
         0 4px 12px rgba(98, 92, 246, 0.12);
+
 }
 
+
 .profile span {
+
     color: var(--text);
 
     font-size: 17px;
 
     font-weight: 700;
+
 }
 
 
 /* =========================================================
-   STATISTIQUES
-   IMPORTANT : TES CLASSES SONT .cards ET .card
+   CARTES STATISTIQUES
    ========================================================= */
 
 .cards {
+
     width: 100%;
 
     display: grid;
 
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
     gap: 22px;
 
     margin-bottom: 30px;
+
 }
 
 
@@ -303,6 +434,7 @@ body {
    ========================================================= */
 
 .card {
+
     position: relative;
 
     min-height: 155px;
@@ -324,47 +456,55 @@ body {
         transform 0.25s ease,
         box-shadow 0.25s ease,
         border-color 0.25s ease;
+
 }
 
 
 /* =========================================================
-   BARRE VIOLETTE À GAUCHE
+   BARRE VIOLETTE
    ========================================================= */
 
 .card::before {
+
     content: "";
 
     position: absolute;
 
     left: 0;
+
     top: 0;
+
     bottom: 0;
 
     width: 5px;
 
     background: var(--primary);
+
 }
 
 
 /* =========================================================
-   HOVER
+   HOVER CARTE
    ========================================================= */
 
 .card:hover {
+
     transform: translateY(-4px);
 
     border-color: #dcd9ff;
 
     box-shadow:
         0 14px 30px rgba(98, 92, 246, 0.13);
+
 }
 
 
 /* =========================================================
-   TITRE DE LA CARTE
+   TITRE CARTE
    ========================================================= */
 
 .card h3 {
+
     color: #6b7280;
 
     font-size: 17px;
@@ -372,14 +512,16 @@ body {
     font-weight: 600;
 
     margin-bottom: 15px;
+
 }
 
 
 /* =========================================================
-   CHIFFRE
+   CHIFFRE CARTE
    ========================================================= */
 
 .card p {
+
     color: var(--primary);
 
     font-size: 38px;
@@ -389,18 +531,21 @@ body {
     font-weight: 800;
 
     margin: 0;
+
 }
 
 
 /* =========================================================
-   ACTIVITÉS RÉCENTES
-   TES CLASSES SONT .recent
+   BLOCS RÉCENTS
    ========================================================= */
 
 .recent {
+
     width: 100%;
 
-    padding: 28px;
+    padding: 30px;
+
+    margin-bottom: 30px;
 
     background: rgba(255, 255, 255, 0.97);
 
@@ -410,47 +555,58 @@ body {
 
     box-shadow:
         0 8px 24px rgba(15, 23, 42, 0.07);
+
 }
 
 
 /* =========================================================
-   TITRE ACTIVITÉS
+   TITRE DES BLOCS
    ========================================================= */
 
 .recent h3 {
+
     color: var(--text-dark);
 
     font-size: 23px;
 
     font-weight: 700;
 
-    margin-bottom: 22px;
+    margin-bottom: 25px;
+
 }
 
 
 /* =========================================================
-   TABLEAU
+   CONTENEUR TABLEAU
    ========================================================= */
 
 .recent table {
+
     width: 100%;
 
-    border-collapse: collapse;
+    border-collapse: separate;
+
+    border-spacing: 0;
 
     overflow: hidden;
+
 }
 
 
 /* =========================================================
-   ENTÊTE TABLEAU
+   EN-TÊTE DU TABLEAU
    ========================================================= */
 
 .recent thead {
+
     background: var(--primary);
+
 }
 
+
 .recent th {
-    padding: 16px 18px;
+
+    padding: 17px 20px;
 
     color: white;
 
@@ -459,6 +615,42 @@ body {
     font-weight: 700;
 
     text-align: left;
+
+    border: none;
+
+}
+
+
+/* Premier coin */
+
+.recent th:first-child {
+
+    border-top-left-radius: 10px;
+
+}
+
+
+/* Dernier coin */
+
+.recent th:last-child {
+
+    border-top-right-radius: 10px;
+
+}
+
+
+/* =========================================================
+   LIGNES DU TABLEAU
+   ========================================================= */
+
+.recent tbody tr {
+
+    background: #ffffff;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
 }
 
 
@@ -467,26 +659,41 @@ body {
    ========================================================= */
 
 .recent td {
-    padding: 17px 18px;
+
+    padding: 20px;
 
     color: #475569;
 
     font-size: 14px;
 
-    border-bottom: 1px solid #eef2f7;
+    border-bottom: 1px solid #edf0f5;
+
+    vertical-align: middle;
+
 }
 
 
 /* =========================================================
-   HOVER LIGNES
+   ESPACE ENTRE LES INFORMATIONS
    ========================================================= */
 
-.recent tbody tr {
-    transition: background 0.2s ease;
+.recent td:first-child {
+
+    font-weight: 600;
+
+    color: #334155;
+
 }
 
+
+/* =========================================================
+   HOVER LIGNE
+   ========================================================= */
+
 .recent tbody tr:hover {
+
     background: #f8f7ff;
+
 }
 
 
@@ -495,23 +702,71 @@ body {
    ========================================================= */
 
 .recent tbody tr:last-child td {
+
     border-bottom: none;
+
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   TABLEAU INFORMATIONS
+   ========================================================= */
+
+/*
+   Lorsque le tableau contient seulement
+   deux colonnes, on donne une largeur
+   confortable à la première colonne.
+*/
+
+.recent table th:first-child {
+
+    width: 55%;
+
+}
+
+
+.recent table th:last-child {
+
+    width: 45%;
+
+}
+
+
+/* =========================================================
+   TEXTE VIDE
+   ========================================================= */
+
+.recent td[colspan] {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - GRAND ÉCRAN
    ========================================================= */
 
 @media (max-width: 1200px) {
 
     .cards {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
     }
 
+
     .main-content {
+
         padding: 25px;
+
     }
+
 }
 
 
@@ -522,40 +777,57 @@ body {
 @media (max-width: 750px) {
 
     .sidebar {
+
         width: 75px;
 
         padding: 25px 8px;
+
     }
+
 
     .logo h2 {
+
         font-size: 0;
+
     }
 
+
     .logo h2::after {
+
         content: "E";
 
         font-size: 27px;
 
         color: white;
+
     }
 
-    .menu li a {
+
+    .menu li a,
+    .logout-button {
+
         justify-content: center;
 
         padding: 0;
 
         font-size: 0;
+
     }
 
+
     .main-content {
+
         width: calc(100% - 75px);
 
         margin-left: 75px;
 
         padding: 20px;
+
     }
 
+
     .topbar {
+
         min-height: auto;
 
         flex-direction: column;
@@ -563,57 +835,126 @@ body {
         align-items: flex-start;
 
         gap: 20px;
+
     }
 
+
     .topbar h2 {
+
         font-size: 28px;
+
     }
+
 }
 
 
 /* =========================================================
-   MOBILE
+   PETIT ÉCRAN
    ========================================================= */
 
 @media (max-width: 600px) {
 
     .cards {
+
         grid-template-columns: 1fr;
+
     }
+
 
     .main-content {
+
         padding: 15px;
+
     }
+
 
     .topbar {
+
         padding: 22px;
+
     }
+
 
     .topbar h2 {
+
         font-size: 24px;
+
     }
+
 
     .topbar p {
+
         font-size: 14px;
+
     }
 
+
+    .profile img {
+
+        width: 50px;
+
+        height: 50px;
+
+    }
+
+
+    .profile span {
+
+        font-size: 15px;
+
+    }
+
+
     .card {
+
         min-height: 135px;
 
         padding: 23px;
+
     }
+
 
     .card p {
+
         font-size: 34px;
+
     }
+
 
     .recent {
-        padding: 18px;
+
+        padding: 20px;
 
         overflow-x: auto;
+
     }
 
-    .recent table {
-        min-width: 550px;
+
+    .recent h3 {
+
+        font-size: 20px;
+
     }
+
+
+    .recent table {
+
+        min-width: 600px;
+
+    }
+
+
+    .recent th {
+
+        padding: 15px;
+
+    }
+
+
+    .recent td {
+
+        padding: 18px 15px;
+
+    }
+
 }

@@ -2,34 +2,56 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>EDUNOVA - Mon profil</title>
 
     <link rel="stylesheet" href="/etudiant/dashboard.css">
-   <link rel="stylesheet" href="/etudiant/profil.css">
+    <link rel="stylesheet" href="/etudiant/profil.css">
+
 </head>
+
 
 <body>
 
 <div class="student-container">
 
-    <!-- ================= SIDEBAR ================= -->
+
+    <!-- ========================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================================================= -->
+
     <aside class="sidebar">
 
+
         <!-- LOGO -->
+
         <div class="logo">
-            <div class="logo-icon">🎓</div>
+
+            <div class="logo-icon">
+                🎓
+            </div>
 
             <div class="logo-text">
-                <h2>EDUNOVA</h2>
-                <span>Plateforme éducative</span>
+
+                <h2>
+                    EDUNOVA
+                </h2>
+
+                <span>
+                    Plateforme éducative
+                </span>
+
             </div>
+
         </div>
 
 
+
         <!-- MINI PROFIL -->
+
         <div class="profile-mini">
 
             <div class="avatar">
@@ -37,80 +59,138 @@
             </div>
 
             <div class="profile-mini-info">
-                <strong>Daniella</strong>
-                <small>Étudiante</small>
+
+                <strong>
+                    {{ $etudiant->prenom }} {{ $etudiant->nom }}
+                </strong>
+
+                <small>
+                    Étudiant
+                </small>
+
             </div>
 
         </div>
 
 
+
         <!-- MENU -->
+
         <nav class="menu">
 
-            <!-- Tableau de bord : PAS active -->
+
             <a href="/etudiant/dashboard">
+
                 <span>🏠</span>
-                <label>Tableau de bord</label>
+
+                <label>
+                    Tableau de bord
+                </label>
+
             </a>
 
 
-            <!-- Mon profil : ACTIVE -->
+
             <a href="/etudiant/profil" class="active">
+
                 <span>👤</span>
-                <label>Mon profil</label>
+
+                <label>
+                    Mon profil
+                </label>
+
             </a>
 
 
-            <!-- Profil d'apprentissage -->
-            <a href="/etudiant/profil-apprentissage">
+
+            <a href="/etudiant/profil_apprentissage">
+
                 <span>🧠</span>
-                <label>Profil d'apprentissage</label>
+
+                <label>
+                    Profil d'apprentissage
+                </label>
+
             </a>
 
 
-            <!-- Cours -->
+
             <a href="/etudiant/cours">
+
                 <span>📚</span>
-                <label>Mes cours</label>
+
+                <label>
+                    Mes cours
+                </label>
+
             </a>
 
 
-            <!-- Examens -->
+
             <a href="/etudiant/examens">
+
                 <span>📝</span>
-                <label>Examens</label>
+
+                <label>
+                    Examens
+                </label>
+
             </a>
 
 
-            <!-- IA -->
+
             <a href="/etudiant/ia">
+
                 <span>🤖</span>
-                <label>Mon IA</label>
+
+                <label>
+                    Mon IA
+                </label>
+
             </a>
 
 
-            <!-- Statistiques -->
+
             <a href="/etudiant/statistiques">
+
                 <span>📊</span>
-                <label>Mes statistiques</label>
+
+                <label>
+                    Mes statistiques
+                </label>
+
             </a>
 
 
-            <!-- Paramètres -->
+
             <a href="/etudiant/parametres">
+
                 <span>⚙️</span>
-                <label>Paramètres</label>
+
+                <label>
+                    Paramètres
+                </label>
+
             </a>
 
         </nav>
 
 
+
         <!-- DECONNEXION -->
+
         <div class="sidebar-bottom">
 
             <a href="/logout" class="logout">
-                <span>🚪</span>
-                <label>Déconnexion</label>
+
+                <span>
+                    🚪
+                </span>
+
+                <label>
+                    Déconnexion
+                </label>
+
             </a>
 
         </div>
@@ -118,12 +198,20 @@
     </aside>
 
 
-    <!-- ================= CONTENU PRINCIPAL ================= -->
+
+    <!-- ========================================================= -->
+    <!-- CONTENU PRINCIPAL -->
+    <!-- ========================================================= -->
+
     <main class="main-content">
 
 
+        <!-- ===================================================== -->
         <!-- HEADER -->
+        <!-- ===================================================== -->
+
         <header class="topbar">
+
 
             <div class="page-title">
 
@@ -138,9 +226,12 @@
             </div>
 
 
+
             <div class="top-actions">
 
-                <!-- Notification -->
+
+                <!-- NOTIFICATION -->
+
                 <a href="#notifications" class="notification">
 
                     🔔
@@ -150,21 +241,29 @@
                 </a>
 
 
-                <!-- Utilisateur -->
+
+                <!-- UTILISATEUR -->
+
                 <div class="student-user">
 
                     <div class="user-avatar">
-                        D
+
+                        {{ strtoupper(substr($etudiant->prenom, 0, 1)) }}
+
                     </div>
+
 
                     <div class="student-user-info">
 
                         <strong>
-                            Daniella
+
+                            {{ $etudiant->prenom }}
+                            {{ $etudiant->nom }}
+
                         </strong>
 
                         <small>
-                            Étudiante
+                            Étudiant
                         </small>
 
                     </div>
@@ -177,14 +276,20 @@
 
 
 
-        <!-- ================= PROFIL ================= -->
+        <!-- ===================================================== -->
+        <!-- PROFIL -->
+        <!-- ===================================================== -->
+
         <section class="profile-layout">
 
 
-            <!-- CARTE INFORMATIONS -->
+            <!-- ================================================= -->
+            <!-- INFORMATIONS PERSONNELLES -->
+            <!-- ================================================= -->
+
             <div class="profile-card">
 
-                <!-- En-tête -->
+
                 <div class="card-header">
 
                     <div>
@@ -209,25 +314,38 @@
 
 
                 <!-- PHOTO ET NOM -->
+
                 <div class="profile-photo">
 
+
                     <div class="large-avatar">
-                        👩‍🎓
+
+                        {{ strtoupper(substr($etudiant->prenom, 0, 1)) }}
+
                     </div>
+
 
 
                     <div class="photo-info">
 
+
                         <h3>
-                            Daniella
+
+                            {{ $etudiant->prenom }}
+                            {{ $etudiant->nom }}
+
                         </h3>
 
+
                         <p>
-                            Étudiante en Informatique
+                            Compte étudiant EDUNOVA
                         </p>
 
+
                         <button class="photo-btn">
+
                             📷 Modifier la photo
+
                         </button>
 
                     </div>
@@ -236,9 +354,14 @@
 
 
 
-                <!-- INFORMATIONS -->
+                <!-- ================================================= -->
+                <!-- INFORMATIONS BD -->
+                <!-- ================================================= -->
+
                 <div class="information-grid">
 
+
+                    <!-- NOM -->
 
                     <div class="information-item">
 
@@ -247,12 +370,16 @@
                         </label>
 
                         <strong>
-                            Nguimbous
+
+                            {{ $etudiant->nom }}
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- PRENOM -->
 
                     <div class="information-item">
 
@@ -261,12 +388,16 @@
                         </label>
 
                         <strong>
-                            Daniella
+
+                            {{ $etudiant->prenom }}
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- EMAIL -->
 
                     <div class="information-item">
 
@@ -275,68 +406,60 @@
                         </label>
 
                         <strong>
-                            daniella@email.com
+
+                            {{ $etudiant->email }}
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- ROLE -->
 
                     <div class="information-item">
 
                         <label>
-                            Téléphone
+                            Rôle
                         </label>
 
                         <strong>
-                            +237 6 XX XX XX XX
+
+                            {{ ucfirst($etudiant->role) }}
+
                         </strong>
 
                     </div>
 
 
+
+                    <!-- STATUT -->
 
                     <div class="information-item">
 
                         <label>
-                            Filière
+                            Statut du compte
                         </label>
 
                         <strong>
-                            Informatique
+
+                            @if($etudiant->actif)
+
+                                Actif
+
+                            @else
+
+                                Inactif
+
+                            @endif
+
                         </strong>
 
                     </div>
 
 
 
-                    <div class="information-item">
-
-                        <label>
-                            Niveau d'étude
-                        </label>
-
-                        <strong>
-                            Licence 3
-                        </strong>
-
-                    </div>
-
-
-
-                    <div class="information-item">
-
-                        <label>
-                            Matricule
-                        </label>
-
-                        <strong>
-                            EDN-2025-001
-                        </strong>
-
-                    </div>
-
-
+                    <!-- DATE INSCRIPTION -->
 
                     <div class="information-item">
 
@@ -345,7 +468,48 @@
                         </label>
 
                         <strong>
-                            15 Septembre 2025
+
+                            {{ $etudiant->created_at
+                                ? $etudiant->created_at->format('d/m/Y')
+                                : 'Non disponible'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- ID -->
+
+                    <div class="information-item">
+
+                        <label>
+                            Identifiant
+                        </label>
+
+                        <strong>
+
+                            #{{ $etudiant->id }}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- COURS DISPONIBLES -->
+
+                    <div class="information-item">
+
+                        <label>
+                            Cours disponibles
+                        </label>
+
+                        <strong>
+
+                            {{ $nombreCours }}
+
                         </strong>
 
                     </div>
@@ -356,7 +520,10 @@
 
 
 
-            <!-- ================= NOTIFICATIONS ================= -->
+            <!-- ================================================= -->
+            <!-- NOTIFICATIONS / ACTIVITÉS RÉELLES -->
+            <!-- ================================================= -->
+
             <div class="notifications-card" id="notifications">
 
 
@@ -365,138 +532,168 @@
                     <div>
 
                         <h2>
-                            Notifications 🔔
+                            Activités récentes 🔔
                         </h2>
 
                         <p>
-                            Les dernières informations importantes.
+                            Les dernières informations enregistrées sur EDUNOVA.
                         </p>
 
                     </div>
 
 
                     <span class="notification-count">
-                        3 nouvelles
+
+                        {{ $nombreCours + $nombreExamens }} éléments
+
                     </span>
 
                 </div>
 
 
 
-                <!-- Notification 1 -->
-                <div class="notification-item unread">
+                <!-- ============================================= -->
+                <!-- COURS RÉCENTS -->
+                <!-- ============================================= -->
 
-                    <div class="notification-icon blue">
-                        📚
-                    </div>
+                @forelse($coursRecents as $cours)
 
-
-                    <div class="notification-content">
-
-                        <strong>
-                            Nouveau cours disponible
-                        </strong>
-
-                        <p>
-                            Un nouveau cours de développement Web est maintenant disponible.
-                        </p>
-
-                        <small>
-                            Il y a 20 minutes
-                        </small>
-
-                    </div>
-
-                </div>
+                    <div class="notification-item unread">
 
 
-
-                <!-- Notification 2 -->
-                <div class="notification-item unread">
-
-                    <div class="notification-icon green">
-                        📝
-                    </div>
+                        <div class="notification-icon blue">
+                            📚
+                        </div>
 
 
-                    <div class="notification-content">
+                        <div class="notification-content">
 
-                        <strong>
-                            Nouvel examen disponible
-                        </strong>
+                            <strong>
 
-                        <p>
-                            L'examen de Base de données est maintenant disponible.
-                        </p>
+                                Nouveau cours disponible
 
-                        <small>
-                            Il y a 2 heures
-                        </small>
+                            </strong>
+
+
+                            <p>
+
+                                {{ $cours->titre ?? 'Un nouveau cours a été ajouté.' }}
+
+                            </p>
+
+
+                            <small>
+
+                                {{ $cours->created_at
+                                    ? $cours->created_at->diffForHumans()
+                                    : 'Date non disponible'
+                                }}
+
+                            </small>
+
+                        </div>
 
                     </div>
 
-                </div>
+                @empty
 
+                    <div class="notification-item">
 
+                        <div class="notification-icon blue">
+                            📚
+                        </div>
 
-                <!-- Notification 3 -->
-                <div class="notification-item unread">
+                        <div class="notification-content">
 
-                    <div class="notification-icon purple">
-                        🤖
-                    </div>
+                            <strong>
+                                Aucun cours
+                            </strong>
 
+                            <p>
+                                Aucun cours n'est actuellement enregistré.
+                            </p>
 
-                    <div class="notification-content">
-
-                        <strong>
-                            Suggestion de ton IA
-                        </strong>
-
-                        <p>
-                            EDUNOVA IA te recommande de revoir un chapitre de ton cours.
-                        </p>
-
-                        <small>
-                            Hier
-                        </small>
+                        </div>
 
                     </div>
 
-                </div>
+                @endforelse
 
 
 
-                <!-- Notification 4 -->
-                <div class="notification-item">
+                <!-- ============================================= -->
+                <!-- EXAMENS RÉCENTS -->
+                <!-- ============================================= -->
 
-                    <div class="notification-icon yellow">
-                        📊
+                @forelse($examensRecents as $examen)
+
+                    <div class="notification-item unread">
+
+
+                        <div class="notification-icon green">
+                            📝
+                        </div>
+
+
+                        <div class="notification-content">
+
+                            <strong>
+
+                                Nouvel examen disponible
+
+                            </strong>
+
+
+                            <p>
+
+                                {{ $examen->titre ?? 'Un nouvel examen a été ajouté.' }}
+
+                            </p>
+
+
+                            <small>
+
+                                {{ $examen->created_at
+                                    ? $examen->created_at->diffForHumans()
+                                    : 'Date non disponible'
+                                }}
+
+                            </small>
+
+                        </div>
+
                     </div>
 
+                @empty
 
-                    <div class="notification-content">
+                    <div class="notification-item">
 
-                        <strong>
-                            Progression mise à jour
-                        </strong>
+                        <div class="notification-icon green">
+                            📝
+                        </div>
 
-                        <p>
-                            Ta progression générale est passée à 78%.
-                        </p>
+                        <div class="notification-content">
 
-                        <small>
-                            Il y a 2 jours
-                        </small>
+                            <strong>
+                                Aucun examen
+                            </strong>
+
+                            <p>
+                                Aucun examen n'est actuellement enregistré.
+                            </p>
+
+                        </div>
 
                     </div>
 
-                </div>
+                @endforelse
 
 
 
                 <button class="all-notifications">
-                    Voir toutes les notifications →
+
+                    Voir les cours et examens →
+
                 </button>
 
             </div>
@@ -505,25 +702,44 @@
 
 
 
-        <!-- ================= RESUME COMPTE ================= -->
+        <!-- ===================================================== -->
+        <!-- RESUME COMPTE -->
+        <!-- ===================================================== -->
+
         <section class="account-summary">
 
 
-            <!-- Statut -->
+            <!-- STATUT -->
+
             <div class="summary-item">
+
 
                 <div class="summary-icon blue">
                     🎓
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Étudiant actif
+
+                        @if($etudiant->actif)
+
+                            Étudiant actif
+
+                        @else
+
+                            Compte inactif
+
+                        @endif
+
                     </strong>
 
+
                     <small>
-                        Compte actuellement actif
+
+                        Statut enregistré dans la base de données
+
                     </small>
 
                 </div>
@@ -532,21 +748,29 @@
 
 
 
-            <!-- Cours -->
+            <!-- COURS -->
+
             <div class="summary-item">
+
 
                 <div class="summary-icon green">
                     📚
                 </div>
 
+
                 <div>
 
                     <strong>
-                        18 cours consultés
+
+                        {{ $nombreCours }} cours
+
                     </strong>
 
+
                     <small>
-                        Depuis ton inscription
+
+                        Cours actuellement disponibles
+
                     </small>
 
                 </div>
@@ -555,32 +779,43 @@
 
 
 
-            <!-- Examens -->
+            <!-- EXAMENS -->
+
             <div class="summary-item">
+
 
                 <div class="summary-icon purple">
                     📝
                 </div>
 
+
                 <div>
 
                     <strong>
-                        7 examens réalisés
+
+                        {{ $nombreExamens }} examens
+
                     </strong>
 
+
                     <small>
-                        5 réussis
+
+                        Examens actuellement disponibles
+
                     </small>
 
                 </div>
 
             </div>
 
+
         </section>
+
 
     </main>
 
 </div>
+
 
 </body>
 

@@ -71,8 +71,6 @@
                 <a href="/prof/parametres">
                     ⚙️ Paramètres
                 </a>
-
-                
             </li>
 
 
@@ -102,7 +100,10 @@
         <div class="welcome-box">
 
             <h2>
-                Bienvenue Enseignant 👋
+                Bienvenue
+                {{ Auth::user()->prenom ?? '' }}
+                {{ Auth::user()->nom ?? 'Enseignant' }}
+                👋
             </h2>
 
             <p>
@@ -121,6 +122,8 @@
         <div class="cards">
 
 
+            <!-- MES COURS -->
+
             <div class="card">
 
                 <h3>
@@ -128,7 +131,7 @@
                 </h3>
 
                 <span>
-                    8
+                    {{ $totalCours }}
                 </span>
 
                 <p>
@@ -139,6 +142,8 @@
 
 
 
+            <!-- MES ÉTUDIANTS -->
+
             <div class="card">
 
                 <h3>
@@ -146,7 +151,7 @@
                 </h3>
 
                 <span>
-                    120
+                    {{ $totalEtudiants }}
                 </span>
 
                 <p>
@@ -157,6 +162,8 @@
 
 
 
+            <!-- MES EXAMENS -->
+
             <div class="card">
 
                 <h3>
@@ -164,7 +171,7 @@
                 </h3>
 
                 <span>
-                    6
+                    {{ $totalExamens }}
                 </span>
 
                 <p>
@@ -175,6 +182,8 @@
 
 
 
+            <!-- ÉVOLUTION -->
+
             <div class="card">
 
                 <h3>
@@ -182,7 +191,7 @@
                 </h3>
 
                 <span>
-                    85%
+                    {{ $progressionMoyenne }}%
                 </span>
 
                 <p>
@@ -208,32 +217,25 @@
             </h3>
 
 
-            <div class="activity">
+            @forelse($activites as $activite)
 
-                📚 Vous avez ajouté un nouveau cours.
+                <div class="activity">
 
-            </div>
+                    {{ $activite['icone'] }}
 
+                    {{ $activite['texte'] }}
 
-            <div class="activity">
+                </div>
 
-                📝 Vous avez créé un nouvel examen.
+            @empty
 
-            </div>
+                <div class="activity">
 
+                    📋 Aucune activité récente.
 
-            <div class="activity">
+                </div>
 
-                📊 La progression de vos étudiants a été mise à jour.
-
-            </div>
-
-
-            <div class="activity">
-
-                👨‍🎓 Vous avez consulté l'évolution de vos étudiants.
-
-            </div>
+            @endforelse
 
 
         </div>
